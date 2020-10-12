@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7524c785c6508f549a87bd26069e84fd, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: e19d8aca89289e498fc6d1c829e61ccb
+    GuidInternal: 
+    m_lastTime: -8585990654146506110
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: ea4e730df2ba4940a510de91b52fc026
+    GuidInternal: 
+    m_lastTime: -8585990632067063389
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus
+    - name: New Master Bus
+      guid: f350a48451de8a45ac93709946c70477
+      id: 3193046343
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: New Master Bus
+        ObjectType: 2
+      Path: Default Work Unit\New Master Bus
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: a5df852716738b498d4bf048daf78b12
+    GuidInternal: 
+    m_lastTime: -8585990632066770756
+    List:
+    - name: exemple
+      guid: ced854a1bb2f3440ac718ca3b400abf6
+      id: 1526426841
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: exemple
+        ObjectType: 7
+      Path: Default Work Unit\exemple
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: dcde4f6c67debf42925ade4f5f8a1ab7
+    GuidInternal: 
+    m_lastTime: -8585990654146560670
+    List: []
+  - PhysicalPath: Events\slip.wwu
+    PathAndIcons:
+    - ElementName: slip
+      ObjectType: 12
+    ParentPath: slip
+    guid: 28528c8abed9104ba886ff6a1251365e
+    GuidInternal: 
+    m_lastTime: -8585990632066755810
+    List:
+    - name: slip
+      guid: b615fbb30d1c44489b1e45a5a267a0a0
+      id: 686938995
+      PathAndIcons:
+      - ElementName: slip
+        ObjectType: 12
+      - ElementName: slip
+        ObjectType: 3
+      Path: slip\slip
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 38303ef1824ed042884cbffc6b49ec99
+    GuidInternal: 
+    m_lastTime: -8585990654146555711
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 91514fdbfde6ce45b8dbd62257e428aa
+    GuidInternal: 
+    m_lastTime: -8585990654146520991
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: 21f7e8c92a64154f8b424e718793c328
+    GuidInternal: 
+    m_lastTime: -8585990654146516032
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Default Work Unit
+      ObjectType: 12
+    ParentPath: Default Work Unit
+    guid: bdf3deb21b140448af666dbf50b109fc
+    GuidInternal: 
+    m_lastTime: -8585990654146511071
+    List: []
+  ExpandedItems:
+  - /ATP_WwiseProject
+  - /ATP_WwiseProject/SoundBanks
+  - /ATP_WwiseProject/SoundBanks/Default Work Unit
+  autoPopulateEnabled: 1
+  CurrentPluginConfig: 

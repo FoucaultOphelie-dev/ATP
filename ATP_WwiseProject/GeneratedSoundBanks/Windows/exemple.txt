@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	686938995	slip			\slip\slip	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	766349877	chameleon	D:\documents\UQAC\conception JV\ATP\ATP\ATP_WwiseProject\.cache\Windows\SFX\slip_10C4C929.wem		\Actor-Mixer Hierarchy\Chameleon\chameleon		3971096
+

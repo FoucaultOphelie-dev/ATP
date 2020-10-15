@@ -6,6 +6,7 @@ public class CharacterMove : MonoBehaviour
 {
     public float speedWalk;
     public float speedRun;
+    public bool CanRun;
     private float speed;
 
     public bool scaled = false;
@@ -18,6 +19,7 @@ public class CharacterMove : MonoBehaviour
     void Start()
     {
         speed = speedWalk;
+        CanRun = true;
         animator = GetComponent<Animator>();
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
@@ -35,12 +37,18 @@ public class CharacterMove : MonoBehaviour
         {
             deltaTime = Time.unscaledDeltaTime;
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
+        if (CanRun)
         {
-            speed = speedRun;
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                speed = speedRun;
+            }
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                speed = speedWalk;
+            }
         }
-        if (Input.GetKeyUp(KeyCode.R))
+        else
         {
             speed = speedWalk;
         }

@@ -408,6 +408,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1186214762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2175382703412592222, guid: 003898cb875362b469ed7f1eef39be89, type: 3}
+  m_PrefabInstance: {fileID: 2175382705018336236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1186214766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186214762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94deebc6d23190641b0fa66d88b73cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedWalk: 2
+  speedRun: 6
+  scaled: 1
 --- !u!1 &1436521608
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,5 +843,9 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fd803c9c70aea9b4c8108880d9bb4d20, type: 2}
+    - target: {fileID: 2175382703421967478, guid: 003898cb875362b469ed7f1eef39be89, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 003898cb875362b469ed7f1eef39be89, type: 3}

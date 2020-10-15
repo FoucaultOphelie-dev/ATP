@@ -19,9 +19,8 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         
-        transform.Rotate(0, Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed, 0);
-        m_camera.transform.Rotate(Input.GetAxisRaw("Mouse Y") * Time.deltaTime * -speed, 0, 0);
-
+        transform.Rotate(0, Input.GetAxisRaw("Mouse X") * Time.unscaledDeltaTime * speed, 0);
+        m_camera.transform.Rotate(Input.GetAxisRaw("Mouse Y") * Time.unscaledDeltaTime * -speed, 0, 0);
 
         if (m_camera.transform.localRotation.x < minY)
         {

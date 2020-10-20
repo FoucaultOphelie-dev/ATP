@@ -292,7 +292,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3997819753988530567}
-  - {fileID: 3997819755007293845}
   m_Father: {fileID: 3997819754102759399}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1580,7 +1579,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.002, y: 1.425, z: 0.235}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3997819755007293845}
   m_Father: {fileID: 3997819755043930763}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2177,17 +2177,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3997819755007293844}
-  m_LocalRotation: {x: -0.7351889, y: -0.5365947, z: 0.41173807, w: 0.045114506}
-  m_LocalPosition: {x: -0.02545333, y: 0.05853123, z: -0.03791731}
-  m_LocalScale: {x: 0.14999999, y: 0.15, z: 0.14999998}
+  m_LocalRotation: {x: -0.040153056, y: -0.6539611, z: 0.070068985, w: 0.75220543}
+  m_LocalPosition: {x: 0.097, y: -0.038999915, z: 0.476}
+  m_LocalScale: {x: 0.14999999, y: 0.15000002, z: 0.14999999}
   m_Children:
   - {fileID: 3997819753865966805}
   - {fileID: 3997819754885433559}
   - {fileID: 3997819755297903316}
   - {fileID: 3997819754417427705}
-  m_Father: {fileID: 3997819753918927914}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 18.461, y: -128.85, z: -239.351}
+  m_Father: {fileID: 3997819754796506166}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 1.79, y: -81.865, z: -350.909}
 --- !u!1 &3997819755043930764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,7 +2201,7 @@ GameObject:
   - component: {fileID: 3997819755043930765}
   - component: {fileID: 3997819755043930760}
   m_Layer: 0
-  m_Name: Ethan
+  m_Name: Personnage 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2272,10 +2272,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94deebc6d23190641b0fa66d88b73cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyRun: 0
   speedWalk: 2
   speedRun: 6
   CanRun: 0
   scaled: 1
+  keyJump: 0
+  playerJumpForce: 0
+  appliedForceMode: 0
+  playerIsJumping: 0
+  speed: 0
+  groundLayer: 0
+  gun: {fileID: 0}
+  isAiming: 0
 --- !u!1 &3997819755072900904
 GameObject:
   m_ObjectHideFlags: 0

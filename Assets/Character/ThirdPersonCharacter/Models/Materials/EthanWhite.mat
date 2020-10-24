@@ -241,7 +241,11 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+<<<<<<< HEAD
 --- !u!114 &2684030544270277992
+=======
+--- !u!114 &7825638822397338778
+>>>>>>> Develop
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

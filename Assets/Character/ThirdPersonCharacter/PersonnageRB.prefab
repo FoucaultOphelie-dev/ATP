@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 5849580698446620379}
   - component: {fileID: 5849580698446620356}
   m_Layer: 0
-  m_Name: Ethan
+  m_Name: PersonnageRB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,11 +1242,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5849580698446620382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6242e67d66a71e44093ce889330b9947, type: 3}
+  m_Script: {fileID: 11500000, guid: 08284cff555f1b04d8fad01bdb0e7444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extend: 0
-  mir: {fileID: 0}
 --- !u!1 &5849580698464552445
 GameObject:
   m_ObjectHideFlags: 0

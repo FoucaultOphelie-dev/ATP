@@ -5,22 +5,13 @@ public class Gun : MonoBehaviour
 
     public float range = 100f;
     public Camera fpsCam;
-    private bool isAiming = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
-        {
-            aim();
-        }
-        if (isAiming && Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             shoot();
-        }
-        if (Input.GetButtonUp("Fire2"))
-        {
-            stopAiming();
         }
     }
 
@@ -39,13 +30,4 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void aim()
-    {
-        isAiming = true;
-    }
-
-    void stopAiming()
-    {
-        isAiming = false;
-    }
 }

@@ -63,15 +63,25 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        if (isAiming)
+        if (Input.GetButtonDown("Fire2"))
+        {
+            isAiming = true;
+            gun.SetActive(true);
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            isAiming = false;
+            gun.SetActive(false);
+        }
+        /*if (isAiming)
         {
             gun.SetActive(true);
         }
         else
         {
             gun.SetActive(false);
-        }
-
+        }*/
         if (scaled)
         {
             m_deltaTime = Time.deltaTime;

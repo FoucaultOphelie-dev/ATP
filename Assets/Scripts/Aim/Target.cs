@@ -12,6 +12,7 @@ public class Target : MonoBehaviour
         if (hit)
         {
             Destroy(gameObject);
+            Spawner.targetDestroyed();
         }
     }
 }

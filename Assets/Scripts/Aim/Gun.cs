@@ -7,6 +7,8 @@ public class Gun : MonoBehaviour
     public float range = 100f;
     public Camera fpsCam;
     public Text text;
+    private int score;
+    private string feedback;
 
     // Update is called once per frame
     void Update()
@@ -32,19 +34,47 @@ public class Gun : MonoBehaviour
             switch (hit.transform.name)
             {
                 case "InnerCircle":
-                    text.text = "Perfect";
+                    score = 100 * target.multiplier;
+                    feedback = "Perfect ";
+                    if(score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    text.text = feedback;
                     text.color = Color.yellow;
                     break;
                 case "FirstCircle":
-                    text.text = "Great";
+                    score = 80 * target.multiplier; ;
+                    feedback = "Great ";
+                    if (score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    text.text = feedback;
                     text.color = Color.magenta;
                     break;
                 case "SecondCircle":
-                    text.text = "Good";
+                    score = 60 * target.multiplier;
+                    feedback = "Good ";
+                    if (score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    text.text = feedback;
                     text.color = Color.red;
                     break;
                 case "OuterCircle":
-                    text.text = "Ok";
+                    score = 40 * target.multiplier;
+                    feedback = "Ok ";
+                    if (score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    text.text = feedback;
                     text.color = Color.cyan;
                     break;
                 default:

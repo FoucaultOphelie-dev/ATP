@@ -44,6 +44,7 @@ public class CharacterMove : MonoBehaviour
     private float m_deltaTime;
     private Animator m_animator;
     private bool canJump = false;
+    private float initialSpeedAnimator;
     #endregion
 
     void Start()
@@ -54,6 +55,7 @@ public class CharacterMove : MonoBehaviour
         speed = speedWalk;
 
         m_animator = GetComponent<Animator>();
+        initialSpeedAnimator = m_animator.speed;
         m_animator.SetBool("Walk", false);
         m_animator.SetBool("Run", false);
 
@@ -63,6 +65,7 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = true;
@@ -74,14 +77,14 @@ public class CharacterMove : MonoBehaviour
             isAiming = false;
             gun.SetActive(false);
         }
-        /*if (isAiming)
+        if (isAiming)
         {
-            gun.SetActive(true);
+            CanRun = false;
         }
         else
         {
-            gun.SetActive(false);
-        }*/
+            CanRun = true;
+        }
         if (scaled)
         {
             m_deltaTime = Time.deltaTime;
@@ -89,6 +92,7 @@ public class CharacterMove : MonoBehaviour
         else
         {
             m_deltaTime = Time.unscaledDeltaTime;
+            m_animator.speed = initialSpeedAnimator/Time.timeScale;
         }
 
         if (CanRun)

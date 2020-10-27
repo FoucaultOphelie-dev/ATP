@@ -13,6 +13,16 @@ public class CharacterMove : MonoBehaviour
     public bool CanRun = true;
     public bool scaled = true;
 
+    [Header("Slide Setting")]
+    public KeyCode keySlide;
+    public float timeOfSlide;
+    public float speedDuringSlide;
+    public float playerSlideForce;
+    public ForceMode appliedSlideForceMode;
+    public GameObject body;
+    public GameObject cam;
+
+
     [Header("Jump Settings")]
     public KeyCode keyJump;
     public float playerJumpForce;
@@ -37,13 +47,14 @@ public class CharacterMove : MonoBehaviour
     private float m_xAxis;
     private float m_zAxis;
     private Rigidbody m_rb;
-    private bool m_leftShiftPressed;
     private int m_groundLayerMask;
     private bool m_playerIsGrounded = true;
     private Vector3 m_direction;
     private float m_deltaTime;
     private Animator m_animator;
     private bool canJump = false;
+    private bool canSlide = false;
+    private bool inSlide = false;
     private float initialSpeedAnimator;
     #endregion
 
@@ -77,6 +88,12 @@ public class CharacterMove : MonoBehaviour
             isAiming = false;
             gun.SetActive(false);
         }
+
+        if (Input.GetKeyDown(keySlide) && !inSlide)
+        {
+            canSlide = true;
+        }
+
         if (isAiming)
         {
             CanRun = false;
@@ -95,13 +112,20 @@ public class CharacterMove : MonoBehaviour
             m_animator.speed = initialSpeedAnimator/Time.timeScale;
         }
 
-        if (CanRun)
+        if (inSlide)
         {
-            speed = Input.GetKey(keyRun) ? speedRun : speedWalk;
+            speed = speedDuringSlide;
         }
         else
         {
-            speed = speedWalk;
+            if (CanRun)
+            {
+                speed = Input.GetKey(keyRun) ? speedRun : speedWalk;
+            }
+            else
+            {
+                speed = speedWalk;
+            }
         }
 
         m_xAxis = Input.GetAxis("Horizontal");
@@ -127,10 +151,16 @@ public class CharacterMove : MonoBehaviour
 
         MoveCharacter();
 
+        if (canSlide)
+        {
+            canSlide = false;
+            inSlide = true;
+            Slide(playerSlideForce, appliedSlideForceMode);
+        }
         if (canJump)
         {
             canJump = false;
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
             Jump(playerJumpForce, appliedForceMode);
         }
     }
@@ -163,9 +193,26 @@ public class CharacterMove : MonoBehaviour
         
     }
 
+    private void Slide(float jumpForce, ForceMode forceMode)
+    {
+        m_animator.SetBool("Slide", true);
+        body.transform.Rotate(new Vector3(-80.0f, 0.0f, 0.0f));
+        cam.transform.Rotate(new Vector3(70.0f, 0, 0));
+        m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * Vector3.forward, forceMode);
+        StartCoroutine(CoSlide());
+    }
+
+    IEnumerator CoSlide()
+    {
+        yield return new WaitForSeconds(timeOfSlide);
+        body.transform.Rotate(new Vector3(80.0f, 0.0f, 0.0f));
+        cam.transform.Rotate(new Vector3(-70.0f, 0, 0));
+        m_animator.SetBool("Slide", false);
+        inSlide = false;
+    }
     private void Jump(float jumpForce, ForceMode forceMode)
     {
-        Debug.Log(jumpForce * m_rb.mass * m_deltaTime * Vector3.up);
+        //Debug.Log(jumpForce * m_rb.mass * m_deltaTime * Vector3.up);
         m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * Vector3.up, forceMode);
         playerIsJumping = true;
         m_animator.SetBool("DoJump", true);

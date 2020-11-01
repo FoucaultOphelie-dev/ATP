@@ -9,6 +9,25 @@ public class Gun : MonoBehaviour
     public Text text;
     private int score;
     private string feedback;
+    private void Start()
+    {
+        if (!text)
+        {
+            GameObject feedbackGameObject = GameObject.Find("FeedbackAim");
+            if (feedbackGameObject)
+            {
+                Text feedbackText = feedbackGameObject.GetComponent<Text>();
+                if (feedbackText)
+                    text = feedbackText;
+                else
+                    Debug.LogError("FeedbackAim Text component missing");
+            }
+            else
+            {
+                Debug.LogError("FeedbackAim GameObject missing");
+            }
+        }        
+    }
 
     // Update is called once per frame
     void Update()

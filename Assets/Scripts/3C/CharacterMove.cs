@@ -10,6 +10,8 @@ public class CharacterMove : MonoBehaviour
     public KeyCode keyRun;
     public float speedWalk;
     public float speedRun;
+    public float playerForce;
+    public ForceMode appliedForceMode;
     public bool CanRun = true;
     public bool scaled = true;
 
@@ -26,7 +28,8 @@ public class CharacterMove : MonoBehaviour
     [Header("Jump Settings")]
     public KeyCode keyJump;
     public float playerJumpForce;
-    public ForceMode appliedForceMode;
+    public ForceMode appliedJumpForceMode;
+    public float factorMoveJump;
 
 
     [Header("Jumping State")] public bool playerIsJumping;
@@ -56,6 +59,11 @@ public class CharacterMove : MonoBehaviour
     private bool canSlide = false;
     private bool inSlide = false;
     private float initialSpeedAnimator;
+    private bool CanMove = true;
+    private float factorMove = 1.0f;
+
+    private Quaternion rotationInitialBody;
+    private Quaternion rotationInitialCam;
     #endregion
 
     void Start()
@@ -76,7 +84,10 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        
+        if (m_playerIsGrounded && transform.rotation.x != 0.0f || transform.rotation.z != 0.0f)
+        {
+            transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w);
+        }
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = true;
@@ -112,24 +123,37 @@ public class CharacterMove : MonoBehaviour
             m_animator.speed = initialSpeedAnimator/Time.timeScale;
         }
 
+        m_xAxis = Input.GetAxis("Horizontal") * factorMove;
+        m_zAxis = Input.GetAxis("Vertical") * factorMove;
+
         if (inSlide)
         {
             speed = speedDuringSlide;
         }
         else
         {
-            if (CanRun)
+            if (m_xAxis != 0 || m_zAxis != 0)
             {
-                speed = Input.GetKey(keyRun) ? speedRun : speedWalk;
+                if (CanRun)
+                {
+                    speed = Input.GetKey(keyRun) ? speedRun : speedWalk;
+                }
+                else
+                {
+                    speed = speedWalk;
+                }
             }
             else
             {
-                speed = speedWalk;
+                speed = 0;
+                if (m_playerIsGrounded)
+                {
+                    m_rb.velocity = new Vector3(0, 0, 0);
+                }
             }
         }
 
-        m_xAxis = Input.GetAxis("Horizontal");
-        m_zAxis = Input.GetAxis("Vertical");
+        
 
         if (m_playerIsGrounded && Input.GetKeyDown(keyJump))
         {
@@ -149,19 +173,24 @@ public class CharacterMove : MonoBehaviour
             m_deltaTime = Time.fixedUnscaledDeltaTime;
         }
 
-        MoveCharacter();
+        if (CanMove)
+        {
+            MoveCharacter();
+        }
 
         if (canSlide)
         {
             canSlide = false;
+            GetComponent<CameraMove>().inSlide = true;
             inSlide = true;
+            CanMove = false;
             Slide(playerSlideForce, appliedSlideForceMode);
         }
         if (canJump)
         {
             canJump = false;
             //Debug.Log("Jump");
-            Jump(playerJumpForce, appliedForceMode);
+            Jump(playerJumpForce, appliedJumpForceMode);
         }
     }
 
@@ -183,7 +212,8 @@ public class CharacterMove : MonoBehaviour
                 m_animator.SetBool("Run", true);
             }
 
-            m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
+            m_rb.AddForce(playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction), appliedForceMode);
+            //m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
         }
         else
         {
@@ -198,7 +228,7 @@ public class CharacterMove : MonoBehaviour
         m_animator.SetBool("Slide", true);
         body.transform.Rotate(new Vector3(-80.0f, 0.0f, 0.0f));
         cam.transform.Rotate(new Vector3(70.0f, 0, 0));
-        m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * Vector3.forward, forceMode);
+        m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.forward), forceMode);
         StartCoroutine(CoSlide());
     }
 
@@ -209,12 +239,16 @@ public class CharacterMove : MonoBehaviour
         cam.transform.Rotate(new Vector3(-70.0f, 0, 0));
         m_animator.SetBool("Slide", false);
         inSlide = false;
+        GetComponent<CameraMove>().inSlide = false;
+        CanMove = true;
     }
     private void Jump(float jumpForce, ForceMode forceMode)
     {
-        //Debug.Log(jumpForce * m_rb.mass * m_deltaTime * Vector3.up);
-        m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * Vector3.up, forceMode);
+        m_playerIsGrounded = false;
+        //Debug.Log(transform.TransformDirection(Vector3.forward) * speed * m_deltaTime);
+        m_rb.AddForce((jumpForce * m_rb.mass * m_deltaTime * Vector3.up), forceMode);
         playerIsJumping = true;
+        factorMove = factorMoveJump;
         m_animator.SetBool("DoJump", true);
     }
 
@@ -224,6 +258,8 @@ public class CharacterMove : MonoBehaviour
         {
             m_playerIsGrounded = true;
             playerIsJumping = false;
+            CanMove = true;
+            factorMove = 1.0f;
             m_animator.SetBool("DoJump", false);
         }
     }

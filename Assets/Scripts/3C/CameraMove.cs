@@ -24,13 +24,11 @@ public class CameraMove : MonoBehaviour
 
         if (m_camera.transform.localRotation.x < minY)
         {
-            Debug.Log("trop haut");
             m_camera.transform.localRotation = new Quaternion(minY, m_camera.transform.localRotation.y, m_camera.transform.localRotation.z, m_camera.transform.localRotation.w);
         }
 
         if (m_camera.transform.localRotation.x > maxY)
         {
-            Debug.Log("trop bas");
             m_camera.transform.localRotation = new Quaternion(maxY, m_camera.transform.localRotation.y, m_camera.transform.localRotation.z, m_camera.transform.localRotation.w);
         }
     }

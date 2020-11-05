@@ -9,17 +9,19 @@ public class CameraMove : MonoBehaviour
     public float maxY;
     public float minY;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public bool inSlide;
     void Update()
     {
-        
-        transform.Rotate(0, Input.GetAxisRaw("Mouse X") * Time.unscaledDeltaTime * speed, 0);
+        if (!inSlide)
+        {
+            m_camera.transform.localRotation = new Quaternion(m_camera.transform.localRotation.x, 0.0f, 0.0f, m_camera.transform.localRotation.w);
+            transform.Rotate(0, Input.GetAxisRaw("Mouse X") * Time.unscaledDeltaTime * speed, 0);
+        }
+        else
+        {
+            m_camera.transform.Rotate(0, Input.GetAxisRaw("Mouse X") * Time.unscaledDeltaTime * speed, 0, 0);
+            m_camera.transform.localRotation = new Quaternion(m_camera.transform.localRotation.x, Mathf.Clamp(m_camera.transform.localRotation.y, -0.7f, 0.7f), 0.0f, m_camera.transform.localRotation.w);
+        }
         m_camera.transform.Rotate(Input.GetAxisRaw("Mouse Y") * Time.unscaledDeltaTime * -speed, 0, 0);
 
         if (m_camera.transform.localRotation.x < minY)

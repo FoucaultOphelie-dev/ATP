@@ -1200,10 +1200,6 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1997583890}
-    - target: {fileID: 4998050782036746721, guid: f247017f593b0d94d9d22d86ba203051, type: 3}
-      propertyPath: clearColorMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4998050783357861696, guid: f247017f593b0d94d9d22d86ba203051, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1249,8 +1245,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4998050783357861699, guid: f247017f593b0d94d9d22d86ba203051, type: 3}
-      propertyPath: scaled
-      value: 0
+      propertyPath: keySlide
+      value: 306
       objectReference: {fileID: 0}
     - target: {fileID: 4998050783357861703, guid: f247017f593b0d94d9d22d86ba203051, type: 3}
       propertyPath: m_Name

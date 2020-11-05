@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
         if(Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
         {
             player.scaled = false;

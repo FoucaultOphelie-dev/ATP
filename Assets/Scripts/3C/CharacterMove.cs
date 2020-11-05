@@ -14,6 +14,7 @@ public class CharacterMove : MonoBehaviour
     public ForceMode appliedForceMode;
     public bool CanRun = true;
     public bool scaled = true;
+    public float factorMove = 1.0f;
 
     [Header("Slide Setting")]
     public KeyCode keySlide;
@@ -31,16 +32,24 @@ public class CharacterMove : MonoBehaviour
     public ForceMode appliedJumpForceMode;
     public float factorMoveJump;
 
+    [Header("Grab State")]
+    public bool isGrab = false;
+
+    [Header("Move State")]
+    public bool CanMove = true;
 
     [Header("Jumping State")] public bool playerIsJumping;
 
     [Header("Current Player Speed")] public float speed;
 
-    [Header("Ground LayerMask int")] public int groundLayer;
+    [Header("Ground")] public int groundLayer; public bool playerIsGrounded = true;
 
     [Header("Viser")]
     public GameObject gun;
     public bool isAiming = false;
+
+    [Header("Animator")]
+    public Animator animator;
 
     #endregion
 
@@ -51,16 +60,16 @@ public class CharacterMove : MonoBehaviour
     private float m_zAxis;
     private Rigidbody m_rb;
     private int m_groundLayerMask;
-    private bool m_playerIsGrounded = true;
     private Vector3 m_direction;
     private float m_deltaTime;
-    private Animator m_animator;
     private bool canJump = false;
     private bool canSlide = false;
     private bool inSlide = false;
     private float initialSpeedAnimator;
-    private bool CanMove = true;
-    private float factorMove = 1.0f;
+    private RaycastHit hit;
+
+
+
 
     private Quaternion rotationInitialBody;
     private Quaternion rotationInitialCam;
@@ -73,10 +82,10 @@ public class CharacterMove : MonoBehaviour
 
         speed = speedWalk;
 
-        m_animator = GetComponent<Animator>();
-        initialSpeedAnimator = m_animator.speed;
-        m_animator.SetBool("Walk", false);
-        m_animator.SetBool("Run", false);
+        animator = GetComponent<Animator>();
+        initialSpeedAnimator = animator.speed;
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
 
         m_groundLayerMask = groundLayer;
         #endregion
@@ -84,10 +93,19 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        if (m_playerIsGrounded && transform.rotation.x != 0.0f || transform.rotation.z != 0.0f)
+        if (isGrab)
+        {
+            m_rb.velocity = new Vector3(0, 0, 0);
+            m_rb.useGravity = false;
+            GetComponent<CameraMove>().inSlide = true;
+            animator.SetBool("Slide", true);
+        }
+
+        if (playerIsGrounded && transform.rotation.x != 0.0f || transform.rotation.z != 0.0f)
         {
             transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w);
         }
+
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = true;
@@ -120,7 +138,7 @@ public class CharacterMove : MonoBehaviour
         else
         {
             m_deltaTime = Time.unscaledDeltaTime;
-            m_animator.speed = initialSpeedAnimator/Time.timeScale;
+            animator.speed = initialSpeedAnimator/Time.timeScale;
         }
 
         m_xAxis = Input.GetAxis("Horizontal") * factorMove;
@@ -146,7 +164,7 @@ public class CharacterMove : MonoBehaviour
             else
             {
                 speed = 0;
-                if (m_playerIsGrounded)
+                if (playerIsGrounded)
                 {
                     m_rb.velocity = new Vector3(0, 0, 0);
                 }
@@ -154,8 +172,9 @@ public class CharacterMove : MonoBehaviour
         }
 
         
+        
 
-        if (m_playerIsGrounded && Input.GetKeyDown(keyJump))
+        if (playerIsGrounded && Input.GetKeyDown(keyJump))
         {
             canJump = true;
         }
@@ -163,6 +182,20 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
+            Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
+            if (Vector3.Distance(hit.point, transform.position) < 0.1f)
+            {
+                playerIsGrounded = true;
+                playerIsJumping = false;
+                CanMove = true;
+                factorMove = 1.0f;
+                animator.SetBool("DoJump", false);
+            }
+        }
+
         if (scaled)
         {
             m_deltaTime = Time.fixedDeltaTime;
@@ -203,13 +236,13 @@ public class CharacterMove : MonoBehaviour
         {
             if (speed == speedWalk)
             {
-                m_animator.SetBool("Walk", true);
-                m_animator.SetBool("Run", false);
+                animator.SetBool("Walk", true);
+                animator.SetBool("Run", false);
             }
             else
             {
-                m_animator.SetBool("Walk", false);
-                m_animator.SetBool("Run", true);
+                animator.SetBool("Walk", false);
+                animator.SetBool("Run", true);
             }
 
             m_rb.AddForce(playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction), appliedForceMode);
@@ -217,15 +250,15 @@ public class CharacterMove : MonoBehaviour
         }
         else
         {
-            m_animator.SetBool("Walk", false);
-            m_animator.SetBool("Run", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Run", false);
         }
         
     }
 
     private void Slide(float jumpForce, ForceMode forceMode)
     {
-        m_animator.SetBool("Slide", true);
+        animator.SetBool("Slide", true);
         body.transform.Rotate(new Vector3(-80.0f, 0.0f, 0.0f));
         cam.transform.Rotate(new Vector3(70.0f, 0, 0));
         m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.forward), forceMode);
@@ -237,38 +270,47 @@ public class CharacterMove : MonoBehaviour
         yield return new WaitForSeconds(timeOfSlide);
         body.transform.Rotate(new Vector3(80.0f, 0.0f, 0.0f));
         cam.transform.Rotate(new Vector3(-70.0f, 0, 0));
-        m_animator.SetBool("Slide", false);
+        animator.SetBool("Slide", false);
         inSlide = false;
         GetComponent<CameraMove>().inSlide = false;
         CanMove = true;
     }
     private void Jump(float jumpForce, ForceMode forceMode)
     {
-        m_playerIsGrounded = false;
+        playerIsGrounded = false;
         //Debug.Log(transform.TransformDirection(Vector3.forward) * speed * m_deltaTime);
         m_rb.AddForce((jumpForce * m_rb.mass * m_deltaTime * Vector3.up), forceMode);
         playerIsJumping = true;
         factorMove = factorMoveJump;
-        m_animator.SetBool("DoJump", true);
+        animator.SetBool("DoJump", true);
+    }
+
+    public void Ungrab()
+    {
+        isGrab = false;
+        CanMove = true;
+        playerIsGrounded = true;
+        playerIsJumping = false;
+        factorMove = 1.0f;
+        animator.SetBool("DoJump", false);
+        m_rb.useGravity = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == m_groundLayerMask)
         {
-            m_playerIsGrounded = true;
-            playerIsJumping = false;
-            CanMove = true;
-            factorMove = 1.0f;
-            m_animator.SetBool("DoJump", false);
+            
+                
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.layer == m_groundLayerMask)
         {
-            m_playerIsGrounded = false;
+            playerIsGrounded = false;
         }
     }
 }

@@ -18,9 +18,11 @@ public class ParkourManager : MonoBehaviour
 
     private StartingCheckpoint startingCheckpoint;
     private List<CheckPoint> checkpoints;
+
     public GameObject player;
     private Rigidbody playerRigidbody;
-    private static ParkourManager instance;
+    private CharacterMove playerMovement;
+
     int lastCheckpoint = 0;
 
     private bool isStarted;
@@ -38,6 +40,8 @@ public class ParkourManager : MonoBehaviour
     private float lastTime;
     private int lastScore;
     public int score;
+
+    private static ParkourManager instance;
     public static ParkourManager Instance()
     {
         if (instance)
@@ -58,6 +62,9 @@ public class ParkourManager : MonoBehaviour
         timerByCheckpoint = new List<float>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerRigidbody = player.GetComponent<Rigidbody>();
+        playerMovement = player.GetComponent<CharacterMove>();
+        playerMovement.CanMove = false;
+
         checkpoints = GameObject.FindObjectsOfType<CheckPoint>().OrderBy(checkpoint => checkpoint.index).ToList<CheckPoint>();
         startingCheckpoint = GameObject.FindObjectOfType<StartingCheckpoint>();
         lastPos = player.transform.position;
@@ -101,6 +108,7 @@ public class ParkourManager : MonoBehaviour
     {
         Debug.Log("started");
         isStarted = true;
+        playerMovement.CanMove = true;
     }
     public bool PlayerEnterCheckpoint(int index)
     {

@@ -23,10 +23,17 @@ public class CheckPoint : MonoBehaviour
     {
         if(other.tag == "Player" && index > 0)
         {
-            if (ParkourManager.Instance().OnCheckpointDone(index))
+            if (ParkourManager.Instance().PlayerEnterCheckpoint(index))
             {
                 animator.SetTrigger("isDone");
+                animator.ResetTrigger("isReset");
             }
         }
+    }
+
+    public void ResetCheckpoint()
+    {
+        animator.SetTrigger("isReset");
+        animator.ResetTrigger("isDone");
     }
 }

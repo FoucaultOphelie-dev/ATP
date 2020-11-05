@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
+  m_Name: newParkour
+  m_EditorClassIdentifier: 
+  displayName: '[DEBUG] Parkour Mathieu'
+  startingScore: 5000
+  reward: 100
+  medals:
+  - type: 0
+    score: 4500
+  - type: 1
+    score: 4000
+  - type: 2
+    score: 3500
+  - type: 3
+    score: 3000
+  scene:
+    m_SceneAsset: {fileID: 102900000, guid: 88a8e16c452e7fa4d98ab201e89e8cf1, type: 3}
+    m_SceneName: Test Mathieu
+  timerByCheckpoint:
+  - 2.05189
+  - 2.931568
+  - 4.4777822
+  - 5.93607

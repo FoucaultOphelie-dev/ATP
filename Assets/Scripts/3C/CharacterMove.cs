@@ -175,7 +175,6 @@ public class CharacterMove : MonoBehaviour
                 m_animator.SetBool("Walk", false);
                 m_animator.SetBool("Run", true);
             }
-
             m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
         }
         else

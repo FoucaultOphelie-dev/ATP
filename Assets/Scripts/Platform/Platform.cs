@@ -8,15 +8,19 @@ public class Platform : MonoBehaviour
 
     private float tolerance;
     public float speed;
+    private Vector3 heading;
 
     public bool isFragile;
     private float firstHitTime;
     public float breakingTime;
     private bool isTouched;
 
+    private Rigidbody rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
         if(points.Length > 0)
         {
             currentTarget = points[0];
@@ -41,8 +45,8 @@ public class Platform : MonoBehaviour
 
     void movePlatform()
     {
-        Vector3 heading = currentTarget - transform.position;
-        transform.position += (heading / heading.magnitude) * speed * Time.deltaTime;
+        heading = currentTarget - transform.position;
+        rigidbody.MovePosition(transform.position + (heading / heading.magnitude) * speed * Time.deltaTime);
         if (heading.magnitude < tolerance)
         {
             transform.position = currentTarget;
@@ -71,6 +75,11 @@ public class Platform : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+    }
+
+    public Vector3 getHeading()
+    {
+        return heading;
     }
 }
 

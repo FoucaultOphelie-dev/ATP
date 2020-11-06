@@ -46,7 +46,7 @@ public class Platform : MonoBehaviour
     void movePlatform()
     {
         heading = currentTarget - transform.position;
-        rigidbody.MovePosition(transform.position + (heading / heading.magnitude) * speed * Time.deltaTime);
+        transform.Translate(heading.normalized * speed * Time.deltaTime);
         if (heading.magnitude < tolerance)
         {
             transform.position = currentTarget;

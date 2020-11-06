@@ -16,13 +16,13 @@ public class GrabCollider : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && player.isGrab)
+        if (Input.GetAxisRaw("Vertical") == 1 && player.isGrab)
         {
             lerp = true;
             nextPosition = player.gameObject.transform.position + player.gameObject.transform.TransformDirection(Vector3.up * 1.3f + Vector3.forward * 0.5f);
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && player.isGrab)
+        if (Input.GetAxisRaw("Vertical") == -1 && player.isGrab)
         {
             player.gameObject.GetComponent<CameraMove>().inSlide = false;
             player.animator.SetBool("Slide", false);

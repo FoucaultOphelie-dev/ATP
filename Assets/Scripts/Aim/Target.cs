@@ -3,7 +3,7 @@
 public class Target : MonoBehaviour
 {
     public int multiplier = 1;
-    public bool hit = false;
+    private bool hit = false;
 
     public void takeAShot()
     {

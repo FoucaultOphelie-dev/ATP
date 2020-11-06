@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -45,8 +46,12 @@ public class CharacterMove : MonoBehaviour
     [Header("Ground")] public int groundLayer; public bool playerIsGrounded = true;
 
     [Header("Viser")]
-    public GameObject gun;
+    public GameObject weapon;
     public bool isAiming = false;
+    private Gun gun;
+
+    public Text reloadMessage;
+    public Text bullets;
 
     [Header("Animator")]
     public Animator animator;
@@ -92,6 +97,9 @@ public class CharacterMove : MonoBehaviour
         playerIsGrounded = true;
         playerIsJumping = false;
         CanMove = true;
+
+        gun = weapon.transform.GetComponent<Gun>();
+        Debug.Log(gun);
         #endregion
     }
 
@@ -115,13 +123,13 @@ public class CharacterMove : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = true;
-            gun.SetActive(true);
+            weapon.SetActive(true);
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
             isAiming = false;
-            gun.SetActive(false);
+            weapon.SetActive(false);
         }
 
         if (Input.GetKeyDown(keySlide) && !inSlide)
@@ -191,6 +199,21 @@ public class CharacterMove : MonoBehaviour
         {
             canJump = true;
         }
+
+        if (gun.getReloading() && Time.time - gun.getReloadStartTime() > gun.reloadingTime)
+        {
+            gun.setReloading(false);
+            reloadMessage.text = "";
+        }
+        if (gun.getReloading())
+        {
+            reloadMessage.text = "Reloading";
+        }
+        if (Input.GetKeyDown("r") && gun.getAmountOfBullets() < gun.maxAmo)
+        {
+            reload();
+        }
+        bullets.text = gun.getAmountOfBullets().ToString();
     }
 
     private void FixedUpdate()
@@ -333,5 +356,14 @@ public class CharacterMove : MonoBehaviour
         {
             playerIsGrounded = false;
         }
+    }
+
+
+    private void reload()
+    {
+        gun.setReloading(true);
+        gun.setReloadStartTime(Time.time);
+        gun.setAmountOfBullets(gun.maxAmo);
+        reloadMessage.text = "";
     }
 }

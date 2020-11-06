@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-
+using TMPro;
 public class Gun : MonoBehaviour
 {
 
     public float range = 100f;
     public Camera fpsCam;
-    public Text shotFeedback;
-    public Text bullets;
-    public Text reloadMessage;
+    public TextMeshProUGUI shotFeedback;
+    public TextMeshProUGUI bullets;
+    public TextMeshProUGUI reloadMessage;
     private int score;
     private string feedback;
     
@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
             GameObject feedbackGameObject = GameObject.Find("FeedbackAim");
             if (feedbackGameObject)
             {
-                Text feedbackText = feedbackGameObject.GetComponent<Text>();
+                TextMeshProUGUI feedbackText = feedbackGameObject.GetComponent<TextMeshProUGUI>();
                 if (feedbackText)
                     shotFeedback = feedbackText;
                 else
@@ -36,7 +36,39 @@ public class Gun : MonoBehaviour
             {
                 Debug.LogError("FeedbackAim GameObject missing");
             }
-        }    
+        }
+        if (!bullets)
+        {
+            GameObject feedbackGameObject = GameObject.Find("Bullets");
+            if (feedbackGameObject)
+            {
+                TextMeshProUGUI bulletsFeedback = feedbackGameObject.GetComponent<TextMeshProUGUI>();
+                if (bulletsFeedback)
+                    bullets = bulletsFeedback;
+                else
+                    Debug.LogError("FeedbackAim Text component missing");
+            }
+            else
+            {
+                Debug.LogError("FeedbackAim GameObject missing");
+            }
+        }
+        if (!reloadMessage)
+        {
+            GameObject feedbackGameObject = GameObject.Find("ReloadMessage");
+            if (feedbackGameObject)
+            {
+                TextMeshProUGUI reloadFeedback = feedbackGameObject.GetComponent<TextMeshProUGUI>();
+                if (reloadFeedback)
+                    reloadMessage = reloadFeedback;
+                else
+                    Debug.LogError("FeedbackAim Text component missing");
+            }
+            else
+            {
+                Debug.LogError("FeedbackAim GameObject missing");
+            }
+        }
         amountOfBullets = maxAmo;
         reloading = false;
         reloadMessage.color = Color.white;
@@ -57,6 +89,21 @@ public class Gun : MonoBehaviour
                 shoot();
             }
         }
+
+        if (getReloading() && Time.time - getReloadStartTime() > reloadingTime)
+        {
+            setReloading(false);
+            reloadMessage.text = "";
+        }
+        if (getReloading())
+        {
+            reloadMessage.text = "Reloading";
+        }
+        if (Input.GetKeyDown("r") && getAmountOfBullets() < maxAmo)
+        {
+            reload();
+        }
+        bullets.text = getAmountOfBullets().ToString();
     }
 
     void shoot()
@@ -127,6 +174,15 @@ public class Gun : MonoBehaviour
                     break;
             }
         }
+    }
+
+
+    private void reload()
+    {
+        setReloading(true);
+        setReloadStartTime(Time.time);
+        setAmountOfBullets(maxAmo);
+        reloadMessage.text = "";
     }
 
     public float getReloadStartTime()

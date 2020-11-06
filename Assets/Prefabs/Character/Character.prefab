@@ -2665,7 +2665,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 100
   fpsCam: {fileID: 5584050508793617927}
-  text: {fileID: 0}
+  shotFeedback: {fileID: 0}
+  bullets: {fileID: 0}
+  reloadMessage: {fileID: 0}
+  maxAmo: 0
+  reloadingTime: 0
 --- !u!1 &5584050509555974325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,7 +2809,7 @@ MonoBehaviour:
   speed: 0
   groundLayer: 9
   playerIsGrounded: 0
-  gun: {fileID: 5584050509555923898}
+  weapon: {fileID: 0}
   isAiming: 0
   animator: {fileID: 0}
 --- !u!54 &5584050509586235559
@@ -2818,7 +2822,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 1
-  m_AngularDrag: 0
+  m_AngularDrag: 1000000
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

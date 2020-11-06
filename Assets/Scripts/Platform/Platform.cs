@@ -55,12 +55,15 @@ public class Platform : MonoBehaviour
 
     void updateTarget()
     {
-        pointNumber++;
-        if(pointNumber >= points.Length)
+        if(points.Length > 0)
         {
-            pointNumber = 0;
+            pointNumber++;
+            if (pointNumber >= points.Length)
+            {
+                pointNumber = 0;
+            }
+            currentTarget = points[pointNumber];
         }
-        currentTarget = points[pointNumber];
     }
 
     private void OnCollisionEnter(Collision collision)

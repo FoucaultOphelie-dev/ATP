@@ -41,7 +41,6 @@ public class CheckpointFeedback : MonoBehaviour
     // Update is called once per frame
     void UpdateFeedback(int index, float time, float previousTime)
     {
-        Debug.Log("time: " + time + "   /   previous Time: " + previousTime);
         coroutine = WaitAndFadeOut();
         timeTextComponent.alpha = 1;
         timeTextComponent.color = Color.white;
@@ -99,6 +98,5 @@ public class CheckpointFeedback : MonoBehaviour
         // Size
         timeTextComponent.fontSize = initalSize;
         timeDiffTextComponent.fontSize = initalSize;
-        Debug.Log("fadeout finish with alpha=" + timeTextComponent.alpha);
     }
 }

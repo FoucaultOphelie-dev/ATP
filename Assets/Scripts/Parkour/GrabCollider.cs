@@ -16,13 +16,13 @@ public class GrabCollider : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && player.isGrab)
+        if (Input.GetKeyDown(KeyCode.Z) && player.isGrab)
         {
             lerp = true;
-            nextPosition = player.gameObject.transform.position + player.gameObject.transform.TransformDirection(Vector3.up * 1.2f + Vector3.forward * 0.5f);
+            nextPosition = player.gameObject.transform.position + player.gameObject.transform.TransformDirection(Vector3.up * 1.3f + Vector3.forward * 0.5f);
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) && player.isGrab)
+        if (Input.GetKeyDown(KeyCode.S) && player.isGrab)
         {
             player.gameObject.GetComponent<CameraMove>().inSlide = false;
             player.animator.SetBool("Slide", false);
@@ -33,7 +33,7 @@ public class GrabCollider : MonoBehaviour
             player.animator.SetBool("DoJump", true);
         }
 
-            if (lerp)
+        if (lerp)
         {
             player.gameObject.GetComponent<CameraMove>().inSlide = false;
             player.animator.SetBool("Slide", false);
@@ -47,15 +47,15 @@ public class GrabCollider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collision avec " + other.gameObject.name);
         if(other.gameObject.tag == "ColliderGrab" && player.playerIsJumping)
         {
+            Debug.Log("collision enter avec " + other.gameObject.name);
             player.isGrab = true;
             player.CanMove = false;
-            //other.ClosestPoint(transform.position);
             player.gameObject.transform.rotation = other.gameObject.transform.rotation;
             offset = transform.position - player.gameObject.transform.position;
-            player.gameObject.transform.position = other.ClosestPoint(transform.position) - offset;
+            Vector3 newPosition = other.ClosestPoint(transform.position) - offset;
+            player.gameObject.transform.position = newPosition;
         }
     }
 }

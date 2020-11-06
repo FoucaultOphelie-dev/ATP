@@ -67,6 +67,7 @@ public class CharacterMove : MonoBehaviour
     private bool inSlide = false;
     private float initialSpeedAnimator;
     private RaycastHit hit;
+    private Rigidbody ground;
 
 
 
@@ -88,6 +89,9 @@ public class CharacterMove : MonoBehaviour
         animator.SetBool("Run", false);
 
         m_groundLayerMask = groundLayer;
+        playerIsGrounded = true;
+        playerIsJumping = false;
+        CanMove = true;
         #endregion
     }
 
@@ -96,6 +100,8 @@ public class CharacterMove : MonoBehaviour
         if (isGrab)
         {
             m_rb.velocity = new Vector3(0, 0, 0);
+            m_rb.angularVelocity = new Vector3(0, 0, 0);
+            //m_rb.isKinematic = true;
             m_rb.useGravity = false;
             GetComponent<CameraMove>().inSlide = true;
             animator.SetBool("Slide", true);
@@ -141,8 +147,8 @@ public class CharacterMove : MonoBehaviour
             animator.speed = initialSpeedAnimator/Time.timeScale;
         }
 
-        m_xAxis = Input.GetAxis("Horizontal") * factorMove;
-        m_zAxis = Input.GetAxis("Vertical") * factorMove;
+        m_xAxis = Input.GetAxisRaw("Horizontal") * factorMove;
+        m_zAxis = Input.GetAxisRaw("Vertical") * factorMove;
 
         if (inSlide)
         {
@@ -166,7 +172,14 @@ public class CharacterMove : MonoBehaviour
                 speed = 0;
                 if (playerIsGrounded)
                 {
-                    m_rb.velocity = new Vector3(0, 0, 0);
+                    if (ground)
+                    {
+                        m_rb.velocity = ground.velocity;
+                    }
+                    else
+                    {
+                        m_rb.velocity = Vector3.zero;
+                    }
                 }
             }
         }
@@ -182,19 +195,14 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
-            Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
-            if (Vector3.Distance(hit.point, transform.position) < 0.1f)
-            {
-                playerIsGrounded = true;
-                playerIsJumping = false;
-                CanMove = true;
-                factorMove = 1.0f;
-                animator.SetBool("DoJump", false);
-            }
-        }
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
+        //{
+        //    Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
+        //    //Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
+        //    if (Vector3.Distance(hit.point, transform.position) < 0.1f)
+        //    {
+        //    }
+        //}
 
         if (scaled)
         {
@@ -229,8 +237,7 @@ public class CharacterMove : MonoBehaviour
 
     private void MoveCharacter()
     {
-        m_direction = new Vector3(m_xAxis, 0f, m_zAxis);
-
+        m_direction = new Vector3(m_xAxis, 0f, m_zAxis).normalized;
         
         if (m_direction != Vector3.zero)
         {
@@ -244,8 +251,8 @@ public class CharacterMove : MonoBehaviour
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
             }
-
-            m_rb.AddForce(playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction), appliedForceMode);
+            Vector3 force = playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction);
+            m_rb.AddForce(force, appliedForceMode);
             //m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
         }
         else
@@ -293,6 +300,7 @@ public class CharacterMove : MonoBehaviour
         playerIsJumping = false;
         factorMove = 1.0f;
         animator.SetBool("DoJump", false);
+        //m_rb.isKinematic = false;
         m_rb.useGravity = true;
     }
 
@@ -300,14 +308,27 @@ public class CharacterMove : MonoBehaviour
     {
         if (collision.gameObject.layer == m_groundLayerMask)
         {
-            
-                
+            if (Physics.Raycast(transform.position + Vector3.up, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
+                //Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
+                if (Vector3.Distance(hit.point, transform.position) < 0.1f)
+                {
+                    //Debug.Log("canmove :" + CanMove);
+                    playerIsGrounded = true;
+                    playerIsJumping = false;
+                    CanMove = true;
+                    factorMove = 1.0f;
+                    animator.SetBool("DoJump", false);
+                    ground = collision.rigidbody;
+                }
+            }
+           
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.layer == m_groundLayerMask)
         {
             playerIsGrounded = false;

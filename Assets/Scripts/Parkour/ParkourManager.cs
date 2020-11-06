@@ -106,7 +106,6 @@ public class ParkourManager : MonoBehaviour
     }
     public void StartRun()
     {
-        Debug.Log("started");
         isStarted = true;
         playerMovement.CanMove = true;
     }
@@ -116,7 +115,6 @@ public class ParkourManager : MonoBehaviour
         {
             timerByCheckpoint.Add(timer);
             float previousTime = -1;
-            Debug.Log((index - 1) + "<" + parkourData.timerByCheckpoint.Count);
             if (index - 1 < parkourData.timerByCheckpoint.Count)
                 previousTime = parkourData.timerByCheckpoint[index - 1];
             OnCheckpointDone?.Invoke(index, timer, previousTime);

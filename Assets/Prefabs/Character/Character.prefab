@@ -2792,7 +2792,7 @@ MonoBehaviour:
   CanRun: 1
   scaled: 0
   factorMove: 1
-  keySlide: 307
+  keySlide: 306
   timeOfSlide: 0.75
   speedDuringSlide: 2
   playerSlideForce: 25000

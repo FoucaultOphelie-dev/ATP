@@ -33,6 +33,14 @@ public class CharacterMove : MonoBehaviour
     public ForceMode appliedJumpForceMode;
     public float factorMoveJump;
 
+    [Header("Wall Run")]
+    public bool wallRunRight;
+    public bool wallRunLeft;
+    public float timeOfWallRun;
+    public int wallRunLayer;
+    public float playerWallRunForce;
+    public float factorMoveWallRun;
+
     [Header("Grab State")]
     public bool isGrab = false;
 
@@ -71,7 +79,9 @@ public class CharacterMove : MonoBehaviour
     private Rigidbody ground;
 
 
-
+    private float timeInwallRight;
+    private float timeInwallLeft;
+    private float initialPlayerWallRunForce;
 
     private Quaternion rotationInitialBody;
     private Quaternion rotationInitialCam;
@@ -93,11 +103,71 @@ public class CharacterMove : MonoBehaviour
         playerIsGrounded = true;
         playerIsJumping = false;
         CanMove = true;
+        initialPlayerWallRunForce = playerWallRunForce;
         #endregion
     }
 
     void Update()
     {
+        if (wallRunLeft)
+        {
+            timeInwallLeft += m_deltaTime;
+            factorMove = factorMoveWallRun;
+            m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.left), ForceMode.Force);
+            if (timeInwallLeft >= timeOfWallRun)
+            {
+                m_rb.useGravity = true;
+            }
+            else
+            {
+                m_rb.useGravity = false;
+                playerWallRunForce -= m_deltaTime;
+            }
+        }
+        else
+        {
+            timeInwallLeft = 0;
+        }
+
+        if (wallRunRight)
+        {
+            timeInwallRight += m_deltaTime;
+            factorMove = factorMoveWallRun;
+            m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.right), ForceMode.Force);
+            if (timeInwallRight >= timeOfWallRun)
+            {
+                m_rb.useGravity = true;
+            }
+            else
+            {
+                m_rb.useGravity = false;
+                playerWallRunForce -= m_deltaTime;
+            }
+        }
+        else
+        {
+            timeInwallRight = 0;
+        }
+
+        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.left), out hit, 1.8f))
+        {
+            Debug.Log("left false");
+            wallRunLeft = false;
+        }
+
+        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.right), out hit, 1.8f))
+        {
+            wallRunRight = false;
+        }
+
+
+        if (!wallRunLeft && !wallRunRight)
+        {
+            m_rb.useGravity = true;
+            playerWallRunForce = initialPlayerWallRunForce;
+            GetComponent<CameraMove>().inSlide = false;
+        }
+
         if (isGrab)
         {
             m_rb.velocity = new Vector3(0, 0, 0);
@@ -210,6 +280,7 @@ public class CharacterMove : MonoBehaviour
 
         if (CanMove)
         {
+            Debug.Log("you can move");
             MoveCharacter();
         }
 
@@ -318,7 +389,58 @@ public class CharacterMove : MonoBehaviour
                     transform.parent = collision.transform.parent;
                 }
             }
-           
+        }
+        if (collision.gameObject.layer == wallRunLayer)
+        {
+            if (Physics.Raycast(transform.position + transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.left), out hit, 2))
+            {
+                if (!wallRunLeft)
+                {
+                    wallRunLeft = true;
+                    m_rb.velocity = Vector3.zero;
+                    float angleLeft = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(Vector3.forward));
+                    float angleRight = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(-Vector3.forward));
+                    if (angleLeft <= angleRight)
+                    {
+                        transform.rotation = collision.gameObject.transform.rotation;
+                    }
+                    else
+                    {
+                        transform.rotation =  new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                    }
+                    
+                    playerIsJumping = false;
+                    animator.SetBool("DoJump", false);
+                    factorMove = 1.0f;
+                    CanMove = true;
+                    GetComponent<CameraMove>().inSlide = true;
+                }
+                
+            }
+            if (Physics.Raycast(transform.position + transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.right), out hit, 2))
+            {
+                if (!wallRunRight)
+                {
+                    wallRunRight = true;
+                    m_rb.velocity = Vector3.zero;
+                    float angleLeft = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(Vector3.forward));
+                    float angleRight = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(-Vector3.forward));
+                    if (angleLeft <= angleRight)
+                    {
+                        transform.rotation = collision.gameObject.transform.rotation;
+                    }
+                    else
+                    {
+                        transform.rotation = new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                    }
+                    playerIsJumping = false;
+                    animator.SetBool("DoJump", false);
+                    factorMove = 1.0f;
+                    CanMove = true;
+                    GetComponent<CameraMove>().inSlide = true;
+                }
+
+            }
         }
     }
 
@@ -328,6 +450,12 @@ public class CharacterMove : MonoBehaviour
         {
             transform.parent = null;
             playerIsGrounded = false;
+        }
+        if (collision.gameObject.layer == wallRunLayer)
+        {
+            Debug.Log("exit wall");
+            wallRunRight = true;
+            wallRunLeft = true;
         }
     }
 }

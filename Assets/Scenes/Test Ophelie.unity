@@ -399,7 +399,7 @@ MonoBehaviour:
   jauge: 0
   maxJauge: 10
   jaugeUI: {fileID: 103347529}
-  player: {fileID: 4998050781646178563}
+  playerCharacterMove: {fileID: 0}
 --- !u!4 &605307164
 Transform:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 920533048}
   - component: {fileID: 920533047}
   - component: {fileID: 920533046}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,13 +559,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920533045}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.6, y: -0.65, z: 1.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.73445934, z: -0, w: -0.67865276}
+  m_LocalPosition: {x: -4.623, y: 1.94, z: 1.04}
+  m_LocalScale: {x: 0.5004592, y: 3.2364, z: 53.63286}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 265.477, z: 0}
 --- !u!1 &1274845782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,14 +1180,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d2f525b0fdca44cb4d8f99e5b1d7b3, type: 3}
---- !u!114 &4998050781646178563 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5584050509586235558, guid: 35f73ae4d0605d7448381508d6d0a550, type: 3}
-  m_PrefabInstance: {fileID: 586080305829923237}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94deebc6d23190641b0fa66d88b73cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

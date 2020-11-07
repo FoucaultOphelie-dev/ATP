@@ -2665,7 +2665,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 100
   fpsCam: {fileID: 5584050508793617927}
-  text: {fileID: 0}
+  shotFeedback: {fileID: 0}
+  bullets: {fileID: 0}
+  reloadMessage: {fileID: 0}
+  maxAmo: 0
+  reloadingTime: 0
 --- !u!1 &5584050509555974325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,9 +2793,9 @@ MonoBehaviour:
   scaled: 0
   factorMove: 1
   keySlide: 307
-  timeOfSlide: 1
+  timeOfSlide: 0.75
   speedDuringSlide: 2
-  playerSlideForce: 20000
+  playerSlideForce: 25000
   appliedSlideForceMode: 0
   body: {fileID: 5771876281628248018}
   cam: {fileID: 5584050508793617923}
@@ -2799,13 +2803,19 @@ MonoBehaviour:
   playerJumpForce: 20000
   appliedJumpForceMode: 0
   factorMoveJump: 0.5
+  wallRunRight: 0
+  wallRunLeft: 0
+  timeOfWallRun: 1
+  wallRunLayer: 12
+  playerWallRunForce: 1000
+  factorMoveWallRun: 0.01
   isGrab: 0
   CanMove: 1
   playerIsJumping: 0
   speed: 0
   groundLayer: 9
   playerIsGrounded: 0
-  gun: {fileID: 5584050509555923898}
+  weapon: {fileID: 5584050509555923898}
   isAiming: 0
   animator: {fileID: 0}
 --- !u!54 &5584050509586235559
@@ -2818,7 +2828,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 1
-  m_AngularDrag: 0
+  m_AngularDrag: 1000000
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

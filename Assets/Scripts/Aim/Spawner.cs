@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
     public GameObject blueTarget;
     public GameObject redTarget;
     public GameObject greenTarget;
-    private int xPos;
+    private int zPos;
     private int yPos;
     private int targetType;
     public static int targetAmount;
@@ -23,24 +23,24 @@ public class Spawner : MonoBehaviour
         if (targetAmount < 5)
         {
             targetType = (int)Random.Range(1, 4);
-            xPos = Random.Range(-10, 10);
-            yPos = Random.Range(1, 13);
+            zPos = (int) Random.Range(transform.position.z-10, transform.position.z+10);
+            yPos = (int) Random.Range(transform.position.y-5, transform.position.y+5);
             switch (targetType)
             {
                 case 1:
-                    Instantiate(blueTarget, new Vector3(xPos, yPos, 10), Quaternion.Euler(90,0,0));
+                    Instantiate(blueTarget, new Vector3(transform.position.x+10, yPos, zPos), Quaternion.Euler(0,0,90));
                     break;
 
                 case 2:
-                    Instantiate(redTarget, new Vector3(xPos, yPos, 10), Quaternion.Euler(90,0, 0));
+                    Instantiate(redTarget, new Vector3(transform.position.x+10, yPos, zPos), Quaternion.Euler(0,0,90));
                     break;
 
                 case 3:
-                    Instantiate(greenTarget, new Vector3(xPos, yPos, 10), Quaternion.Euler(90, 0, 0));
+                    Instantiate(greenTarget, new Vector3(transform.position.x + 10, yPos, zPos), Quaternion.Euler(0,0,90));
                     break;
 
                 default:
-                    Instantiate(greenTarget, new Vector3(xPos, yPos, 10), Quaternion.Euler(90, 0, 0));
+                    Instantiate(greenTarget, new Vector3(transform.position.x + 10, yPos, zPos), Quaternion.Euler(0,0,90));
                     break;
             }
             targetAmount++;

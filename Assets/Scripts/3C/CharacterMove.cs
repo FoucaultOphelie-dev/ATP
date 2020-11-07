@@ -250,28 +250,10 @@ public class CharacterMove : MonoBehaviour
             }
         }
 
-        
-        
-
         if (playerIsGrounded && Input.GetKeyDown(keyJump))
         {
             canJump = true;
         }
-
-        if (gun.getReloading() && Time.time - gun.getReloadStartTime() > gun.reloadingTime)
-        {
-            gun.setReloading(false);
-            reloadMessage.text = "";
-        }
-        if (gun.getReloading())
-        {
-            reloadMessage.text = "Reloading";
-        }
-        if (Input.GetKeyDown("r") && gun.getAmountOfBullets() < gun.maxAmo)
-        {
-            reload();
-        }
-        bullets.text = gun.getAmountOfBullets().ToString();
     }
 
     private void FixedUpdate()
@@ -297,7 +279,6 @@ public class CharacterMove : MonoBehaviour
 
         if (CanMove)
         {
-            Debug.Log("you can move");
             MoveCharacter();
         }
 

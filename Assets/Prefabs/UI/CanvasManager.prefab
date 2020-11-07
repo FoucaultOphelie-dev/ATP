@@ -50,6 +50,9 @@ MonoBehaviour:
   parkourNameDisplay: {fileID: 7380358245905820131}
   GameplayCanvas: {fileID: 5698574696281203794}
   ScoringCanvas: {fileID: 7380358245907186096}
+  scoringParkourNameDisplay: {fileID: 0}
+  chronoDisplay: {fileID: 0}
+  chronoScoreDisplay: {fileID: 0}
 --- !u!1 &7380358245905820141
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7380358246375997497
 RectTransform:
   m_ObjectHideFlags: 0

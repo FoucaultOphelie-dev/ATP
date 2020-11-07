@@ -2668,8 +2668,8 @@ MonoBehaviour:
   shotFeedback: {fileID: 0}
   bullets: {fileID: 0}
   reloadMessage: {fileID: 0}
-  maxAmo: 0
-  reloadingTime: 0
+  maxAmo: 10
+  reloadingTime: 2
 --- !u!1 &5584050509555974325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2817,6 +2817,8 @@ MonoBehaviour:
   playerIsGrounded: 0
   weapon: {fileID: 5584050509555923898}
   isAiming: 0
+  reloadMessage: {fileID: 0}
+  bullets: {fileID: 0}
   animator: {fileID: 0}
 --- !u!54 &5584050509586235559
 Rigidbody:

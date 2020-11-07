@@ -19,54 +19,59 @@ public class Gun : MonoBehaviour
     private float reloadStartTime;
     public float reloadingTime;
 
-    private void Start()
+    void Start()
     {
-        if (!shotFeedback)
+        //Find UI
+        RectTransform gameplayCanvas = GameObject.Find("CanvasManager").transform.Find("GameplayCanvas").GetComponent<RectTransform>();
+        if (gameplayCanvas)
         {
-            GameObject feedbackGameObject = GameObject.Find("FeedbackAim");
-            if (feedbackGameObject)
+            if (!shotFeedback)
             {
-                TextMeshProUGUI feedbackText = feedbackGameObject.GetComponent<TextMeshProUGUI>();
-                if (feedbackText)
-                    shotFeedback = feedbackText;
+                Transform feedbackGameObject = gameplayCanvas.Find("FeedbackAim");
+                if (feedbackGameObject)
+                {
+                    TextMeshProUGUI feedbackText = feedbackGameObject.GetComponent<TextMeshProUGUI>();
+                    if (feedbackText)
+                        shotFeedback = feedbackText;
+                    else
+                        Debug.LogError("FeedbackAim Text component missing");
+                }
                 else
-                    Debug.LogError("FeedbackAim Text component missing");
+                {
+                    Debug.LogError("FeedbackAim GameObject missing");
+                }
             }
-            else
+            if (!bullets)
             {
-                Debug.LogError("FeedbackAim GameObject missing");
-            }
-        }
-        if (!bullets)
-        {
-            GameObject feedbackGameObject = GameObject.Find("Bullets");
-            if (feedbackGameObject)
-            {
-                TextMeshProUGUI bulletsFeedback = feedbackGameObject.GetComponent<TextMeshProUGUI>();
-                if (bulletsFeedback)
-                    bullets = bulletsFeedback;
+                Transform feedbackGameObject = gameplayCanvas.Find("ReloadLayer/Bullets");
+                if (feedbackGameObject)
+                {
+                    TextMeshProUGUI bulletsFeedback = feedbackGameObject.GetComponent<TextMeshProUGUI>();
+                    if (bulletsFeedback)
+                        bullets = bulletsFeedback;
+                    else
+                        Debug.LogError("FeedbackAim Text component missing");
+                }
                 else
-                    Debug.LogError("FeedbackAim Text component missing");
+                {
+                    Debug.LogError("FeedbackAim GameObject missing");
+                }
             }
-            else
+            if (!reloadMessage)
             {
-                Debug.LogError("FeedbackAim GameObject missing");
-            }
-        }
-        if (!reloadMessage)
-        {
-            GameObject feedbackGameObject = GameObject.Find("ReloadMessage");
-            if (feedbackGameObject)
-            {
-                TextMeshProUGUI reloadFeedback = feedbackGameObject.GetComponent<TextMeshProUGUI>();
-                if (reloadFeedback)
-                    reloadMessage = reloadFeedback;
+                Transform feedbackGameObject = gameplayCanvas.Find("ReloadLayer/ReloadMessage");
+                if (feedbackGameObject)
+                {
+                    TextMeshProUGUI reloadFeedback = feedbackGameObject.GetComponent<TextMeshProUGUI>();
+                    if (reloadFeedback)
+                        reloadMessage = reloadFeedback;
+                    else
+                        Debug.LogError("FeedbackAim Text component missing");
+                }
                 else
-                    Debug.LogError("FeedbackAim Text component missing");
-            }
-            else
-            {
-                Debug.LogError("FeedbackAim GameObject missing");
+                {
+                    Debug.LogError("FeedbackAim GameObject missing");
+                }
             }
         }
         amountOfBullets = maxAmo;
@@ -79,7 +84,10 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ParkourManager.Instance().parkourState != ParkourState.Gameplay) return;
+        if (ParkourManager.Instance())
+        {
+            if (ParkourManager.Instance().parkourState != ParkourState.Gameplay) return;
+        }
         if (Input.GetButtonDown("Fire1") && !reloading)
         {
             if(amountOfBullets <= 0)
@@ -104,7 +112,8 @@ public class Gun : MonoBehaviour
         {
             reload();
         }
-        bullets.text = getAmountOfBullets().ToString();
+        if(bullets)
+            bullets.text = getAmountOfBullets().ToString();
     }
 
     void shoot()

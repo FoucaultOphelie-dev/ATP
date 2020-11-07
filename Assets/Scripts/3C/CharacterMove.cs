@@ -112,24 +112,14 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        if (wallRunLeft)
+        if (scaled)
         {
-            timeInwallLeft += m_deltaTime;
-            factorMove = factorMoveWallRun;
-            m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.left), ForceMode.Force);
-            if (timeInwallLeft >= timeOfWallRun)
-            {
-                m_rb.useGravity = true;
-            }
-            else
-            {
-                m_rb.useGravity = false;
-                playerWallRunForce -= m_deltaTime;
-            }
+            m_deltaTime = Time.deltaTime;
         }
         else
         {
-            timeInwallLeft = 0;
+            m_deltaTime = Time.unscaledDeltaTime;
+            animator.speed = initialSpeedAnimator / Time.timeScale;
         }
 
         if (wallRunRight)
@@ -140,11 +130,12 @@ public class CharacterMove : MonoBehaviour
             if (timeInwallRight >= timeOfWallRun)
             {
                 m_rb.useGravity = true;
+                playerWallRunForce -= m_deltaTime;
             }
             else
             {
                 m_rb.useGravity = false;
-                playerWallRunForce -= m_deltaTime;
+                m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
             }
         }
         else
@@ -152,15 +143,47 @@ public class CharacterMove : MonoBehaviour
             timeInwallRight = 0;
         }
 
-        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.left), out hit, 1.8f))
+        if (wallRunLeft)
         {
-            wallRunLeft = false;
+            timeInwallLeft += m_deltaTime;
+            factorMove = factorMoveWallRun;
+            m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.left), ForceMode.Force);
+            if (timeInwallLeft >= timeOfWallRun)
+            {
+                m_rb.useGravity = true;
+                playerWallRunForce -= m_deltaTime;
+            }
+            else
+            {
+                m_rb.useGravity = false;
+                m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
+
+            }
+        }
+        else
+        {
+            timeInwallLeft = 0;
         }
 
-        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.right), out hit, 1.8f))
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1.0f, LayerMask.GetMask("WallRun")))
         {
             wallRunRight = false;
         }
+        else
+        {
+            Debug.Log("right" + hit.transform.name);
+        }
+
+        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1.0f, LayerMask.GetMask("WallRun")))
+        {
+            wallRunLeft = false;
+        }
+        else
+        {
+
+            Debug.Log("left" + hit.transform.name);
+        }
+        
 
 
         if (!wallRunLeft && !wallRunRight)
@@ -168,6 +191,7 @@ public class CharacterMove : MonoBehaviour
             m_rb.useGravity = true;
             playerWallRunForce = initialPlayerWallRunForce;
             GetComponent<CameraMove>().inSlide = false;
+            m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
         if (isGrab)
@@ -209,15 +233,6 @@ public class CharacterMove : MonoBehaviour
         else
         {
             CanRun = true;
-        }
-        if (scaled)
-        {
-            m_deltaTime = Time.deltaTime;
-        }
-        else
-        {
-            m_deltaTime = Time.unscaledDeltaTime;
-            animator.speed = initialSpeedAnimator/Time.timeScale;
         }
 
         m_xAxis = Input.GetAxisRaw("Horizontal") * factorMove;
@@ -389,7 +404,32 @@ public class CharacterMove : MonoBehaviour
         }
         if (collision.gameObject.layer == wallRunLayer)
         {
-            if (Physics.Raycast(transform.position + transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.left), out hit, 2))
+            Debug.Log("count");
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1))
+            {
+                if (!wallRunRight)
+                {
+                    wallRunRight = true;
+                    m_rb.velocity = Vector3.zero;
+                    float angleLeft = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(Vector3.forward));
+                    float angleRight = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(-Vector3.forward));
+                    if (angleLeft <= angleRight)
+                    {
+                        transform.rotation = collision.gameObject.transform.rotation;
+                    }
+                    else
+                    {
+                        transform.rotation = new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                    }
+                    playerIsJumping = false;
+                    animator.SetBool("DoJump", false);
+                    factorMove = 1.0f;
+                    CanMove = true;
+                    GetComponent<CameraMove>().inSlide = true;
+                }
+            }
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1))
             {
                 if (!wallRunLeft)
                 {
@@ -414,30 +454,7 @@ public class CharacterMove : MonoBehaviour
                 }
                 
             }
-            if (Physics.Raycast(transform.position + transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.right), out hit, 2))
-            {
-                if (!wallRunRight)
-                {
-                    wallRunRight = true;
-                    m_rb.velocity = Vector3.zero;
-                    float angleLeft = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(Vector3.forward));
-                    float angleRight = Vector3.Angle(transform.TransformDirection(Vector3.forward), collision.gameObject.transform.TransformDirection(-Vector3.forward));
-                    if (angleLeft <= angleRight)
-                    {
-                        transform.rotation = collision.gameObject.transform.rotation;
-                    }
-                    else
-                    {
-                        transform.rotation = new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
-                    }
-                    playerIsJumping = false;
-                    animator.SetBool("DoJump", false);
-                    factorMove = 1.0f;
-                    CanMove = true;
-                    GetComponent<CameraMove>().inSlide = true;
-                }
-
-            }
+            
         }
     }
 
@@ -447,12 +464,6 @@ public class CharacterMove : MonoBehaviour
         {
             transform.parent = null;
             playerIsGrounded = false;
-        }
-        if (collision.gameObject.layer == wallRunLayer)
-        {
-            Debug.Log("exit wall");
-            wallRunRight = true;
-            wallRunLeft = true;
         }
     }
 

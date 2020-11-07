@@ -14,13 +14,13 @@ public class Platform : MonoBehaviour
     private float firstHitTime;
     public float breakingTime;
     private bool isTouched;
-    private MeshDestroy meshDestroy;
 
+    private Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        meshDestroy = GetComponentInParent<MeshDestroy>();
+        rigidbody = GetComponent<Rigidbody>();
         if(points.Length > 0)
         {
             currentTarget = points[0];
@@ -39,15 +39,14 @@ public class Platform : MonoBehaviour
         }
         if(isFragile && isTouched && Time.time - firstHitTime >= breakingTime)
         {
-            meshDestroy.DestroyMesh();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
     void movePlatform()
     {
         heading = currentTarget - transform.position;
-        transform.Translate(heading.normalized * speed * Time.deltaTime);
+        rigidbody.MovePosition(transform.position + (heading / heading.magnitude) * speed * Time.deltaTime);
         if (heading.magnitude < tolerance)
         {
             transform.position = currentTarget;
@@ -70,7 +69,7 @@ public class Platform : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.transform.name);
-        if(collision.transform.name == "Character")
+        if(collision.transform.name == "Ethan")
         {
             firstHitTime = Time.time;
             isTouched = true;

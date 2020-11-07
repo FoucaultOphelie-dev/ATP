@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1204804994915868850}
   - component: {fileID: 5248260417400982617}
   - component: {fileID: 6456376970486940948}
-  - component: {fileID: 2644717581343670341}
   m_Layer: 9
   m_Name: DestructibleObstacle
   m_TagString: Untagged
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ff023f19daf33940a409472df6bab9e, type: 2}
+  - {fileID: 2100000, guid: 126aeccc6c094bb48a7584d58853792c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,17 +127,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2644717581343670341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3072351904292412154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a068b82a682e5e944a09c181c25c4f0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CutCascades: 4
-  ExplodeForce: 10000

@@ -1133,10 +1133,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5584050509586235558, guid: 35f73ae4d0605d7448381508d6d0a550, type: 3}
-      propertyPath: playerWallRunForce
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 5584050510070722013, guid: 35f73ae4d0605d7448381508d6d0a550, type: 3}
       propertyPath: m_Enabled
       value: 0

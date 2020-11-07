@@ -15,6 +15,15 @@ public class StartingCheckpoint : MonoBehaviour
         ParkourManager.Instance().StartRun();
         animator.ResetTrigger("Reset");
     }
+    private void Update()
+    {
+
+    }
+
+    public void StartRun()
+    {
+        animator.SetTrigger("Start");
+    }
 
     public void ResetRun()
     {

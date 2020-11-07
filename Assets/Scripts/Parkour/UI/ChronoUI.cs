@@ -26,7 +26,7 @@ public class ChronoUI : MonoBehaviour
         textComponent.text = TimerToChrono(ParkourManager.Instance().GetTimer());
     }
 
-    string TimerToChrono(float timer)
+    static public string TimerToChrono(float timer)
     {
         return TimeSpan.FromSeconds(timer).ToString("mm\\:ss\\.ff");
     }

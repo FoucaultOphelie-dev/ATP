@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum ParkourState
+{
+    Intro,
+    Gameplay,
+    Scoring
+}
+
 public class ParkourManager : MonoBehaviour
 {
+
+    #region Event
+    public ParkourState parkourState;
+    public delegate void ParkourSwitchState(ParkourState state);
+    public static event ParkourSwitchState onParkourSwitchState;
+
     public delegate void CheckpointDone(int index, float time, float previousTime);
     public static event CheckpointDone OnCheckpointDone;
-
-    public delegate bool ParkourDone();
-    public static event ParkourDone onParkourDone;
+    #endregion
 
     public KeyCode softResetKey = KeyCode.R;
     public KeyCode hardResetKey= KeyCode.Backspace;
@@ -22,8 +33,10 @@ public class ParkourManager : MonoBehaviour
     public GameObject player;
     private Rigidbody playerRigidbody;
     private CharacterMove playerMovement;
-
+    private CameraMove cameraMove;
+    private GameObject spectatingCamera;
     int lastCheckpoint = 0;
+    bool firstRun = true;
 
     private bool isStarted;
     public bool GetIsStarted() { return isStarted; }
@@ -63,19 +76,46 @@ public class ParkourManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerRigidbody = player.GetComponent<Rigidbody>();
         playerMovement = player.GetComponent<CharacterMove>();
-        playerMovement.CanMove = false;
+        cameraMove = player.GetComponent<CameraMove>();
 
         checkpoints = GameObject.FindObjectsOfType<CheckPoint>().OrderBy(checkpoint => checkpoint.index).ToList<CheckPoint>();
         startingCheckpoint = GameObject.FindObjectOfType<StartingCheckpoint>();
         lastPos = player.transform.position;
         lastRotation = player.transform.rotation;
-        checkpoints[0].transform.parent.GetComponent<Animator>().SetTrigger("Start");
+        SwitchParkourState(ParkourState.Intro);
+        spectatingCamera = GameObject.Find("SpactatingCamera");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isStarted && !isFinished)
+        switch (parkourState)
+        {
+            case ParkourState.Intro:
+                IntroLoop();
+                break;
+            case ParkourState.Gameplay:
+                GameplayLoop();
+                break;
+            case ParkourState.Scoring:
+                Scoringloop();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void IntroLoop()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ResetGameplay();
+        }
+    }
+
+    public void GameplayLoop()
+    {
+        if (isStarted)
         {
             timer += Time.deltaTime * Time.timeScale;
         }
@@ -89,26 +129,22 @@ public class ParkourManager : MonoBehaviour
         }
         if (Input.GetKeyDown(hardResetKey))
         {
-            player.transform.position = checkpoints[0].transform.position;
-            player.transform.rotation = Quaternion.identity;
-            playerRigidbody.velocity = Vector3.zero;
-            timer = 0;
-            lastCheckpoint = 0;
-            isFinished = false;
-            isStarted = false;
-            foreach (var checkpoint in checkpoints)
-            {
-                checkpoint.ResetCheckpoint();
-                timerByCheckpoint.Clear();
-            }
-            startingCheckpoint.ResetRun();
+            ResetGameplay();
         }
     }
+
+    public void Scoringloop()
+    {
+
+    }
+
+
     public void StartRun()
     {
         isStarted = true;
         playerMovement.CanMove = true;
     }
+
     public bool PlayerEnterCheckpoint(int index)
     {
         if(index == lastCheckpoint + 1)
@@ -141,10 +177,15 @@ public class ParkourManager : MonoBehaviour
                     parkourData.timerByCheckpoint = new List<float>(timerByCheckpoint);
                 }
 
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
+                
                 score = CalculateScore();
                 isFinished = true;
-                onParkourDone?.Invoke();
+                playerMovement.CanMove = false;
+                playerMovement.cam.GetComponent<Camera>().enabled = false;
+                spectatingCamera.SetActive(true);
+                spectatingCamera.GetComponent<Camera>().enabled = true;
+                SwitchParkourState(ParkourState.Scoring);
             }
             return true;
         }
@@ -155,5 +196,44 @@ public class ParkourManager : MonoBehaviour
     {
         int score = parkourData.startingScore - (int)(timer * 10);
         return score;
+    }
+
+    private void SwitchParkourState(ParkourState state)
+    {
+        parkourState = state;
+        onParkourSwitchState?.Invoke(parkourState);
+    }
+
+    public void ResetGameplay()
+    {
+        spectatingCamera.GetComponent<Camera>().enabled = false;
+        spectatingCamera.SetActive(false);
+        playerMovement.cam.GetComponent<Camera>().enabled = true;
+        playerMovement.enabled = true;
+        playerMovement.CanMove = false;
+        player.GetComponent<Animator>().Rebind();
+        cameraMove.enabled = true;
+        if (firstRun)
+        {
+            startingCheckpoint.StartRun();
+        }
+        else
+        {
+            player.transform.position = checkpoints[0].transform.position;
+            player.transform.rotation = Quaternion.identity;
+            playerRigidbody.velocity = Vector3.zero;
+            timer = 0;
+            lastCheckpoint = 0;
+            isFinished = false;
+            isStarted = false;
+            foreach (var checkpoint in checkpoints)
+            {
+                checkpoint.ResetCheckpoint();
+                timerByCheckpoint.Clear();
+            }
+            startingCheckpoint.ResetRun();
+        }
+        firstRun = false;
+        SwitchParkourState(ParkourState.Gameplay);
     }
 }

@@ -67,7 +67,6 @@ public class CharacterMove : MonoBehaviour
     private bool inSlide = false;
     private float initialSpeedAnimator;
     private RaycastHit hit;
-    private Rigidbody ground;
 
 
 
@@ -91,12 +90,70 @@ public class CharacterMove : MonoBehaviour
         m_groundLayerMask = groundLayer;
         playerIsGrounded = true;
         playerIsJumping = false;
-        CanMove = true;
+        initialPlayerWallRunForce = playerWallRunForce;
         #endregion
     }
 
     void Update()
     {
+        if (wallRunLeft)
+        {
+            timeInwallLeft += m_deltaTime;
+            factorMove = factorMoveWallRun;
+            m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.left), ForceMode.Force);
+            if (timeInwallLeft >= timeOfWallRun)
+            {
+                m_rb.useGravity = true;
+            }
+            else
+            {
+                m_rb.useGravity = false;
+                playerWallRunForce -= m_deltaTime;
+            }
+        }
+        else
+        {
+            timeInwallLeft = 0;
+        }
+
+        if (wallRunRight)
+        {
+            timeInwallRight += m_deltaTime;
+            factorMove = factorMoveWallRun;
+            m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.right), ForceMode.Force);
+            if (timeInwallRight >= timeOfWallRun)
+            {
+                m_rb.useGravity = true;
+            }
+            else
+            {
+                m_rb.useGravity = false;
+                playerWallRunForce -= m_deltaTime;
+            }
+        }
+        else
+        {
+            timeInwallRight = 0;
+        }
+
+        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.right), transform.TransformDirection(Vector3.left), out hit, 1.8f))
+        {
+            wallRunLeft = false;
+        }
+
+        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.left), transform.TransformDirection(Vector3.right), out hit, 1.8f))
+        {
+            wallRunRight = false;
+        }
+
+
+        if (!wallRunLeft && !wallRunRight)
+        {
+            m_rb.useGravity = true;
+            playerWallRunForce = initialPlayerWallRunForce;
+            GetComponent<CameraMove>().inSlide = false;
+        }
+
         if (isGrab)
         {
             m_rb.velocity = new Vector3(0, 0, 0);
@@ -308,7 +365,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (collision.gameObject.layer == m_groundLayerMask)
         {
-            if (Physics.Raycast(transform.position + Vector3.up, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position + Vector3.up, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
                 //Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
@@ -320,7 +377,7 @@ public class CharacterMove : MonoBehaviour
                     CanMove = true;
                     factorMove = 1.0f;
                     animator.SetBool("DoJump", false);
-                    ground = collision.rigidbody;
+                    transform.parent = hit.transform.parent;
                 }
             }
            

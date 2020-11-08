@@ -3259,7 +3259,7 @@ MonoBehaviour:
   parkourState: 0
   softResetKey: 114
   hardResetKey: 8
-  parkourData: {fileID: 11400000, guid: abd998d0d69085e4b80360eadae8002b, type: 2}
+  parkourData: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
   player: {fileID: 0}
   timerByCheckpoint: []
   score: 0

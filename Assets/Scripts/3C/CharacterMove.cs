@@ -107,6 +107,7 @@ public class CharacterMove : MonoBehaviour
         playerIsJumping = false;
         initialPlayerWallRunForce = playerWallRunForce;
         gun = weapon.transform.GetComponent<Gun>();
+        CheckForGround();
         #endregion
     }
 
@@ -386,21 +387,7 @@ public class CharacterMove : MonoBehaviour
     {
         if (collision.gameObject.layer == m_groundLayerMask)
         {
-            if (Physics.Raycast(transform.position + Vector3.up, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
-                //Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
-                if (Vector3.Distance(hit.point, transform.position) < 0.1f)
-                {
-                    //Debug.Log("canmove :" + CanMove);
-                    playerIsGrounded = true;
-                    playerIsJumping = false;
-                    CanMove = true;
-                    factorMove = 1.0f;
-                    animator.SetBool("DoJump", false);
-                    transform.parent = hit.transform.parent;
-                }
-            }
+            CheckForGround();
         }
         if (collision.gameObject.layer == wallRunLayer)
         {
@@ -458,12 +445,34 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
+    private void CheckForGround()
+    {
+        if (Physics.Raycast(transform.position + Vector3.up, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
+            //Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
+            if (Vector3.Distance(hit.point, transform.position) < 0.1f)
+            {
+                //Debug.Log("canmove :" + CanMove);
+                playerIsGrounded = true;
+                playerIsJumping = false;
+                CanMove = true;
+                factorMove = 1.0f;
+                animator.SetBool("DoJump", false);
+                transform.parent = hit.transform.parent;
+            }
+        }
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.layer == m_groundLayerMask)
         {
-            transform.parent = null;
-            playerIsGrounded = false;
+            if(collision.transform.parent == transform.parent)
+            {
+                transform.parent = null;
+                playerIsGrounded = false;
+            }
         }
     }
 

@@ -15,12 +15,9 @@ public class Platform : MonoBehaviour
     public float breakingTime;
     private bool isTouched;
 
-    private Rigidbody rigidbody;
-
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
         if(points.Length > 0)
         {
             currentTarget = points[0];
@@ -46,11 +43,20 @@ public class Platform : MonoBehaviour
     void movePlatform()
     {
         heading = currentTarget - transform.position;
-        rigidbody.MovePosition(transform.position + (heading / heading.magnitude) * speed * Time.deltaTime);
-        if (heading.magnitude < tolerance)
+        Vector3 newPos = transform.position + (heading / heading.magnitude) * speed * Time.deltaTime;
+        if((newPos - transform.position).magnitude < heading.magnitude)
+        {
+            transform.Translate((heading / heading.magnitude) * speed * Time.deltaTime);
+        }
+        else
         {
             transform.position = currentTarget;
+            updateTarget();
         }
+        //if (heading.magnitude < tolerance)
+        //{
+        //    transform.position = currentTarget;
+        //}
     }
 
     void updateTarget()
@@ -69,7 +75,7 @@ public class Platform : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.transform.name);
-        if(collision.transform.name == "Ethan")
+        if(collision.transform.tag == "Player")
         {
             firstHitTime = Time.time;
             isTouched = true;

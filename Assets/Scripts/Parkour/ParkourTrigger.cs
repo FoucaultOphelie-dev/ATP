@@ -6,13 +6,21 @@ using UnityEngine.Events;
 
 public class ParkourTrigger : MonoBehaviour
 {
-    public UnityEvent action;
+    public UnityEvent onEnterAction;
+    public UnityEvent onExitAction;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            action?.Invoke();
+            onEnterAction?.Invoke();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            onExitAction?.Invoke();
         }
     }
 }

@@ -83,7 +83,7 @@ public class ParkourManager : MonoBehaviour
         lastPos = player.transform.position;
         lastRotation = player.transform.rotation;
         SwitchParkourState(ParkourState.Intro);
-        spectatingCamera = GameObject.Find("SpactatingCamera");
+        spectatingCamera = GameObject.Find("SpectatingCamera");
     }
 
     // Update is called once per frame

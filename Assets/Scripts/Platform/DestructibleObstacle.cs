@@ -13,6 +13,7 @@ public class DestructibleObstacle : MonoBehaviour
 
     private bool isFragile = true;
     private bool hit = false;
+    private MeshDestroy meshDestroy;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class DestructibleObstacle : MonoBehaviour
             currentTarget = points[0];
         }
         tolerance = speed * Time.deltaTime;
+        meshDestroy = GetComponent<MeshDestroy>();
     }
 
     void Update()
@@ -63,7 +65,7 @@ public class DestructibleObstacle : MonoBehaviour
             hit = true;
             if (hit)
             {
-                Destroy(gameObject);
+                meshDestroy.DestroyMesh();
             }
         }
     }

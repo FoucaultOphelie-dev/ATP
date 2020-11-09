@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8706176478746665799, guid: 5f4945b9d79da5044a5e4d012ec23afc, type: 3}
+      propertyPath: ExplodeForce
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: -8706176478746665799, guid: 5f4945b9d79da5044a5e4d012ec23afc, type: 3}
+      propertyPath: timeToFade
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3072351904292412154, guid: 5f4945b9d79da5044a5e4d012ec23afc, type: 3}
       propertyPath: m_Name
       value: DestructibleObstacle

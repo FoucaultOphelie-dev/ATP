@@ -14,7 +14,6 @@ public class MeshDestroy : MonoBehaviour
     public int CutCascades = 1;
     public float ExplodeForce = 0;
     private bool isExploded = false;
-    private float fadePerSecond = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +25,7 @@ public class MeshDestroy : MonoBehaviour
     {
         if (isExploded)
         {
-            transform.localScale = (1-(Time.deltaTime/3))  * transform.localScale;
+            transform.localScale = (1.0f-(Time.deltaTime/3.0f))  * transform.localScale;
             if(transform.localScale.magnitude < 0.1 || transform.localScale.x <= 0)
             {
                 Destroy(gameObject);

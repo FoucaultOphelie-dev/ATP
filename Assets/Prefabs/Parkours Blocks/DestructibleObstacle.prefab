@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1204804994915868850}
   - component: {fileID: 5248260417400982617}
   - component: {fileID: 6456376970486940948}
+  - component: {fileID: -8706176478746665799}
   m_Layer: 9
   m_Name: DestructibleObstacle
   m_TagString: Untagged
@@ -127,3 +128,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8706176478746665799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072351904292412154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a068b82a682e5e944a09c181c25c4f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CutCascades: 4
+  ExplodeForce: 10000

@@ -266,23 +266,17 @@ public class CharacterMove : MonoBehaviour
             }
         }
 
-        if (playerIsGrounded && Input.GetKeyDown(keyJump))
+        if (Input.GetKeyDown(keyJump))
         {
-            canJump = true;
+            if (playerIsGrounded || isGrab || wallRunLeft || wallRunRight)
+            {
+                canJump = true;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(-Vector3.up), out hit, Mathf.Infinity))
-        //{
-        //    Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.yellow);
-        //    //Debug.Log("distance = " + Vector3.Distance(hit.point, transform.position));
-        //    if (Vector3.Distance(hit.point, transform.position) < 0.1f)
-        //    {
-        //    }
-        //}
-
         if (scaled)
         {
             m_deltaTime = Time.fixedDeltaTime;
@@ -308,9 +302,32 @@ public class CharacterMove : MonoBehaviour
         }
         if (canJump)
         {
-            canJump = false;
-            //Debug.Log("Jump");
-            Jump(playerJumpForce, appliedJumpForceMode);
+            if (playerIsGrounded)
+            {
+                canJump = false;
+                Jump(playerJumpForce, appliedJumpForceMode, Vector3.up);
+            }
+            if (isGrab)
+            {
+                canJump = false;
+                gameObject.GetComponent<CameraMove>().inSlide = false;
+                animator.SetBool("Slide", false);
+                Ungrab();
+                playerIsGrounded = false;
+                Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(-Vector3.forward));
+                turnCharacter(transform.TransformDirection(-Vector3.forward));
+
+            }
+            if (wallRunLeft)
+            {
+                canJump = false;
+                Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(Vector3.right));
+            }
+            if (wallRunRight)
+            {
+                canJump = false;
+                Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(Vector3.left));
+            }
         }
     }
 
@@ -361,11 +378,11 @@ public class CharacterMove : MonoBehaviour
         GetComponent<CameraMove>().inSlide = false;
         CanMove = true;
     }
-    private void Jump(float jumpForce, ForceMode forceMode)
+    private void Jump(float jumpForce, ForceMode forceMode, Vector3 direction)
     {
         playerIsGrounded = false;
         //Debug.Log(transform.TransformDirection(Vector3.forward) * speed * m_deltaTime);
-        m_rb.AddForce((jumpForce * m_rb.mass * m_deltaTime * Vector3.up), forceMode);
+        m_rb.AddForce((jumpForce * m_rb.mass * m_deltaTime * direction), forceMode);
         playerIsJumping = true;
         factorMove = factorMoveJump;
         animator.SetBool("DoJump", true);
@@ -474,6 +491,12 @@ public class CharacterMove : MonoBehaviour
                 playerIsGrounded = false;
             }
         }
+    }
+
+    private void turnCharacter(Vector3 direction)
+    {
+        float angleRotation = Vector3.Angle(transform.TransformDirection(Vector3.forward), direction);
+        transform.Rotate(0,angleRotation,0,0);
     }
 
 

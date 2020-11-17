@@ -2,8 +2,27 @@
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using TMPro;
+public enum HitFeedback
+{
+    Perfect,
+    VeryGood,
+    Good,
+    Ok
+}
+
+public struct Hit
+{
+    public HitFeedback feedback;
+    public string text;
+    public int score;
+    public Color color;
+}
+
 public class Gun : MonoBehaviour
 {
+
+    public delegate void TargetHit(Hit hit, Transform target);
+    public static event TargetHit OnTargetHit;
 
     public float range = 100f;
     public Camera fpsCam;
@@ -11,7 +30,7 @@ public class Gun : MonoBehaviour
     public TextMeshProUGUI bullets;
     public TextMeshProUGUI reloadMessage;
     private int score;
-    private string feedback;
+    private string textFeedback;
     
     public int maxAmo;
     private int amountOfBullets;
@@ -122,66 +141,68 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if ( Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
-
             Target target = hit.transform.GetComponentInParent<Target>();
             if(target != null)
             {
                 target.takeAShot();
+                Hit hitfeedBack = new Hit();
+                switch (hit.transform.name)
+                {
+                    case "InnerCircle":
+                        hitfeedBack.score = 100 * target.multiplier;
+                        hitfeedBack.feedback = HitFeedback.Perfect;
+                        hitfeedBack.text = "Perfect ";
+                        if (hitfeedBack.score > 0)
+                        {
+                            hitfeedBack.text += "+";
+                        }
+                        hitfeedBack.text += hitfeedBack.score;
+                        hitfeedBack.color = Color.yellow;
+                        break;
+                    case "FirstCircle":
+                        hitfeedBack.score = 80 * target.multiplier;
+                        hitfeedBack.feedback = HitFeedback.VeryGood;
+                        hitfeedBack.text = "Very Good ";
+                        if (hitfeedBack.score > 0)
+                        {
+                            hitfeedBack.text += "+";
+                        }
+                        hitfeedBack.text += hitfeedBack.score;
+                        hitfeedBack.color = Color.magenta;
+                        break;
+                    case "SecondCircle":
+                        hitfeedBack.score = 60 * target.multiplier;
+                        hitfeedBack.feedback = HitFeedback.Good;
+                        hitfeedBack.text = "Good ";
+                        if (hitfeedBack.score > 0)
+                        {
+                            hitfeedBack.text += "+";
+                        }
+                        hitfeedBack.text += hitfeedBack.score;
+                        hitfeedBack.color = Color.red;
+                        break;
+                    case "OuterCircle":
+                        hitfeedBack.score = 40 * target.multiplier;
+                        hitfeedBack.feedback = HitFeedback.Ok;
+                        hitfeedBack.text = "Ok ";
+                        if (hitfeedBack.score > 0)
+                        {
+                            hitfeedBack.text += "+";
+                        }
+                        hitfeedBack.text += hitfeedBack.score;
+                        hitfeedBack.color = Color.cyan;
+                        break;
+                    default:
+                        break;
+                }
+                shotFeedback.text = hitfeedBack.text;
+                shotFeedback.color = hitfeedBack.color;
+                OnTargetHit?.Invoke(hitfeedBack, hit.transform);
             }
             DestructibleObstacle destructibleObstacle = hit.transform.GetComponentInParent<DestructibleObstacle>();
             if(destructibleObstacle != null)
             {
                 destructibleObstacle.takeAShot();
-            }
-            switch (hit.transform.name)
-            {
-                case "InnerCircle":
-                    score = 100 * target.multiplier;
-                    feedback = "Perfect ";
-                    if(score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.yellow;
-                    break;
-                case "FirstCircle":
-                    score = 80 * target.multiplier; ;
-                    feedback = "Great ";
-                    if (score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.magenta;
-                    break;
-                case "SecondCircle":
-                    score = 60 * target.multiplier;
-                    feedback = "Good ";
-                    if (score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.red;
-                    break;
-                case "OuterCircle":
-                    score = 40 * target.multiplier;
-                    feedback = "Ok ";
-                    if (score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.cyan;
-                    break;
-                default:
-                    break;
             }
         }
     }

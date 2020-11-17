@@ -42,6 +42,10 @@ public class Parkour : ScriptableObject
     [Tooltip("Nom affiché au joueur")]
     public string displayName;
 
+    [Tooltip("Difficulté Affiché")]
+    [Range(0,5)]
+    public int difficulty;
+
     [Tooltip("Score initialement défini pour effectué le parcours\n" +
         "ce score diminuera d'une certaines quantité selon le temps que mets le joueur a finir le parkour")]
     public int startingScore;
@@ -61,8 +65,9 @@ public class Parkour : ScriptableObject
 
     [SerializeField]
     public SceneField scene;
+    public Parkour nextParkour;
 
-    
+
     public List<float> timerByCheckpoint = new List<float>();
 }
 #if UNITY_EDITOR

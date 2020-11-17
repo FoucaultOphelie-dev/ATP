@@ -76,6 +76,7 @@ public class ParkourManager : MonoBehaviour
     private void OnEnable()
     {
         instance = this;
+        OnCheckpointDone = null;
         OnParkourSwitchState = null;
         timerByCheckpoint = new List<float>();
         player = GameObject.FindGameObjectWithTag("Player");

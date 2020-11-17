@@ -18,6 +18,7 @@ public class GrabCollider : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)) && player.isGrab)
         {
+            Debug.Log("grab");
             lerp = true;
             nextPosition = player.gameObject.transform.position + player.gameObject.transform.TransformDirection(Vector3.up * 1.3f + Vector3.forward * 0.5f);
         }

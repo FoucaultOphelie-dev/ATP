@@ -113,6 +113,7 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
+        #region DELTATIME SCALE
         if (scaled)
         {
             m_deltaTime = Time.deltaTime;
@@ -122,7 +123,9 @@ public class CharacterMove : MonoBehaviour
             m_deltaTime = Time.unscaledDeltaTime;
             animator.speed = initialSpeedAnimator / Time.timeScale;
         }
+        #endregion
 
+        #region WALL RUN
         if (wallRunRight)
         {
             timeInwallRight += m_deltaTime;
@@ -170,19 +173,10 @@ public class CharacterMove : MonoBehaviour
         {
             wallRunRight = false;
         }
-        else
-        {
-            Debug.Log("right" + hit.transform.name);
-        }
 
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1.0f, LayerMask.GetMask("WallRun")))
         {
             wallRunLeft = false;
-        }
-        else
-        {
-
-            Debug.Log("left" + hit.transform.name);
         }
         
 
@@ -195,6 +189,9 @@ public class CharacterMove : MonoBehaviour
             m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
+        #endregion
+
+        #region GRAB
         if (isGrab)
         {
             m_rb.velocity = new Vector3(0, 0, 0);
@@ -204,38 +201,39 @@ public class CharacterMove : MonoBehaviour
             GetComponent<CameraMove>().inSlide = true;
             animator.SetBool("Slide", true);
         }
+        #endregion
 
+        #region FREEZE ROTATION
         if (playerIsGrounded && transform.rotation.x != 0.0f || transform.rotation.z != 0.0f)
         {
             transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w);
         }
+        #endregion
 
+        #region AIMING
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = true;
+            CanRun = false;
             weapon.SetActive(true);
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
             isAiming = false;
+            CanRun = true;
             weapon.SetActive(false);
         }
+        #endregion
 
+        #region SLIDE
         if (Input.GetKeyDown(keySlide) && !inSlide)
         {
             canSlide = true;
         }
+        #endregion
 
-        if (isAiming)
-        {
-            CanRun = false;
-        }
-        else
-        {
-            CanRun = true;
-        }
-
+        #region MOVE
         m_xAxis = Input.GetAxisRaw("Horizontal") * factorMove;
         m_zAxis = Input.GetAxisRaw("Vertical") * factorMove;
 
@@ -265,7 +263,9 @@ public class CharacterMove : MonoBehaviour
                 }
             }
         }
+        #endregion
 
+        #region JUMP
         if (Input.GetKeyDown(keyJump))
         {
             if (playerIsGrounded || isGrab || wallRunLeft || wallRunRight)
@@ -273,10 +273,12 @@ public class CharacterMove : MonoBehaviour
                 canJump = true;
             }
         }
+        #endregion
     }
 
     private void FixedUpdate()
     {
+        #region DELTATIME SCALE
         if (scaled)
         {
             m_deltaTime = Time.fixedDeltaTime;
@@ -286,12 +288,19 @@ public class CharacterMove : MonoBehaviour
         {
             m_deltaTime = Time.fixedUnscaledDeltaTime;
         }
+        #endregion
 
+        #region MOVE
         if (CanMove)
         {
+            Debug.Log("Deltatime : " + Time.deltaTime);
+            Debug.Log("Unscale Deltatime : " + Time.unscaledDeltaTime);
+            Debug.Log("My Deltatime : " + m_deltaTime);
             MoveCharacter();
         }
+        #endregion
 
+        #region SLIDE
         if (canSlide)
         {
             canSlide = false;
@@ -300,6 +309,9 @@ public class CharacterMove : MonoBehaviour
             CanMove = false;
             Slide(playerSlideForce, appliedSlideForceMode);
         }
+        #endregion
+
+        #region JUMP
         if (canJump)
         {
             if (playerIsGrounded)
@@ -329,6 +341,7 @@ public class CharacterMove : MonoBehaviour
                 Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(Vector3.left));
             }
         }
+        #endregion
     }
 
     private void MoveCharacter()
@@ -347,7 +360,10 @@ public class CharacterMove : MonoBehaviour
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
             }
+            Debug.Log(m_deltaTime);
+            Debug.Log(Time.deltaTime);
             Vector3 force = playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction);
+            //Debug.Log(force);
             m_rb.AddForce(force, appliedForceMode);
             //m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
         }
@@ -500,11 +516,4 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-    private void reload()
-    {
-        gun.setReloading(true);
-        gun.setReloadStartTime(Time.time);
-        gun.setAmountOfBullets(gun.maxAmo);
-        reloadMessage.text = "";
-    }
 }

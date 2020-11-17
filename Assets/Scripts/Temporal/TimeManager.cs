@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
@@ -25,8 +27,17 @@ public class TimeManager : MonoBehaviour
     [Header("Player")]
     public CharacterMove playerCharacterMove;
 
+    [Header("PostProcess")]
+    private ChromaticAberration m_chroma;
+    private Vignette m_vignette;
+    public Volume volume;
+    
+
     private void Start()
     {
+        volume.profile.TryGet<Vignette>(out m_vignette);
+        volume.profile.TryGet<ChromaticAberration>(out m_chroma);
+
         if (!playerCharacterMove)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -79,12 +90,21 @@ public class TimeManager : MonoBehaviour
 
         if (doAcceleration)
         {
+            //postPorecessing.profile.TryGetSubclassOf<>
+            m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
+            m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0.5f, 0.1f);
+            
             jauge += Time.unscaledDeltaTime * accelerationFacteur;
             if (jauge > maxJauge)
             {
                 jauge = maxJauge;
             }
             jaugeUI.fillAmount = jauge / maxJauge;
+        }
+        else
+        {
+            m_vignette.intensity.value = 0;
+            m_chroma.intensity.value = 0;
         }
 
         if (doRalenti)

@@ -3,15 +3,23 @@
 public class Target : MonoBehaviour
 {
     public int multiplier = 1;
-    private bool hit = false;
 
     public void takeAShot()
     {
-        hit = true;
-        if (hit)
-        {
-            Destroy(gameObject);
-            Spawner.targetDestroyed();
-        }
+        HideTarget();
+    }
+
+    public void ResetTarget()
+    {
+    }
+
+    public void ShowTarget()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void HideTarget()
+    {
+        gameObject.SetActive(false);
     }
 }

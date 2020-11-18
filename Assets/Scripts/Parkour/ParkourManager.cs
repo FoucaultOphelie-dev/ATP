@@ -9,14 +9,13 @@ public enum ParkourState
     Gameplay,
     Scoring
 }
-
 public class ParkourManager : MonoBehaviour
 {
 
     #region Event
     public ParkourState parkourState;
     public delegate void ParkourSwitchState(ParkourState state);
-    public static event ParkourSwitchState onParkourSwitchState;
+    public static event ParkourSwitchState OnParkourSwitchState;
 
     public delegate void CheckpointDone(int index, float time, float previousTime);
     public static event CheckpointDone OnCheckpointDone;
@@ -54,6 +53,12 @@ public class ParkourManager : MonoBehaviour
     private int lastScore;
     public int score;
 
+    private List<Transform> targetBuffer;
+    private List<Hit> hitBuffer;
+    private List<ParkourTrigger> triggerBuffer;
+    private List<Transform> targets;
+    public List<Hit> hits;
+
     private static ParkourManager instance;
     public static ParkourManager Instance()
     {
@@ -68,10 +73,11 @@ public class ParkourManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         instance = this;
+        OnCheckpointDone = null;
+        OnParkourSwitchState = null;
         timerByCheckpoint = new List<float>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerRigidbody = player.GetComponent<Rigidbody>();
@@ -82,8 +88,23 @@ public class ParkourManager : MonoBehaviour
         startingCheckpoint = GameObject.FindObjectOfType<StartingCheckpoint>();
         lastPos = player.transform.position;
         lastRotation = player.transform.rotation;
+
+
+
+        targetBuffer = new List<Transform>();
+        hitBuffer = new List<Hit>();
+        triggerBuffer = new List<ParkourTrigger>();
+        targets = new List<Transform>();
+        hits = new List<Hit>();
+}
+
+    // Start is called before the first frame update
+    void Start()
+    {
         SwitchParkourState(ParkourState.Intro);
         spectatingCamera = GameObject.Find("SpectatingCamera");
+        ParkourTrigger.OnTrigger += TriggerParkour;
+        Gun.OnTargetHit += TargetHit;
     }
 
     // Update is called once per frame
@@ -126,6 +147,13 @@ public class ParkourManager : MonoBehaviour
             playerRigidbody.velocity = lastVelocity;
             Camera.main.transform.rotation = lastCameraPitch;
             timer = lastTime;
+            foreach(var trigger in triggerBuffer)
+            {
+                trigger.ResetTrigger();
+            }
+            triggerBuffer.Clear();
+            targetBuffer.Clear();
+            hitBuffer.Clear();
         }
         if (Input.GetKeyDown(hardResetKey))
         {
@@ -149,13 +177,24 @@ public class ParkourManager : MonoBehaviour
     {
         if(index == lastCheckpoint + 1)
         {
+            // Save Time
             timerByCheckpoint.Add(timer);
             float previousTime = -1;
             if (index - 1 < parkourData.timerByCheckpoint.Count)
                 previousTime = parkourData.timerByCheckpoint[index - 1];
+
+            // handle Old State
+            hits.AddRange(hitBuffer);
+            hitBuffer.Clear();
+            targetBuffer.Clear();
+            triggerBuffer.Clear();
+
+            // Trigger Checkpoint Done
             OnCheckpointDone?.Invoke(index, timer, previousTime);
             if (index < checkpoints.Count - 1)
             {
+
+                // Save State
                 lastCheckpoint++;
                 lastPos = player.transform.position;
                 lastRotation = player.transform.rotation;
@@ -166,14 +205,16 @@ public class ParkourManager : MonoBehaviour
             }
             else
             {
-                // if player done a better time save it
+                // if player already have done a time
                 if(parkourData.timerByCheckpoint.Count > 0)
                 {
+                    // if player done a better time save it
                     if (timerByCheckpoint[index - 1] < parkourData.timerByCheckpoint[index - 1])
                         parkourData.timerByCheckpoint = new List<float>(timerByCheckpoint);
                 }
                 else
                 {
+                    // First time done by player
                     parkourData.timerByCheckpoint = new List<float>(timerByCheckpoint);
                 }
 
@@ -191,49 +232,77 @@ public class ParkourManager : MonoBehaviour
         }
         return false;
     }
-
-    private int CalculateScore()
+    public int TimeScore()
     {
-        int score = parkourData.startingScore - (int)(timer * 10);
+        return parkourData.startingScore - (int)(timer * 10);
+    }
+    public int CalculateScore()
+    {
+        int score = TimeScore();
+        foreach(var hit in hits){
+            score += hit.score;
+        }
         return score;
+    }
+
+    private void TargetHit(Hit feedback, Transform target)
+    {
+        hitBuffer.Add(feedback);
+        targetBuffer.Add(target);
+    }
+
+    private void TriggerParkour(ParkourTrigger trigger)
+    {
+        triggerBuffer.Add(trigger);
     }
 
     private void SwitchParkourState(ParkourState state)
     {
         parkourState = state;
-        onParkourSwitchState?.Invoke(parkourState);
+        OnParkourSwitchState?.Invoke(parkourState);
     }
 
-    public void ResetGameplay()
+    public static void ResetGameplay()
     {
-        spectatingCamera.GetComponent<Camera>().enabled = false;
-        spectatingCamera.SetActive(false);
-        playerMovement.cam.GetComponent<Camera>().enabled = true;
-        playerMovement.enabled = true;
-        playerMovement.CanMove = false;
-        player.GetComponent<Animator>().Rebind();
-        cameraMove.enabled = true;
-        if (firstRun)
+        ParkourManager instance = ParkourManager.Instance();
+        instance.spectatingCamera.GetComponent<Camera>().enabled = false;
+        instance.spectatingCamera.SetActive(false);
+        instance.playerMovement.cam.GetComponent<Camera>().enabled = true;
+        instance.playerMovement.enabled = true;
+        instance.playerMovement.CanMove = false;
+        instance.cameraMove.enabled = true;
+        instance.player.GetComponent<Animator>().Rebind();
+
+        if (instance.firstRun)
         {
-            startingCheckpoint.StartRun();
+            instance.startingCheckpoint.StartRun();
         }
         else
         {
-            player.transform.position = checkpoints[0].transform.position;
-            player.transform.rotation = Quaternion.identity;
-            playerRigidbody.velocity = Vector3.zero;
-            timer = 0;
-            lastCheckpoint = 0;
-            isFinished = false;
-            isStarted = false;
-            foreach (var checkpoint in checkpoints)
+            instance.player.transform.position = instance.checkpoints[0].transform.position;
+            instance.player.transform.rotation = Quaternion.identity;
+            instance.playerRigidbody.velocity = Vector3.zero;
+            instance.timer = 0;
+            instance.lastCheckpoint = 0;
+            instance.isFinished = false;
+            instance.isStarted = false;
+
+            foreach (var trigger in instance.triggerBuffer)
+            {
+                trigger.ResetTrigger();
+            }
+            instance.triggerBuffer.Clear();
+            instance.targetBuffer.Clear();
+            instance.hitBuffer.Clear();
+
+            foreach (var checkpoint in instance.checkpoints)
             {
                 checkpoint.ResetCheckpoint();
-                timerByCheckpoint.Clear();
+                instance.timerByCheckpoint.Clear();
             }
-            startingCheckpoint.ResetRun();
+            instance.startingCheckpoint.ResetRun();
         }
-        firstRun = false;
-        SwitchParkourState(ParkourState.Gameplay);
+        instance.firstRun = false;
+        instance.SwitchParkourState(ParkourState.Gameplay);
     }
 }

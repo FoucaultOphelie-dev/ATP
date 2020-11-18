@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
+  m_Name: TEST TEST
+  m_EditorClassIdentifier: 
+  displayName: '[DEBUG] TEST'
+  difficulty: 0
+  startingScore: 1000
+  reward: 0
+  medals:
+  - type: 0
+    score: 1000
+  - type: 1
+    score: 750
+  - type: 2
+    score: 500
+  - type: 3
+    score: 250
+  scene:
+    m_SceneAsset: {fileID: 102900000, guid: 0abf7a160d6f9b045b4e03d8bf780959, type: 3}
+    m_SceneName: TEST TEST
+  nextParkour: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
+  timerByCheckpoint: []

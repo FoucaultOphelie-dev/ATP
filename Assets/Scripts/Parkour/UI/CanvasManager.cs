@@ -38,9 +38,9 @@ public class CanvasManager : MonoBehaviour
 
 
         // Next Level buttons
-        transform.Find("ScoringCanvas/Image/ButtonsRowWithNextLevel/nextLevel")
-            .GetComponent<Button>()
-            .onClick.AddListener(() => { Loader.Load(ParkourManager.Instance().parkourData.nextParkour.scene.SceneName); });
+        Button button = transform.Find("ScoringCanvas/Image/ButtonsRowWithNextLevel/nextLevel")
+            .GetComponent<Button>();
+        button.onClick.AddListener(() => { Loader.Load(ParkourManager.Instance().parkourData.nextParkour.scene.SceneName); });
 
         // Setup return menu buttons
 
@@ -97,7 +97,7 @@ public class CanvasManager : MonoBehaviour
 
                     hitType[i].text = hits[i].ToString();
                 }
-                totalScore.text = ParkourManager.Instance().CalculateScore().ToString();
+                totalScore.text = ParkourManager.Instance().score.ToString();
                 ScoringCanvas.gameObject.SetActive(true);
                 break;
         }

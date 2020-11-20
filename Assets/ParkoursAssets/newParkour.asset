@@ -29,8 +29,4 @@ MonoBehaviour:
     m_SceneAsset: {fileID: 102900000, guid: 88a8e16c452e7fa4d98ab201e89e8cf1, type: 3}
     m_SceneName: Test Mathieu
   nextParkour: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
-  timerByCheckpoint:
-  - 0
-  - 0
-  - 0
-  - 1.2379779
+  timerByCheckpoint: []

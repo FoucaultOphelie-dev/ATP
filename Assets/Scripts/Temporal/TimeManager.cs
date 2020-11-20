@@ -20,10 +20,10 @@ public class TimeManager : MonoBehaviour
     [Header ("Jauge")]
     public float jauge = 0f;
     public float maxJauge = 10;
-    public Image jaugeUI;
+    private Image jaugeUI;
 
     [Header("Player")]
-    public CharacterMove playerCharacterMove;
+    private CharacterMove playerCharacterMove;
 
     private void Start()
     {
@@ -42,7 +42,7 @@ public class TimeManager : MonoBehaviour
 
         if (!jaugeUI)
         {
-            GameObject jaugeGameObject = GameObject.Find("TimeManagerJauge");
+            GameObject jaugeGameObject = GameObject.FindObjectOfType<CanvasManager>().transform.Find("GameplayCanvas/TimeManagerJauge").gameObject;
             if (jaugeGameObject)
             {
                 Image jaugeImage = jaugeGameObject.GetComponent<Image>();

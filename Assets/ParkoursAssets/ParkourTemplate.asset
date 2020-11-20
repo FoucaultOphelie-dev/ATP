@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
-  m_Name: TEST TEST
+  m_Name: ParkourTemplate
   m_EditorClassIdentifier: 
   displayName: '[DEBUG] TEST'
   difficulty: 0
@@ -27,6 +27,6 @@ MonoBehaviour:
     score: 250
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 0abf7a160d6f9b045b4e03d8bf780959, type: 3}
-    m_SceneName: TEST TEST
+    m_SceneName: ParkourTemplate
   nextParkour: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
   timerByCheckpoint: []

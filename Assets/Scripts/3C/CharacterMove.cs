@@ -107,7 +107,7 @@ public class CharacterMove : MonoBehaviour
         playerIsJumping = false;
         initialPlayerWallRunForce = playerWallRunForce;
         gun = weapon.transform.GetComponent<Gun>();
-        CheckForGround();
+        //CheckForGround();
         #endregion
     }
 

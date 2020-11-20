@@ -13,6 +13,7 @@ public class ParkourManager : MonoBehaviour
 {
 
     #region Event
+    [HideInInspector()]
     public ParkourState parkourState;
     public delegate void ParkourSwitchState(ParkourState state);
     public static event ParkourSwitchState OnParkourSwitchState;
@@ -50,7 +51,8 @@ public class ParkourManager : MonoBehaviour
     private Quaternion lastCameraPitch;
     private Vector3 lastVelocity;
     private float lastTime;
-    private int lastScore;
+    //private int lastScore;
+    [HideInInspector()]
     public int score;
 
     private List<Transform> targetBuffer;
@@ -73,7 +75,7 @@ public class ParkourManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Awake()
     {
         instance = this;
         OnCheckpointDone = null;
@@ -90,6 +92,11 @@ public class ParkourManager : MonoBehaviour
         lastRotation = player.transform.rotation;
 
 
+        spectatingCamera = GameObject.Find("SpectatingCamera");
+        if (!spectatingCamera)
+        {
+            spectatingCamera = GameObject.FindGameObjectWithTag("SpectatingCamera");
+        }
 
         targetBuffer = new List<Transform>();
         hitBuffer = new List<Hit>();
@@ -102,7 +109,6 @@ public class ParkourManager : MonoBehaviour
     void Start()
     {
         SwitchParkourState(ParkourState.Intro);
-        spectatingCamera = GameObject.Find("SpectatingCamera");
         ParkourTrigger.OnTrigger += TriggerParkour;
         Gun.OnTargetHit += TargetHit;
     }
@@ -201,7 +207,6 @@ public class ParkourManager : MonoBehaviour
                 lastVelocity = playerRigidbody.velocity;
                 lastCameraPitch = Camera.main.transform.rotation;
                 lastTime = timer;
-                lastScore = 0;
             }
             else
             {

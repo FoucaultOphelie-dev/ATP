@@ -41,6 +41,7 @@ public class CheckpointFeedback : MonoBehaviour
     // Update is called once per frame
     void UpdateFeedback(int index, float time, float previousTime)
     {
+        if( coroutine != null) StopCoroutine(coroutine);
         coroutine = WaitAndFadeOut();
         timeTextComponent.alpha = 1;
         timeTextComponent.color = Color.white;

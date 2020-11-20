@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.VFX;
 public class Gun : MonoBehaviour
 {
 
@@ -18,6 +20,7 @@ public class Gun : MonoBehaviour
     private bool reloading;
     private float reloadStartTime;
     public float reloadingTime;
+    public VisualEffect tir;
 
     void Start()
     {
@@ -90,10 +93,11 @@ public class Gun : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire1") && !reloading)
         {
-            if(amountOfBullets <= 0)
+            if (amountOfBullets <= 0)
             {
                 reloadMessage.text = "You need to reload ! (press R)";
-            } else
+            }
+            else
             {
                 shoot();
             }
@@ -119,6 +123,9 @@ public class Gun : MonoBehaviour
     void shoot()
     {
         amountOfBullets--;
+        tir.SetFloat("alpha", 1);
+
+        StartCoroutine("CoTir");
         RaycastHit hit;
         if ( Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
@@ -183,10 +190,16 @@ public class Gun : MonoBehaviour
                 default:
                     break;
             }
+            
         }
     }
 
-
+    private IEnumerator CoTir()
+    {
+        
+        yield return new WaitForSeconds(0.1f);
+        tir.SetFloat("alpha", -1.0f);
+    } 
     private void reload()
     {
         setReloading(true);

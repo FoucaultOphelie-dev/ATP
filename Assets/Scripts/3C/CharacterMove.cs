@@ -88,6 +88,8 @@ public class CharacterMove : MonoBehaviour
 
     private Quaternion rotationInitialBody;
     private Quaternion rotationInitialCam;
+
+    private bool bobbing = true;
     #endregion
 
     void Start()
@@ -130,6 +132,9 @@ public class CharacterMove : MonoBehaviour
         {
             timeInwallRight += m_deltaTime;
             factorMove = factorMoveWallRun;
+            bobbing = false;
+            GetComponent<CameraMove>().active = false;
+            cam.GetComponent<Animator>().Play("WallRightCam", 0, 0);
             m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.right), ForceMode.Force);
             if (timeInwallRight >= timeOfWallRun)
             {
@@ -151,6 +156,9 @@ public class CharacterMove : MonoBehaviour
         {
             timeInwallLeft += m_deltaTime;
             factorMove = factorMoveWallRun;
+            bobbing = false;
+            GetComponent<CameraMove>().active = false;
+            cam.GetComponent<Animator>().Play("WallLeftCam", 0, 0);
             m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.left), ForceMode.Force);
             if (timeInwallLeft >= timeOfWallRun)
             {
@@ -178,14 +186,16 @@ public class CharacterMove : MonoBehaviour
         {
             wallRunLeft = false;
         }
-        
+
 
 
         if (!wallRunLeft && !wallRunRight)
         {
             m_rb.useGravity = true;
+            bobbing = true;
+            cam.GetComponent<Animator>().Play("Bobbing");
+            GetComponent<CameraMove>().active = true;
             playerWallRunForce = initialPlayerWallRunForce;
-            GetComponent<CameraMove>().inSlide = false;
             m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
@@ -263,6 +273,14 @@ public class CharacterMove : MonoBehaviour
                 }
             }
         }
+        if (bobbing)
+        { 
+            cam.GetComponent<Animator>().speed = speed;
+        }
+        else
+        {
+            cam.GetComponent<Animator>().speed = 0;
+        }
         #endregion
 
         #region JUMP
@@ -293,9 +311,6 @@ public class CharacterMove : MonoBehaviour
         #region MOVE
         if (CanMove)
         {
-            Debug.Log("Deltatime : " + Time.deltaTime);
-            Debug.Log("Unscale Deltatime : " + Time.unscaledDeltaTime);
-            Debug.Log("My Deltatime : " + m_deltaTime);
             MoveCharacter();
         }
         #endregion
@@ -354,18 +369,19 @@ public class CharacterMove : MonoBehaviour
             {
                 animator.SetBool("Walk", true);
                 animator.SetBool("Run", false);
+                
             }
             else
             {
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
             }
-            Debug.Log(m_deltaTime);
-            Debug.Log(Time.deltaTime);
+            
+
+            Debug.Log(cam.GetComponent<Animator>().name);
+
             Vector3 force = playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction);
-            //Debug.Log(force);
             m_rb.AddForce(force, appliedForceMode);
-            //m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
         }
         else
         {

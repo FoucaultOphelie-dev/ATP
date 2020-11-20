@@ -30,6 +30,7 @@ public class TimeManager : MonoBehaviour
     [Header("PostProcess")]
     private ChromaticAberration m_chroma;
     private Vignette m_vignette;
+    private ColorAdjustments m_color;
     public Volume volume;
     
 
@@ -37,6 +38,7 @@ public class TimeManager : MonoBehaviour
     {
         volume.profile.TryGet<Vignette>(out m_vignette);
         volume.profile.TryGet<ChromaticAberration>(out m_chroma);
+        volume.profile.TryGet<ColorAdjustments>(out m_color);
 
         if (!playerCharacterMove)
         {
@@ -103,12 +105,13 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            m_vignette.intensity.value = 0;
             m_chroma.intensity.value = 0;
         }
 
         if (doRalenti)
         {
+            m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
+            m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(0.3568441f, 0.752427f, 0.764151f, 0), 0.1f);
             jauge -= Time.unscaledDeltaTime * ralentiFacteur;
             if (jauge < 0f)
             {
@@ -116,7 +119,16 @@ public class TimeManager : MonoBehaviour
             }
             jaugeUI.fillAmount = jauge / maxJauge;
         }
+        else
+        {
+            m_color.colorFilter.value = new Color(1, 1, 1, 0);
+        }
 
-        
+        if (!doAcceleration && !doRalenti)
+        {
+            m_vignette.intensity.value = 0;
+        }
+
+
     }
 }

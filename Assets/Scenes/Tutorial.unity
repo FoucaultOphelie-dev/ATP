@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970102646512242934, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: m_Name
-      value: Platform (21)
+      value: Platform (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
@@ -714,7 +714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970102646512242934, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: m_Name
-      value: Platform (12)
+      value: Platform
       objectReference: {fileID: 0}
     - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: points.Array.size
@@ -2406,7 +2406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parkourState: 0
-  softResetKey: 114
+  softResetKey: 308
   hardResetKey: 8
   parkourData: {fileID: 11400000, guid: bcf677cb480c0be46a8098f7187e61d4, type: 2}
   player: {fileID: 0}
@@ -2857,7 +2857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970102646512242934, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: m_Name
-      value: Platform (13)
+      value: Platform (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: points.Array.size
@@ -4127,7 +4127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970102646512242934, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: m_Name
-      value: Platform (20)
+      value: Platform (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e, type: 3}
       propertyPath: points.Array.size
@@ -5279,6 +5279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMove: {fileID: 1296351419}
+  parkourManager: {fileID: 767303581}
   checkpoints:
   - {fileID: 1310330142}
   - {fileID: 1026255396}

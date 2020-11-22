@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Mathieu.unity
     guid: 88a8e16c452e7fa4d98ab201e89e8cf1
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 650d0d0c3b7449a47a02c888e4c5fd25
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: c42aaf0efa804724399341f608f636de
   - enabled: 1

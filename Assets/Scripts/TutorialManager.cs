@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public CharacterMove characterMove;
+    public ParkourManager parkourManager;
 
     private bool tutorialStarted = false;
     private bool taughtToWalk = false;
@@ -112,7 +113,7 @@ public class TutorialManager : MonoBehaviour
     private void teachGameBasics()
     {
         //timeManager.pauseGame();
-        tutorialText = "Bienvenue dans votre premier parcours. Avant de démarrer un parcours, une caméra de présentation te montreras le chemin à suivre. Cela permet de se faire une première idée du parcours.\n\n\n Pour te lancer dans le pourcours, appuies sur la touche "+ KeyCode.Return.ToString();
+        tutorialText = "Bienvenue dans votre premier parcours. Avant de démarrer un parcours, une caméra de présentation te montreras le chemin à suivre. Cela permet de se faire une première idée du parcours.\n\n\n Pour te lancer dans le pourcours, appuies sur la touche " + KeyCode.Return.ToString();
         popUp.openPopUp(tutorialText);
         taughtGameBasics = true;
     }
@@ -120,7 +121,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToWalk()
     {
         //timeManager.pauseGame();
-        tutorialText = "Dans chaque parcours, tu dois franchir tous les points de passage le plus rapidement possible ! Pour cela, tu vas devoir te déplacer : \n\n\n - Pour se déplacer vers la gauche utilise la touche "+KeyCode.Q.ToString()+"\n - Pour se déplacer vers l'avant, utilise la touche "+KeyCode.Z.ToString()+"\n - Pour se déplacer vers la droite, utilise la touche "+KeyCode.D.ToString()+"\n - Pour se déplacer vers l'arrière, utilise la touche "+KeyCode.S.ToString();
+        tutorialText = "Dans chaque parcours, tu dois franchir tous les points de passage le plus rapidement possible ! Pour cela, tu vas devoir te déplacer : \n\n\n - Pour se déplacer vers la gauche utilises la touche "+KeyCode.Q.ToString()+"\n - Pour se déplacer vers l'avant, utilises la touche "+KeyCode.Z.ToString()+"\n - Pour se déplacer vers la droite, utilises la touche "+KeyCode.D.ToString()+"\n - Pour se déplacer vers l'arrière, utilises la touche "+KeyCode.S.ToString()+"\n - Pour revenir au dernier point de passage franchi, utilises la touche "+parkourManager.softResetKey+"\n - Pour revenir au début du parcours, utilises la touche "+parkourManager.hardResetKey;
         popUp.openPopUp(tutorialText);
         taughtToWalk = true;
     }
@@ -216,7 +217,7 @@ public class TutorialManager : MonoBehaviour
     private void teachPower()
     {
         //timeManager.pauseGame();
-        tutorialText = "Certaines platformes ou cibles se déplacent trop vite pour être facilement apréhendables. Pour pouvoir faire face à ces situations tu possède le pouvoir de maitriser le temps. Lorsque tu accélère le temps, ta jauge de temps augmente. Tu peux alors consommer cette jauge de temps pour le ralentir. Ralentir le temps te permettra de mieux assurer tes tirs et tes sauts sur des objets très rapides\n\n\n - Pour accélerer le temps, utilise la touche "+KeyCode.E.ToString()+"\n - Pour ralentir le temps, utilise la touche "+KeyCode.A.ToString();
+        tutorialText = "Certaines platformes ou cibles se déplacent trop vite pour être facilement apréhendables. Pour pouvoir faire face à ces situations tu possède le pouvoir de maitriser le temps. Lorsque tu accélère le temps, ta jauge de temps augmente. Tu peux alors consommer cette jauge de temps pour le ralentir. Ralentir le temps te permettra de mieux assurer tes tirs et tes sauts sur des objets très rapides\n\n\n - Pour accélerer le temps, utilises la touche "+KeyCode.E.ToString()+"\n - Pour ralentir le temps, utilise la touche "+KeyCode.A.ToString();
         popUp.openPopUp(tutorialText);
         taughtPower = true;
     }

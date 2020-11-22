@@ -321,12 +321,12 @@ public class CharacterMove : MonoBehaviour
             if (wallRunLeft)
             {
                 canJump = false;
-                Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(Vector3.right));
+                Jump(playerJumpForce, appliedJumpForceMode, (transform.TransformDirection(Vector3.right)*9 + transform.TransformDirection(Vector3.up)).normalized);
             }
             if (wallRunRight)
             {
                 canJump = false;
-                Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(Vector3.left));
+                Jump(playerJumpForce, appliedJumpForceMode, (transform.TransformDirection(Vector3.left)*9+ transform.TransformDirection(Vector3.up)).normalized);
             }
         }
     }

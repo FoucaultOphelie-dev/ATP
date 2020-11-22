@@ -5,6 +5,7 @@ using UnityEngine;
 public class StartingCheckpoint : MonoBehaviour
 {
     private Animator animator;
+    public TutorialManager tutorialManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,10 @@ public class StartingCheckpoint : MonoBehaviour
     public void TriggerStartRun()
     {
         ParkourManager.Instance().StartRun();
+        if (tutorialManager)
+        {
+            tutorialManager.startTutorial();
+        }
         animator.ResetTrigger("Reset");
     }
     private void Update()

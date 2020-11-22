@@ -7,10 +7,12 @@ public class CheckPoint : MonoBehaviour
 {
     public int index;
     private Animator animator;
+    private bool passed;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        passed = false;
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class CheckPoint : MonoBehaviour
             {
                 animator.SetTrigger("isDone");
                 animator.ResetTrigger("isReset");
+                passed = true;
             }
         }
     }
@@ -35,5 +38,10 @@ public class CheckPoint : MonoBehaviour
     {
         animator.SetTrigger("isReset");
         animator.ResetTrigger("isDone");
+    }
+
+    public bool isChecked()
+    {
+        return passed;
     }
 }

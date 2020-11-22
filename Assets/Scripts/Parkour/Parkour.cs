@@ -67,6 +67,7 @@ public class Parkour : ScriptableObject
     public SceneField scene;
     public Parkour nextParkour;
 
+    public bool isTutorial;
 
     public List<float> timerByCheckpoint = new List<float>();
 }

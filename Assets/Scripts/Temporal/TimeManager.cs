@@ -25,6 +25,8 @@ public class TimeManager : MonoBehaviour
     [Header("Player")]
     private CharacterMove playerCharacterMove;
 
+    private bool onPause = false;
+
     private void Start()
     {
         if (!playerCharacterMove)
@@ -57,7 +59,13 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         //Debug.Log(Time.timeScale);
-        if(Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
+        /*if (onPause)
+        {
+            Time.timeScale = 0;
+            doAcceleration = false;
+            doRalenti = false;
+        }
+        else */if(Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
         {
             playerCharacterMove.scaled = false;
             Time.timeScale = accelerationValue;
@@ -99,4 +107,14 @@ public class TimeManager : MonoBehaviour
 
         
     }
+
+    /*public void pauseGame()
+    {
+        onPause = true;
+    }
+
+    public void unpauseGame()
+    {
+        onPause = false;
+    }*/
 }

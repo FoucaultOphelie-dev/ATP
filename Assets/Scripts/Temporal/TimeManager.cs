@@ -25,8 +25,6 @@ public class TimeManager : MonoBehaviour
     [Header("Player")]
     private CharacterMove playerCharacterMove;
 
-    private bool onPause = false;
-
     private void Start()
     {
         if (!playerCharacterMove)

@@ -20,6 +20,9 @@ public class ParkourManager : MonoBehaviour
 
     public delegate void CheckpointDone(int index, float time, float previousTime);
     public static event CheckpointDone OnCheckpointDone;
+
+    public delegate void ParkourReset();
+    public static event ParkourReset OnParkourReset;
     #endregion
 
     public KeyCode softResetKey = KeyCode.R;
@@ -61,6 +64,13 @@ public class ParkourManager : MonoBehaviour
     private List<Transform> targets;
     public List<Hit> hits;
 
+    public float maxCompletion;
+    public float currentCompletionCheckpoint;
+    public float alreadyDone;
+    //private float currentCompletionParkour;
+    public float parkourLenght;
+    private List<float> lenghtByCheckpoint;
+
     private static ParkourManager instance;
     public static ParkourManager Instance()
     {
@@ -70,8 +80,17 @@ public class ParkourManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Parkour Manager is not instanced (missing ParkourManager in the scene");
-            return null;
+            ParkourManager manager = GameObject.FindObjectOfType<ParkourManager>();
+            if (manager)
+            {
+                instance = manager;
+                return instance;
+            }
+            else
+            {
+                Debug.LogError("Parkour Manager is not instanced (missing ParkourManager in the scene");
+                return null;
+            }
         }
     }
 
@@ -87,6 +106,14 @@ public class ParkourManager : MonoBehaviour
         cameraMove = player.GetComponent<CameraMove>();
 
         checkpoints = GameObject.FindObjectsOfType<CheckPoint>().OrderBy(checkpoint => checkpoint.index).ToList<CheckPoint>();
+        lenghtByCheckpoint = new List<float>();
+        for (int i = 1; i < checkpoints.Count; i++)
+        {
+            float lenght = (checkpoints[i - 1].transform.position - checkpoints[i].transform.position).magnitude;
+            lenghtByCheckpoint.Add(lenght);
+            parkourLenght += lenght;
+        }
+
         startingCheckpoint = GameObject.FindObjectOfType<StartingCheckpoint>();
         lastPos = player.transform.position;
         lastRotation = player.transform.rotation;
@@ -145,6 +172,12 @@ public class ParkourManager : MonoBehaviour
         if (isStarted)
         {
             timer += Time.deltaTime * Time.timeScale;
+            currentCompletionCheckpoint = (FindNearestPointOnLine(
+                checkpoints[lastCheckpoint].transform.position,
+                checkpoints[lastCheckpoint + 1].transform.position,
+                player.transform.position) - checkpoints[lastCheckpoint].transform.position).magnitude;
+            if (currentCompletionCheckpoint > maxCompletion) maxCompletion = currentCompletionCheckpoint;
+            //Debug.Log(currentCompletionCheckpoint + "/" +);
         }
         if (Input.GetKeyDown(softResetKey))
         {
@@ -199,7 +232,8 @@ public class ParkourManager : MonoBehaviour
             OnCheckpointDone?.Invoke(index, timer, previousTime);
             if (index < checkpoints.Count - 1)
             {
-
+                alreadyDone += lenghtByCheckpoint[lastCheckpoint];
+                maxCompletion = 0;
                 // Save State
                 lastCheckpoint++;
                 lastPos = player.transform.position;
@@ -309,5 +343,41 @@ public class ParkourManager : MonoBehaviour
         }
         instance.firstRun = false;
         instance.SwitchParkourState(ParkourState.Gameplay);
+        instance.alreadyDone = 0;
+        instance.maxCompletion = 0;
+        OnParkourReset?.Invoke();
     }
+    public Vector3 FindNearestPointOnLine(Vector3 origin, Vector3 end, Vector3 point)
+    {
+        //Get heading
+        Vector3 heading = (end - origin);
+        float magnitudeMax = heading.magnitude;
+        heading.Normalize();
+
+        //Do projection from the point but clamp it
+        Vector3 lhs = point - origin;
+        float dotP = Vector3.Dot(lhs, heading);
+        dotP = Mathf.Clamp(dotP, 0f, magnitudeMax);
+        return origin + heading * dotP;
+    }
+    public List<CheckPoint> GetCheckpoints() { return checkpoints; }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (parkourState != ParkourState.Gameplay) return;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(checkpoints[lastCheckpoint].transform.position,
+                checkpoints[lastCheckpoint + 1].transform.position);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(player.transform.position, 0.5f);
+        Gizmos.color = Color.green;
+        Vector3 posOnLine = FindNearestPointOnLine(
+                checkpoints[lastCheckpoint].transform.position,
+                checkpoints[lastCheckpoint + 1].transform.position,
+                player.transform.position);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(posOnLine, 0.5f);
+    }
+#endif
 }

@@ -507,7 +507,17 @@ public class CharacterMove : MonoBehaviour
                 //Debug.Log("canmove :" + CanMove);
                 playerIsGrounded = true;
                 playerIsJumping = false;
-                CanMove = true;
+                if (ParkourManager.Instance())
+                {
+                    if (ParkourManager.Instance().GetIsStarted())
+                    {
+                        CanMove = true;
+                    }
+                }
+                else
+                {
+                    CanMove = true;
+                }
                 factorMove = 1.0f;
                 animator.SetBool("DoJump", false);
                 transform.parent = hit.transform.parent;

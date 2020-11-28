@@ -455,13 +455,13 @@ public class CharacterMove : MonoBehaviour
                     }
                     else
                     {
-                        transform.rotation = new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                        transform.rotation = collision.gameObject.transform.rotation;
+                        transform.Rotate(new Vector3(0, 180, 0));
                     }
                     playerIsJumping = false;
                     animator.SetBool("DoJump", false);
                     factorMove = 1.0f;
                     CanMove = true;
-                    GetComponent<CameraMove>().inSlide = true;
                 }
             }
 
@@ -479,14 +479,14 @@ public class CharacterMove : MonoBehaviour
                     }
                     else
                     {
-                        transform.rotation =  new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                        transform.rotation = collision.gameObject.transform.rotation;
+                        transform.Rotate(new Vector3(0, 180, 0));
                     }
                     
                     playerIsJumping = false;
                     animator.SetBool("DoJump", false);
                     factorMove = 1.0f;
                     CanMove = true;
-                    GetComponent<CameraMove>().inSlide = true;
                 }
                 
             }

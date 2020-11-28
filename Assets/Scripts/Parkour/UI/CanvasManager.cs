@@ -79,17 +79,20 @@ public class CanvasManager : MonoBehaviour
         backgroundJauge.color = backgroundColor;
         filledJauge.color = filledColor;
         List<CheckPoint> checkPoints = ParkourManager.Instance().GetCheckpoints();
-        float step = 1.0f / (checkPoints.Count-1);
-        for(int i = 0; i < checkPoints.Count; i++)
+        if(checkPoints.Count >= 2)
         {
-            checkpointsUI.Add(GameObject.Instantiate(checkpointUIPrefab, CheckpointsUIFolder));
-            RectTransform uiTransform = checkpointsUI[checkpointsUI.Count - 1].GetComponent<RectTransform>();
-            uiTransform.anchorMin = new Vector2(step * i, 0);
-            uiTransform.anchorMax = new Vector2(step * i, 1);
+            float step = 1.0f / (checkPoints.Count - 1);
+            for (int i = 0; i < checkPoints.Count; i++)
+            {
+                checkpointsUI.Add(GameObject.Instantiate(checkpointUIPrefab, CheckpointsUIFolder));
+                RectTransform uiTransform = checkpointsUI[checkpointsUI.Count - 1].GetComponent<RectTransform>();
+                uiTransform.anchorMin = new Vector2(step * i, 0);
+                uiTransform.anchorMax = new Vector2(step * i, 1);
+            }
+            ValidCheckpointUI(0, 0, 0);//Validate the start;
+            ParkourManager.OnCheckpointDone += ValidCheckpointUI;
+            ParkourManager.OnParkourReset += ResetGameplayCanvas;
         }
-        ValidCheckpointUI(0, 0, 0);//Validate the start;
-        ParkourManager.OnCheckpointDone += ValidCheckpointUI;
-        ParkourManager.OnParkourReset += ResetGameplayCanvas;
     }
 
     public void SwitchCanvas(ParkourState state)

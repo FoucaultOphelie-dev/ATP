@@ -88,6 +88,8 @@ public class CharacterMove : MonoBehaviour
 
     private Quaternion rotationInitialBody;
     private Quaternion rotationInitialCam;
+
+    private bool bobbing = true;
     #endregion
 
     void Start()
@@ -113,6 +115,7 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
+        #region DELTATIME SCALE
         if (scaled)
         {
             m_deltaTime = Time.deltaTime;
@@ -122,11 +125,16 @@ public class CharacterMove : MonoBehaviour
             m_deltaTime = Time.unscaledDeltaTime;
             animator.speed = initialSpeedAnimator / Time.timeScale;
         }
+        #endregion
 
+        #region WALL RUN
         if (wallRunRight)
         {
             timeInwallRight += m_deltaTime;
             factorMove = factorMoveWallRun;
+            bobbing = false;
+            GetComponent<CameraMove>().active = false;
+            cam.GetComponent<Animator>().Play("WallRightCam", 0, 0);
             m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.right), ForceMode.Force);
             if (timeInwallRight >= timeOfWallRun)
             {
@@ -148,6 +156,9 @@ public class CharacterMove : MonoBehaviour
         {
             timeInwallLeft += m_deltaTime;
             factorMove = factorMoveWallRun;
+            bobbing = false;
+            GetComponent<CameraMove>().active = false;
+            cam.GetComponent<Animator>().Play("WallLeftCam", 0, 0);
             m_rb.AddForce(playerWallRunForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.left), ForceMode.Force);
             if (timeInwallLeft >= timeOfWallRun)
             {
@@ -170,31 +181,27 @@ public class CharacterMove : MonoBehaviour
         {
             wallRunRight = false;
         }
-        else
-        {
-            Debug.Log("right" + hit.transform.name);
-        }
 
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1.0f, LayerMask.GetMask("WallRun")))
         {
             wallRunLeft = false;
         }
-        else
-        {
 
-            Debug.Log("left" + hit.transform.name);
-        }
-        
 
 
         if (!wallRunLeft && !wallRunRight)
         {
             m_rb.useGravity = true;
+            bobbing = true;
+            cam.GetComponent<Animator>().Play("Bobbing");
+            GetComponent<CameraMove>().active = true;
             playerWallRunForce = initialPlayerWallRunForce;
-            GetComponent<CameraMove>().inSlide = false;
             m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
 
+        #endregion
+
+        #region GRAB
         if (isGrab)
         {
             m_rb.velocity = new Vector3(0, 0, 0);
@@ -204,38 +211,39 @@ public class CharacterMove : MonoBehaviour
             GetComponent<CameraMove>().inSlide = true;
             animator.SetBool("Slide", true);
         }
+        #endregion
 
+        #region FREEZE ROTATION
         if (playerIsGrounded && transform.rotation.x != 0.0f || transform.rotation.z != 0.0f)
         {
             transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, transform.rotation.w);
         }
+        #endregion
 
+        #region AIMING
         if (Input.GetButtonDown("Fire2"))
         {
             isAiming = true;
+            CanRun = false;
             weapon.SetActive(true);
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
             isAiming = false;
+            CanRun = true;
             weapon.SetActive(false);
         }
+        #endregion
 
+        #region SLIDE
         if (Input.GetKeyDown(keySlide) && !inSlide)
         {
             canSlide = true;
         }
+        #endregion
 
-        if (isAiming)
-        {
-            CanRun = false;
-        }
-        else
-        {
-            CanRun = true;
-        }
-
+        #region MOVE
         m_xAxis = Input.GetAxisRaw("Horizontal") * factorMove;
         m_zAxis = Input.GetAxisRaw("Vertical") * factorMove;
 
@@ -265,7 +273,17 @@ public class CharacterMove : MonoBehaviour
                 }
             }
         }
+        if (bobbing)
+        { 
+            cam.GetComponent<Animator>().speed = speed;
+        }
+        else
+        {
+            cam.GetComponent<Animator>().speed = 0;
+        }
+        #endregion
 
+        #region JUMP
         if (Input.GetKeyDown(keyJump))
         {
             if (playerIsGrounded || isGrab || wallRunLeft || wallRunRight)
@@ -273,10 +291,12 @@ public class CharacterMove : MonoBehaviour
                 canJump = true;
             }
         }
+        #endregion
     }
 
     private void FixedUpdate()
     {
+        #region DELTATIME SCALE
         if (scaled)
         {
             m_deltaTime = Time.fixedDeltaTime;
@@ -286,12 +306,16 @@ public class CharacterMove : MonoBehaviour
         {
             m_deltaTime = Time.fixedUnscaledDeltaTime;
         }
+        #endregion
 
+        #region MOVE
         if (CanMove)
         {
             MoveCharacter();
         }
+        #endregion
 
+        #region SLIDE
         if (canSlide)
         {
             canSlide = false;
@@ -300,6 +324,9 @@ public class CharacterMove : MonoBehaviour
             CanMove = false;
             Slide(playerSlideForce, appliedSlideForceMode);
         }
+        #endregion
+
+        #region JUMP
         if (canJump)
         {
             if (playerIsGrounded)
@@ -329,6 +356,7 @@ public class CharacterMove : MonoBehaviour
                 Jump(playerJumpForce, appliedJumpForceMode, transform.TransformDirection(Vector3.left));
             }
         }
+        #endregion
     }
 
     private void MoveCharacter()
@@ -341,15 +369,19 @@ public class CharacterMove : MonoBehaviour
             {
                 animator.SetBool("Walk", true);
                 animator.SetBool("Run", false);
+                
             }
             else
             {
                 animator.SetBool("Walk", false);
                 animator.SetBool("Run", true);
             }
+            
+
+            Debug.Log(cam.GetComponent<Animator>().name);
+
             Vector3 force = playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction);
             m_rb.AddForce(force, appliedForceMode);
-            //m_rb.MovePosition(transform.position + m_deltaTime * speed * transform.TransformDirection(m_direction));
         }
         else
         {
@@ -423,13 +455,13 @@ public class CharacterMove : MonoBehaviour
                     }
                     else
                     {
-                        transform.rotation = new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                        transform.rotation = collision.gameObject.transform.rotation;
+                        transform.Rotate(new Vector3(0, 180, 0));
                     }
                     playerIsJumping = false;
                     animator.SetBool("DoJump", false);
                     factorMove = 1.0f;
                     CanMove = true;
-                    GetComponent<CameraMove>().inSlide = true;
                 }
             }
 
@@ -447,14 +479,14 @@ public class CharacterMove : MonoBehaviour
                     }
                     else
                     {
-                        transform.rotation =  new Quaternion(collision.gameObject.transform.rotation.x, -collision.gameObject.transform.rotation.y, collision.gameObject.transform.rotation.z, collision.gameObject.transform.rotation.w);
+                        transform.rotation = collision.gameObject.transform.rotation;
+                        transform.Rotate(new Vector3(0, 180, 0));
                     }
                     
                     playerIsJumping = false;
                     animator.SetBool("DoJump", false);
                     factorMove = 1.0f;
                     CanMove = true;
-                    GetComponent<CameraMove>().inSlide = true;
                 }
                 
             }
@@ -500,11 +532,4 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-    private void reload()
-    {
-        gun.setReloading(true);
-        gun.setReloadStartTime(Time.time);
-        gun.setAmountOfBullets(gun.maxAmo);
-        reloadMessage.text = "";
-    }
 }

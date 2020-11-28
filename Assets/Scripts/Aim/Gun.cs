@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.VFX;
+
+
 public enum HitFeedback
 {
     Perfect,
@@ -37,6 +41,7 @@ public class Gun : MonoBehaviour
     private bool reloading;
     private float reloadStartTime;
     public float reloadingTime;
+    public VisualEffect tir;
 
     void Start()
     {
@@ -109,10 +114,11 @@ public class Gun : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire1") && !reloading)
         {
-            if(amountOfBullets <= 0)
+            if (amountOfBullets <= 0)
             {
                 reloadMessage.text = "You need to reload ! (press R)";
-            } else
+            }
+            else
             {
                 shoot();
             }
@@ -138,6 +144,9 @@ public class Gun : MonoBehaviour
     void shoot()
     {
         amountOfBullets--;
+        tir.SetFloat("alpha", 1);
+
+        StartCoroutine("CoTir");
         RaycastHit hit;
         if ( Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
@@ -204,10 +213,64 @@ public class Gun : MonoBehaviour
             {
                 destructibleObstacle.takeAShot();
             }
+            switch (hit.transform.name)
+            {
+                case "InnerCircle":
+                    score = 100 * target.multiplier;
+                    feedback = "Perfect ";
+                    if(score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    shotFeedback.text = feedback;
+                    shotFeedback.color = Color.yellow;
+                    break;
+                case "FirstCircle":
+                    score = 80 * target.multiplier; ;
+                    feedback = "Great ";
+                    if (score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    shotFeedback.text = feedback;
+                    shotFeedback.color = Color.magenta;
+                    break;
+                case "SecondCircle":
+                    score = 60 * target.multiplier;
+                    feedback = "Good ";
+                    if (score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    shotFeedback.text = feedback;
+                    shotFeedback.color = Color.red;
+                    break;
+                case "OuterCircle":
+                    score = 40 * target.multiplier;
+                    feedback = "Ok ";
+                    if (score > 0)
+                    {
+                        feedback += "+";
+                    }
+                    feedback += score;
+                    shotFeedback.text = feedback;
+                    shotFeedback.color = Color.cyan;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
-
+    private IEnumerator CoTir()
+    {
+        
+        yield return new WaitForSeconds(0.1f);
+        tir.SetFloat("alpha", -1.0f);
+    } 
     private void reload()
     {
         setReloading(true);

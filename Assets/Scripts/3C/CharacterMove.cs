@@ -209,7 +209,8 @@ public class CharacterMove : MonoBehaviour
             //m_rb.isKinematic = true;
             m_rb.useGravity = false;
             GetComponent<CameraMove>().inSlide = true;
-            animator.SetBool("Slide", true);
+            animator.SetBool("Attach", true);
+            animator.SetBool("DoJump", false);
         }
         #endregion
 
@@ -394,8 +395,8 @@ public class CharacterMove : MonoBehaviour
     private void Slide(float jumpForce, ForceMode forceMode)
     {
         animator.SetBool("Slide", true);
-        body.transform.Rotate(new Vector3(-80.0f, 0.0f, 0.0f));
-        cam.transform.Rotate(new Vector3(70.0f, 0, 0));
+        body.transform.localScale = new Vector3(0.58394f, 0.5f, 1.0f);
+        cam.transform.Translate(new Vector3(0, -.5f, 0));
         m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.forward), forceMode);
         StartCoroutine(CoSlide());
     }
@@ -403,8 +404,8 @@ public class CharacterMove : MonoBehaviour
     IEnumerator CoSlide()
     {
         yield return new WaitForSeconds(timeOfSlide);
-        body.transform.Rotate(new Vector3(80.0f, 0.0f, 0.0f));
-        cam.transform.Rotate(new Vector3(-70.0f, 0, 0));
+        body.transform.localScale = new Vector3(0.58394f, 1.99015f, 1.0f);
+        cam.transform.Translate(new Vector3(0, 0.5f, 0));
         animator.SetBool("Slide", false);
         inSlide = false;
         GetComponent<CameraMove>().inSlide = false;
@@ -434,6 +435,7 @@ public class CharacterMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("it's collide with " + collision.gameObject.name);
         if (collision.gameObject.layer == m_groundLayerMask)
         {
             CheckForGround();

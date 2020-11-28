@@ -26,7 +26,7 @@ public class GrabCollider : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && player.isGrab)
         {
             player.gameObject.GetComponent<CameraMove>().inSlide = false;
-            player.animator.SetBool("Slide", false);
+            player.animator.SetBool("Attach", false);
             player.Ungrab();
             player.playerIsGrounded = false;
             player.playerIsJumping = true;
@@ -37,7 +37,7 @@ public class GrabCollider : MonoBehaviour
         if (lerp)
         {
             player.gameObject.GetComponent<CameraMove>().inSlide = false;
-            player.animator.SetBool("Slide", false);
+            player.animator.SetBool("Attach", false);
             player.gameObject.transform.position = Vector3.Lerp(player.gameObject.transform.position, nextPosition,0.2f);
             if (Vector3.Distance(player.gameObject.transform.position, nextPosition) < 0.1f)
             {

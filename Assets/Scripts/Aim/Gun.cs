@@ -42,6 +42,7 @@ public class Gun : MonoBehaviour
     private float reloadStartTime;
     public float reloadingTime;
     public VisualEffect tir;
+    private string feedback;
 
     void Start()
     {

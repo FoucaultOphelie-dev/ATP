@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" SchemaVersion="97">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="tir" ID="{88A4858A-D7BC-40BF-B0A2-FB931D6F3380}">
+					<ChildrenList>
+						<Action Name="" ID="{CBAA5A9D-9547-4E2B-9ED5-C515B246D51D}" ShortID="817568993">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="laser" ID="{BB872BA6-2EB6-4979-9FF3-3BB363B15BDA}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="slowmotion" ID="{87ABEB7A-D5E7-4BC5-BD2B-A3B0DF7577CD}">
+					<ChildrenList>
+						<Action Name="" ID="{29488701-24CA-4854-8EA3-0549D68B74A5}" ShortID="160588386">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Time_Slow" ID="{6FE7380C-03B4-4B06-8B72-FDE0602D4977}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="fastmotion" ID="{B8E76A11-7F2B-46D4-B5C0-750CB5D5C3FE}">
+					<ChildrenList>
+						<Action Name="" ID="{A78E0C33-DA35-4DF5-B756-AF6809BDE1A6}" ShortID="972025651">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Time_Fast" ID="{56286BAE-D441-4475-93D5-1FC767B0B43D}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="footstep" ID="{FE54BAD7-A20E-4E91-8BBB-AF0FF666F8B7}">
+					<ChildrenList>
+						<Action Name="" ID="{7CED2D88-F90E-4B6A-9E2A-4A53A3D694CF}" ShortID="20483665">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="footstep" ID="{99B3FEF6-9FC9-42F4-A35F-C53C63A21436}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="slide" ID="{688CED47-4879-404D-A92B-67E4095AB1AD}">
+					<ChildrenList>
+						<Action Name="" ID="{4F4C6E6B-09A5-4E8B-A327-C148BA1EE799}" ShortID="669549689">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="slip" ID="{D941653A-186E-4F9D-B78F-E370500E14BF}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="TargetDisapear" ID="{808933D5-CE59-4041-899F-7190BC1A65AF}">
+					<ChildrenList>
+						<Action Name="" ID="{C00FE4A2-DB84-44C0-A5D2-0D67294356C9}" ShortID="408169570">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="target desapear" ID="{BAA628D3-4C88-45DA-8126-30104633D956}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="explosion" ID="{9863F071-5CA7-41D0-93A9-2A9A3FFD8603}">
+					<ChildrenList>
+						<Action Name="" ID="{0E8A129A-D626-4D6E-8D62-3725D738C6BC}" ShortID="55125130">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="explosion_plateforme" ID="{C9091E33-B16C-4DBB-B219-377F3CC68361}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Music_niveau" ID="{13B37B9F-9B19-4370-9365-3CBCCA8C26AB}">
+					<ChildrenList>
+						<Action Name="" ID="{4BFBDCBD-FE3E-43AB-B24C-C6823A64E13F}" ShortID="793318568">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="5Keer" ID="{3D01FD32-4028-461C-BA14-1A3C5F91BDD8}" WorkUnitID="{A675FB82-CE0C-4903-B1EF-3A811776BB4F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

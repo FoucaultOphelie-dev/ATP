@@ -15,6 +15,7 @@ public class DestructibleObstacle : MonoBehaviour
     private bool hit = false;
     private MeshDestroy meshDestroy;
 
+    public AK.Wwise.Event soundEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +66,7 @@ public class DestructibleObstacle : MonoBehaviour
             hit = true;
             if (hit)
             {
+                soundEvent.Post(gameObject);
                 meshDestroy.DestroyMesh();
             }
         }

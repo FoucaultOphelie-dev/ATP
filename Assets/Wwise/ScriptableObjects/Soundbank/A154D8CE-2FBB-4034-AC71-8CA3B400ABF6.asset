@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b50f29c550ca447b762356bd9ccaa3, type: 3}
   m_Name: A154D8CE-2FBB-4034-AC71-8CA3B400ABF6
   m_EditorClassIdentifier: 
-  objectName: exemple
-  id: 1526426841
+  objectName: SFX
+  id: 393239870
   guid: A154D8CE-2FBB-4034-AC71-8CA3B400ABF6

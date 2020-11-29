@@ -25,6 +25,7 @@ public class CharacterMove : MonoBehaviour
     public ForceMode appliedSlideForceMode;
     public GameObject body;
     public GameObject cam;
+    public AK.Wwise.Event wwiseEventSlide;
 
 
     [Header("Jump Settings")]
@@ -63,6 +64,13 @@ public class CharacterMove : MonoBehaviour
 
     [Header("Animator")]
     public Animator animator;
+
+    [Header("Sound footsptep")]
+    public float frequencyWalk = 0.5f;
+    public float frequencuRun = 0.3f;
+    private float frequency;
+    private float _frequencyTimer = 0f;
+    public AK.Wwise.Event wwiseEventFootStep;
 
     #endregion
 
@@ -247,6 +255,8 @@ public class CharacterMove : MonoBehaviour
         #region MOVE
         m_xAxis = Input.GetAxisRaw("Horizontal") * factorMove;
         m_zAxis = Input.GetAxisRaw("Vertical") * factorMove;
+        m_direction = new Vector3(m_xAxis, 0f, m_zAxis).normalized;
+        CheckForGround();
 
         if (inSlide)
         {
@@ -259,6 +269,7 @@ public class CharacterMove : MonoBehaviour
                 if (CanRun)
                 {
                     speed = Input.GetKey(keyRun) ? speedRun : speedWalk;
+                    frequency = Input.GetKey(keyRun) ? frequencuRun : frequencyWalk;
                 }
                 else
                 {
@@ -273,6 +284,19 @@ public class CharacterMove : MonoBehaviour
                     m_rb.velocity = Vector3.zero;
                 }
             }
+        }
+        if (m_direction != Vector3.zero)
+        {
+            _frequencyTimer += Time.deltaTime;
+            if (_frequencyTimer >= frequency)
+            {
+                wwiseEventFootStep.Post(gameObject);
+                _frequencyTimer = 0f;
+            }
+        }
+        else
+        {
+            _frequencyTimer = 0f;
         }
         if (bobbing)
         { 
@@ -362,8 +386,6 @@ public class CharacterMove : MonoBehaviour
 
     private void MoveCharacter()
     {
-        m_direction = new Vector3(m_xAxis, 0f, m_zAxis).normalized;
-        
         if (m_direction != Vector3.zero)
         {
             if (speed == speedWalk)
@@ -398,12 +420,14 @@ public class CharacterMove : MonoBehaviour
         body.transform.localScale = new Vector3(0.58394f, 0.5f, 1.0f);
         cam.transform.Translate(new Vector3(0, -.5f, 0));
         m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.forward), forceMode);
+        wwiseEventSlide.Post(gameObject);
         StartCoroutine(CoSlide());
     }
 
     IEnumerator CoSlide()
     {
         yield return new WaitForSeconds(timeOfSlide);
+        wwiseEventSlide.Stop(gameObject);
         body.transform.localScale = new Vector3(0.58394f, 1.99015f, 1.0f);
         cam.transform.Translate(new Vector3(0, 0.5f, 0));
         animator.SetBool("Slide", false);
@@ -521,6 +545,10 @@ public class CharacterMove : MonoBehaviour
                 factorMove = 1.0f;
                 animator.SetBool("DoJump", false);
                 transform.parent = hit.transform.parent;
+            }
+            else
+            {
+                playerIsGrounded = false;
             }
         }
     }

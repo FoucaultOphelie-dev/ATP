@@ -11,9 +11,28 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID EXPLOSION = 13776098U;
+        static const AkUniqueID FASTMOTION = 3918031937U;
+        static const AkUniqueID FOOTSTEP = 1866025847U;
+        static const AkUniqueID MUSIC_NIVEAU = 2953965439U;
+        static const AkUniqueID SLIDE = 3686556480U;
+        static const AkUniqueID SLOWMOTION = 340593036U;
+        static const AkUniqueID TARGETDISAPEAR = 1610286127U;
+        static const AkUniqueID TIR = 980206266U;
+    } // namespace EVENTS
+
+    namespace BANKS
+    {
+        static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID SFX = 393239870U;
+    } // namespace BANKS
+
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID NEW_MASTER_BUS = 3193046343U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

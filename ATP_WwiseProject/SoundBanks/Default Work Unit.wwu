@@ -3,9 +3,16 @@
 	<SoundBanks>
 		<WorkUnit Name="Default Work Unit" ID="{2785DFA5-7316-498B-8D4B-F048DAF78B12}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundBank Name="exemple" ID="{A154D8CE-2FBB-4034-AC71-8CA3B400ABF6}">
+				<SoundBank Name="SFX" ID="{A154D8CE-2FBB-4034-AC71-8CA3B400ABF6}">
 					<ObjectInclusionList>
-						<ObjectRef Name="slip" ID="{B3FB15B6-1C0D-4844-9B1E-45A5A267A0A0}" WorkUnitID="{8A8C5228-D9BE-4B10-A886-FF6A1251365E}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="TargetDisapear" ID="{808933D5-CE59-4041-899F-7190BC1A65AF}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="slide" ID="{688CED47-4879-404D-A92B-67E4095AB1AD}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="tir" ID="{88A4858A-D7BC-40BF-B0A2-FB931D6F3380}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="explosion" ID="{9863F071-5CA7-41D0-93A9-2A9A3FFD8603}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Music_niveau" ID="{13B37B9F-9B19-4370-9365-3CBCCA8C26AB}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="fastmotion" ID="{B8E76A11-7F2B-46D4-B5C0-750CB5D5C3FE}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="slowmotion" ID="{87ABEB7A-D5E7-4BC5-BD2B-A3B0DF7577CD}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="footstep" ID="{FE54BAD7-A20E-4E91-8BBB-AF0FF666F8B7}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

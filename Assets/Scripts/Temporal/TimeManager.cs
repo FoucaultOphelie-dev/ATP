@@ -32,7 +32,11 @@ public class TimeManager : MonoBehaviour
     private Vignette m_vignette;
     private ColorAdjustments m_color;
     public Volume volume;
-    
+
+    [Header("Sounds")]
+    public AK.Wwise.Event wwiseEventSlow;
+    public AK.Wwise.Event wwiseEventFast;
+
 
     private void Start()
     {
@@ -69,8 +73,24 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(keyAcceleration))
+        {
+            wwiseEventFast.Post(gameObject);
+        }
+        if (Input.GetKeyDown(keyRalenti))
+        {
+            wwiseEventSlow.Post(gameObject);
+        }
+        if (Input.GetKeyUp(keyAcceleration))
+        {
+            wwiseEventSlow.Post(gameObject);
+        }
+        if (Input.GetKeyUp(keyRalenti))
+        {
+            wwiseEventFast.Post(gameObject);
+        }
         //Debug.Log(Time.timeScale);
-        if(Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
+        if (Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
         {
             playerCharacterMove.scaled = false;
             Time.timeScale = accelerationValue;

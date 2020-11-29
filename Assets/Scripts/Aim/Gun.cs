@@ -44,6 +44,8 @@ public class Gun : MonoBehaviour
     public VisualEffect tir;
     private string feedback;
 
+    public AK.Wwise.Event wwiseEvent;
+
     void Start()
     {
         //Find UI
@@ -146,6 +148,7 @@ public class Gun : MonoBehaviour
     {
         amountOfBullets--;
         tir.SetFloat("alpha", 1);
+        wwiseEvent.Post(gameObject);
 
         StartCoroutine("CoTir");
         RaycastHit hit;

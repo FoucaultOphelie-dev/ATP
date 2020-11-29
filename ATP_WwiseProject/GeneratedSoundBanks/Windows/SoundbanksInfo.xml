@@ -1,17 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>D:\documents\UQAC\conception JV\ATP\ATP\ATP_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>D:\documents\UQAC\conception JV\ATP\ATP\ATP_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\documents\UQAC\conception JV\ATP\ATP\ATP_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\documents\UQAC\conception JV\ATP\ATP\ATP_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="4204904655">
+		<SoundBank Id="393239870" Language="SFX" Hash="3121892262">
+			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
+			<ShortName>SFX</ShortName>
+			<Path>SFX.bnk</Path>
+			<IncludedEvents>
+				<Event Id="13776098" Name="explosion" ObjectPath="\Events\Default Work Unit\explosion" DurationType="OneShot" DurationMin="1.241760" DurationMax="1.241760">
+					<IncludedMemoryFiles>
+						<File Id="552676228" Language="SFX">
+							<ShortName>explosion_plateforme.wav</ShortName>
+							<Path>SFX\explosion_plateforme_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3918031937" Name="fastmotion" ObjectPath="\Events\Default Work Unit\fastmotion" DurationType="OneShot" DurationMin="1.408929" DurationMax="1.408929">
+					<IncludedMemoryFiles>
+						<File Id="132483023" Language="SFX">
+							<ShortName>Time.wav</ShortName>
+							<Path>SFX\Time_7CE6519C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1866025847" Name="footstep" ObjectPath="\Events\Default Work Unit\footstep" DurationType="OneShot" DurationMin="0.169019" DurationMax="0.253528">
+					<IncludedMemoryFiles>
+						<File Id="62959402" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_13F73DFB.wem</Path>
+						</File>
+						<File Id="131783153" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_F75CF124.wem</Path>
+						</File>
+						<File Id="727307116" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_E6D4A88A.wem</Path>
+						</File>
+						<File Id="844276013" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_D27605CB.wem</Path>
+						</File>
+						<File Id="967523465" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_E71F8220.wem</Path>
+						</File>
+						<File Id="1011844167" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_7F27CA0C.wem</Path>
+						</File>
+						<File Id="1014395605" Language="SFX">
+							<ShortName>footsteps.wav</ShortName>
+							<Path>SFX\footsteps_2C0C0B67.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2953965439" Name="Music_niveau" ObjectPath="\Events\Default Work Unit\Music_niveau" DurationType="OneShot" DurationMin="224.000015" DurationMax="224.000015">
+					<IncludedMemoryFiles>
+						<File Id="1058241748" Language="SFX">
+							<ShortName>5Keer.wav</ShortName>
+							<Path>SFX\5Keer_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3686556480" Name="slide" ObjectPath="\Events\Default Work Unit\slide" DurationType="OneShot" DurationMin="22.511518" DurationMax="22.511518">
+					<IncludedMemoryFiles>
+						<File Id="766349877" Language="SFX">
+							<ShortName>slip.wav</ShortName>
+							<Path>SFX\slip_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="340593036" Name="slowmotion" ObjectPath="\Events\Default Work Unit\slowmotion" DurationType="OneShot" DurationMin="2.191667" DurationMax="2.191667">
+					<IncludedMemoryFiles>
+						<File Id="460868223" Language="SFX">
+							<ShortName>Time.wav</ShortName>
+							<Path>SFX\Time_2407B724.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1610286127" Name="TargetDisapear" ObjectPath="\Events\Default Work Unit\TargetDisapear" DurationType="OneShot" DurationMin="0.239590" DurationMax="0.239590">
+					<IncludedMemoryFiles>
+						<File Id="797528370" Language="SFX">
+							<ShortName>target desapear.wav</ShortName>
+							<Path>SFX\target desapear_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="980206266" Name="tir" ObjectPath="\Events\Default Work Unit\tir" DurationType="OneShot" DurationMin="0.475930" DurationMax="0.475930">
+					<IncludedMemoryFiles>
+						<File Id="629213339" Language="SFX">
+							<ShortName>laser.wav</ShortName>
+							<Path>SFX\laser_FD23FF34.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX" Hash="699760810">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>

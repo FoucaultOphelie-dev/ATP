@@ -1,6 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
-	686938995	slip			\slip\slip	
+	980206266	tir			\Default Work Unit\tir	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	766349877	chameleon	D:\documents\UQAC\conception JV\ATP\ATP\ATP_WwiseProject\.cache\Mac\SFX\slip_10C4C929.wem		\Actor-Mixer Hierarchy\Chameleon\chameleon		3971096
+	629213339	laser	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Mac\SFX\laser_FD23FF34.wem		\Actor-Mixer Hierarchy\Default Work Unit\laser		84016
 

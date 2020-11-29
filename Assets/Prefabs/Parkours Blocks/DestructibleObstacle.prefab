@@ -112,6 +112,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: []
   speed: 0
+  soundEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9fdd864b14a613a4a9e17fa2cfc6d16c,
+      type: 2}
 --- !u!54 &6456376970486940948
 Rigidbody:
   m_ObjectHideFlags: 0

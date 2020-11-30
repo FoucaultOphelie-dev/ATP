@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Sprint2
   m_EditorClassIdentifier: 
   displayName: '[ALPHA] Sprint 2'
-  difficulty: 0
+  axis: 0
+  parkourDifficulty: 3
+  aimDifficulty: 3
+  timePowerDifficulty: 3
   startingScore: 1000
   reward: 100
   medals:
@@ -25,6 +28,7 @@ MonoBehaviour:
     score: 400
   - type: 3
     score: 200
+  required: 00000000000000000000000000000000
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 69a78325ceb51d9448f7e00134832b9c, type: 3}
     m_SceneName: Sprint2

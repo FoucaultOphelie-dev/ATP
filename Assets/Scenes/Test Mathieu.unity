@@ -526,6 +526,11 @@ PrefabInstance:
       propertyPath: CanMove
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5584050509586235558, guid: 35f73ae4d0605d7448381508d6d0a550,
+        type: 3}
+      propertyPath: playerJumpForce
+      value: 120000
+      objectReference: {fileID: 0}
     - target: {fileID: 5584050509586235559, guid: 35f73ae4d0605d7448381508d6d0a550,
         type: 3}
       propertyPath: m_AngularDrag
@@ -1130,6 +1135,7 @@ MonoBehaviour:
   parkourData: {fileID: 11400000, guid: abd998d0d69085e4b80360eadae8002b, type: 2}
   player: {fileID: 0}
   timerByCheckpoint: []
+  BesttimerByCheckpoint: []
   score: 0
   maxCompletion: 0
   currentCompletionCheckpoint: 0

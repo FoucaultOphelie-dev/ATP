@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using System.IO;
 public enum ParkourState
 {
     Intro,
@@ -47,6 +47,7 @@ public class ParkourManager : MonoBehaviour
     public bool GetIsFinished() { return isFinished; }
     private float timer;
     public List<float> timerByCheckpoint = new List<float>();
+    public List<float> BesttimerByCheckpoint = new List<float>();
     public float GetTimer() { return timer; }
 
     private Vector3 lastPos;
@@ -130,7 +131,17 @@ public class ParkourManager : MonoBehaviour
         triggerBuffer = new List<ParkourTrigger>();
         targets = new List<Transform>();
         hits = new List<Hit>();
-}
+
+        //Load best run
+        ParkourSaveData data = loadData(parkourData);
+
+        BesttimerByCheckpoint = new List<float>();
+        if (data != null)
+        {
+            BesttimerByCheckpoint = new List<float>(data.timerByCheckpoint);
+        }
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -219,8 +230,8 @@ public class ParkourManager : MonoBehaviour
             // Save Time
             timerByCheckpoint.Add(timer);
             float previousTime = -1;
-            if (index - 1 < parkourData.timerByCheckpoint.Count)
-                previousTime = parkourData.timerByCheckpoint[index - 1];
+            if (index - 1 < BesttimerByCheckpoint.Count)
+                previousTime = BesttimerByCheckpoint[index - 1];
 
             // handle Old State
             hits.AddRange(hitBuffer);
@@ -244,33 +255,65 @@ public class ParkourManager : MonoBehaviour
             }
             else
             {
-                // if player already have done a time
-                if(parkourData.timerByCheckpoint.Count > 0)
-                {
-                    // if player done a better time save it
-                    if (timerByCheckpoint[index - 1] < parkourData.timerByCheckpoint[index - 1])
-                        parkourData.timerByCheckpoint = new List<float>(timerByCheckpoint);
-                }
-                else
-                {
-                    // First time done by player
-                    parkourData.timerByCheckpoint = new List<float>(timerByCheckpoint);
-                }
-
-                //Time.timeScale = 0;
-                
-                score = CalculateScore();
-                isFinished = true;
-                playerMovement.CanMove = false;
-                playerMovement.cam.GetComponent<Camera>().enabled = false;
-                spectatingCamera.SetActive(true);
-                spectatingCamera.GetComponent<Camera>().enabled = true;
-                SwitchParkourState(ParkourState.Scoring);
+                FinishParkour();
             }
             return true;
         }
         return false;
     }
+    static public ParkourSaveData loadData(Parkour parkour)
+    {
+        string path = Path.Combine(Application.persistentDataPath, parkour.GetInstanceID().ToString() + ".json");
+
+        if (File.Exists(path))
+        {
+            //Read the text from directly from the test.txt file
+            StreamReader reader = new StreamReader(path);
+            ParkourSaveData data = JsonUtility.FromJson<ParkourSaveData>(reader.ReadToEnd());
+            reader.Close();
+            return data;
+        }
+        return null;
+    }
+    public void FinishParkour()
+    {
+        score = CalculateScore();
+        isFinished = true;
+        playerMovement.CanMove = false;
+        playerMovement.cam.GetComponent<Camera>().enabled = false;
+        spectatingCamera.SetActive(true);
+        spectatingCamera.GetComponent<Camera>().enabled = true;
+        SwitchParkourState(ParkourState.Scoring);
+
+
+        string path = Path.Combine(Application.persistentDataPath, parkourData.GetInstanceID().ToString() + ".json");
+
+        ParkourSaveData data = loadData(parkourData);
+        if (data == null)
+        {
+            data = new ParkourSaveData();
+        }
+
+        if(score > data.bestScore)
+        {
+            BesttimerByCheckpoint = new List<float>(timerByCheckpoint);
+            data.bestScore = score;
+            data.timerByCheckpoint = new List<float>(timerByCheckpoint);
+            int i = parkourData.medals.Length - 1;
+            while (i >= 0)
+            {
+                if (score < parkourData.medals[i].score) break;
+                data.bestMedalObtained = i;
+                i--;
+            }
+            string jsonData = JsonUtility.ToJson(data);
+            Debug.Log(jsonData);
+            StreamWriter writer = new StreamWriter(path, false);
+            writer.Write(jsonData);
+            writer.Close();
+        }
+    }
+
     public int TimeScore()
     {
         return parkourData.startingScore - (int)(timer * 10);
@@ -281,7 +324,7 @@ public class ParkourManager : MonoBehaviour
         foreach(var hit in hits){
             score += hit.score;
         }
-        return score;
+        return score > 0 ? score : 0;
     }
 
     private void TargetHit(Hit feedback, Transform target)

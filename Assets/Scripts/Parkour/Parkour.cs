@@ -35,16 +35,28 @@ public struct Medal
     public MedalType type;
     public int score;
 }
-
+public enum ParkourAxis
+{
+    General,
+    Parkour,
+    Aim,
+    Temporal
+}
 [CreateAssetMenu(fileName = "newParkour", menuName = "New Parkour")]
 public class Parkour : ScriptableObject
 {
     [Tooltip("Nom affiché au joueur")]
     public string displayName;
-
+    public ParkourAxis axis;
     [Tooltip("Difficulté Affiché")]
-    [Range(0,5)]
-    public int difficulty;
+    ///[Range(0,5)]
+    //public int difficulty;
+    [Range(0, 5)]
+    public int parkourDifficulty;
+    [Range(0, 5)]
+    public int aimDifficulty;
+    [Range(0, 5)]
+    public int timePowerDifficulty;
 
     [Tooltip("Score initialement défini pour effectué le parcours\n" +
         "ce score diminuera d'une certaines quantité selon le temps que mets le joueur a finir le parkour")]
@@ -62,7 +74,7 @@ public class Parkour : ScriptableObject
         new Medal {type = Medal.MedalType.Silver, score = 0},
         new Medal {type = Medal.MedalType.Bronze, score = 0},
     };
-
+    public int[] required = new int[4];
     [SerializeField]
     public SceneField scene;
     public Parkour nextParkour;
@@ -70,6 +82,20 @@ public class Parkour : ScriptableObject
 
     public List<float> timerByCheckpoint = new List<float>();
 }
+[System.Serializable]
+public class ParkourSaveData
+{
+    public int bestMedalObtained;
+    public List<float> timerByCheckpoint = new List<float>();
+    public int bestScore;
+    public ParkourSaveData()
+    {
+        bestScore = -1;
+        timerByCheckpoint = new List<float>();
+        bestMedalObtained = 4;
+    }
+}
+
 #if UNITY_EDITOR
 [CustomEditor(typeof(Parkour))]
 public class ParkourEditor : Editor

@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
-  m_Name: ParkourTemplate
+  m_Name: newParkour
   m_EditorClassIdentifier: 
-  displayName: '[DEBUG] TEST'
-  difficulty: 0
-  startingScore: 1000
-  reward: 0
+  displayName: '[DEBUG] Parkour Mathieu'
+  axis: 1
+  parkourDifficulty: 1
+  aimDifficulty: 3
+  timePowerDifficulty: 5
+  startingScore: 5000
+  reward: 100
   medals:
   - type: 0
-    score: 1000
+    score: 5000
   - type: 1
-    score: 750
+    score: 4000
   - type: 2
-    score: 500
+    score: 3500
   - type: 3
-    score: 250
+    score: 3000
+  required: 00000000010000000200000003000000
   scene:
-    m_SceneAsset: {fileID: 102900000, guid: 0abf7a160d6f9b045b4e03d8bf780959, type: 3}
-    m_SceneName: ParkourTemplate
+    m_SceneAsset: {fileID: 102900000, guid: 88a8e16c452e7fa4d98ab201e89e8cf1, type: 3}
+    m_SceneName: Test Mathieu
   nextParkour: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
   timerByCheckpoint: []

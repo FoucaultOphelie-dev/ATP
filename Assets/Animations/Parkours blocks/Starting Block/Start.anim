@@ -240,10 +240,32 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 1
+    functionName: Trigger123Start
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2
+    functionName: Trigger123Start
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: Trigger123Start
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 4
     functionName: TriggerStartRun
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: da5cd7457d48bb74082ecc60e24e3a6c, type: 3}
+    objectReferenceParameter: {fileID: 11500000, guid: da5cd7457d48bb74082ecc60e24e3a6c,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

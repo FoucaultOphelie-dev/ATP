@@ -13,6 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID DEPART123 = 3546791133U;
+        static const AkUniqueID DEPARTEND = 4293480634U;
         static const AkUniqueID EXPLOSION = 13776098U;
         static const AkUniqueID FASTMOTION = 3918031937U;
         static const AkUniqueID FOOTSTEP = 1866025847U;

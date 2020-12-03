@@ -11,11 +11,27 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="3121892262">
+		<SoundBank Id="393239870" Language="SFX" Hash="1108392696">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3546791133" Name="Depart123" ObjectPath="\Events\Default Work Unit\Depart123" DurationType="OneShot" DurationMin="0.921800" DurationMax="0.921800">
+					<IncludedMemoryFiles>
+						<File Id="135379503" Language="SFX">
+							<ShortName>depart.wav</ShortName>
+							<Path>SFX\depart_168063E8.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4293480634" Name="DepartEnd" ObjectPath="\Events\Default Work Unit\DepartEnd" DurationType="OneShot" DurationMin="1.209863" DurationMax="1.209863">
+					<IncludedMemoryFiles>
+						<File Id="609535076" Language="SFX">
+							<ShortName>depart.wav</ShortName>
+							<Path>SFX\depart_67DA5DFB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="13776098" Name="explosion" ObjectPath="\Events\Default Work Unit\explosion" DurationType="OneShot" DurationMin="1.241760" DurationMax="1.241760">
 					<IncludedMemoryFiles>
 						<File Id="552676228" Language="SFX">
@@ -28,7 +44,7 @@
 					<IncludedMemoryFiles>
 						<File Id="132483023" Language="SFX">
 							<ShortName>Time.wav</ShortName>
-							<Path>SFX\Time_7CE6519C.wem</Path>
+							<Path>SFX\Time_D0C8D6C9.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -36,31 +52,31 @@
 					<IncludedMemoryFiles>
 						<File Id="62959402" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_13F73DFB.wem</Path>
+							<Path>SFX\footsteps_B955896D.wem</Path>
 						</File>
 						<File Id="131783153" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_F75CF124.wem</Path>
+							<Path>SFX\footsteps_8A34946D.wem</Path>
 						</File>
 						<File Id="727307116" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_E6D4A88A.wem</Path>
+							<Path>SFX\footsteps_7DAF5E06.wem</Path>
 						</File>
 						<File Id="844276013" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_D27605CB.wem</Path>
+							<Path>SFX\footsteps_12D9BCF4.wem</Path>
 						</File>
 						<File Id="967523465" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_E71F8220.wem</Path>
+							<Path>SFX\footsteps_8F52AD5C.wem</Path>
 						</File>
 						<File Id="1011844167" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_7F27CA0C.wem</Path>
+							<Path>SFX\footsteps_94A82360.wem</Path>
 						</File>
 						<File Id="1014395605" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
-							<Path>SFX\footsteps_2C0C0B67.wem</Path>
+							<Path>SFX\footsteps_BD02B801.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -84,7 +100,7 @@
 					<IncludedMemoryFiles>
 						<File Id="460868223" Language="SFX">
 							<ShortName>Time.wav</ShortName>
-							<Path>SFX\Time_2407B724.wem</Path>
+							<Path>SFX\Time_F75A12A8.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -100,7 +116,7 @@
 					<IncludedMemoryFiles>
 						<File Id="629213339" Language="SFX">
 							<ShortName>laser.wav</ShortName>
-							<Path>SFX\laser_FD23FF34.wem</Path>
+							<Path>SFX\laser_CDD826EB.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

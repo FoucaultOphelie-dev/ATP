@@ -403,6 +403,60 @@
 						<ActiveSource Name="target desapear" ID="{D6165DB4-E13A-4ACC-8AB3-77D894EF861F}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="depart123" ID="{DA971C4C-6AC2-4F36-B630-A9902F48BD88}" ShortID="730797212">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0D734EEA-BAF2-4049-A510-DE91B52FC026}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="depart" ID="{C4B496FF-E98F-4423-B6C5-5D5AF0E2A8B1}">
+							<PropertyList>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimBegin" Type="Real64" Value="0.136829745596869"/>
+								<Property Name="TrimEnd" Type="Real64" Value="1.0586301369863"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>depart.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="135379503"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="depart" ID="{C4B496FF-E98F-4423-B6C5-5D5AF0E2A8B1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="depart_fin" ID="{F058A7B6-53AA-4293-A9A0-E0C61A0D0C30}" ShortID="131284386">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0D734EEA-BAF2-4049-A510-DE91B52FC026}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="depart" ID="{987037C4-D929-4E1D-A140-9C497ADA2F8F}">
+							<PropertyList>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimBegin" Type="Real64" Value="2.83021526418787"/>
+								<Property Name="TrimEnd" Type="Real64" Value="4.0400782778865"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>depart.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="609535076"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="depart" ID="{987037C4-D929-4E1D-A140-9C497ADA2F8F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StartingCheckpoint : MonoBehaviour
 {
+    public AK.Wwise.Event soundDepart123;
+    public AK.Wwise.Event soundDepartGo;
+
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -12,8 +15,14 @@ public class StartingCheckpoint : MonoBehaviour
     }
     public void TriggerStartRun()
     {
+        soundDepartGo.Post(gameObject);
         ParkourManager.Instance().StartRun();
         animator.ResetTrigger("Reset");
+    }
+
+    public void Trigger123Start()
+    {
+        soundDepart123.Post(gameObject);
     }
     private void Update()
     {

@@ -91,6 +91,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Depart123" ID="{7F438EB2-BBFE-4554-90E8-5CC38DCA5078}">
+					<ChildrenList>
+						<Action Name="" ID="{AE7436FC-A6BF-4F7B-BE7B-3CF67D88C395}" ShortID="199854924">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="depart123" ID="{DA971C4C-6AC2-4F36-B630-A9902F48BD88}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="DepartEnd" ID="{DBC19A38-BD60-4894-9B0C-D83E46F009E1}">
+					<ChildrenList>
+						<Action Name="" ID="{2B6636FA-9B60-4C05-B7D0-42A1342B568A}" ShortID="202234400">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="depart_fin" ID="{F058A7B6-53AA-4293-A9A0-E0C61A0D0C30}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

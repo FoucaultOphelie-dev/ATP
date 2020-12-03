@@ -37,6 +37,8 @@ public class TimeManager : MonoBehaviour
     public AK.Wwise.Event wwiseEventSlow;
     public AK.Wwise.Event wwiseEventFast;
 
+    private bool soundRalentiDone = false;
+
 
     private void Start()
     {
@@ -77,16 +79,18 @@ public class TimeManager : MonoBehaviour
         {
             wwiseEventFast.Post(gameObject);
         }
-        if (Input.GetKeyDown(keyRalenti))
+        if (Input.GetKeyDown(keyRalenti) && jauge>0)
         {
+            soundRalentiDone = true;
             wwiseEventSlow.Post(gameObject);
         }
         if (Input.GetKeyUp(keyAcceleration))
         {
             wwiseEventSlow.Post(gameObject);
         }
-        if (Input.GetKeyUp(keyRalenti))
+        if (Input.GetKeyUp(keyRalenti) && soundRalentiDone)
         {
+            soundRalentiDone = false;
             wwiseEventFast.Post(gameObject);
         }
         //Debug.Log(Time.timeScale);
@@ -125,7 +129,9 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            m_chroma.intensity.value = 0;
+            StartCoroutine("ReturnChroma");
+            //m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0, 0.1f);
+            //m_chroma.intensity.value = 0;
         }
 
         if (doRalenti)
@@ -141,14 +147,42 @@ public class TimeManager : MonoBehaviour
         }
         else
         {
-            m_color.colorFilter.value = new Color(1, 1, 1, 0);
+            StartCoroutine("ReturnColor");
+            //m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(1, 1, 1, 0), 0.1f);
+            //m_color.colorFilter.value = new Color(1, 1, 1, 0);
         }
 
         if (!doAcceleration && !doRalenti)
         {
-            m_vignette.intensity.value = 0;
+            StartCoroutine("ReturnVignette");
+            //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
+            //m_vignette.intensity.value = 0;
         }
 
 
+    }
+
+    IEnumerator ReturnColor()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(1, 1, 1, 0), 0.1f);
+        if(!doRalenti) m_color.colorFilter.value = new Color(1, 1, 1, 0);
+    }
+
+    IEnumerator ReturnChroma()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0, 0.1f);
+        if(!doAcceleration) m_chroma.intensity.value = 0;
+    }
+    IEnumerator ReturnVignette()
+    {
+        yield return new WaitForSeconds(0.5f);
+        //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
+        if (!doAcceleration && !doRalenti)
+        {
+            m_vignette.intensity.value = 0;
+            Debug.Log("Retour de la vignette");
+        }
     }
 }

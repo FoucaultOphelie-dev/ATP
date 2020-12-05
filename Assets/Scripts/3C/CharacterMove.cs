@@ -446,7 +446,7 @@ public class CharacterMove : MonoBehaviour
     {
         playerIsGrounded = false;
         //Debug.Log(transform.TransformDirection(Vector3.forward) * speed * m_deltaTime);
-        m_rb.AddForce((jumpForce * m_rb.mass * m_deltaTime * direction), forceMode);
+        m_rb.AddForce((jumpForce * m_rb.mass * Time.deltaTime * direction), forceMode);
         playerIsJumping = true;
         factorMove = factorMoveJump;
         animator.SetBool("DoJump", true);

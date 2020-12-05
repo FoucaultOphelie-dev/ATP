@@ -2591,7 +2591,7 @@ MonoBehaviour:
   factorMove: 1
   keySlide: 306
   timeOfSlide: 0.75
-  speedDuringSlide: 2
+  speedDuringSlide: 0.5
   playerSlideForce: 25000
   appliedSlideForceMode: 0
   body: {fileID: 451466362089929409}

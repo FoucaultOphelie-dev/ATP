@@ -410,6 +410,7 @@ public class CharacterMove : MonoBehaviour
             //Debug.Log(cam.GetComponent<Animator>().name);
 
             Vector3 force = playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction);
+            if (playerIsJumping) force *= factorMoveJump;
             m_rb.AddForce(force, appliedForceMode);
         }
         else

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8575052410667842687}
   - component: {fileID: -1269926108227627179}
   - component: {fileID: -3894878645793644115}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Red Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 8575052410683690706}
   - component: {fileID: 8575052410683690707}
   - component: {fileID: 8575052410683690704}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: InnerCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 8575052411290435900}
   - component: {fileID: 8575052411290435901}
   - component: {fileID: 8575052411290435898}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: OuterCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 8575052411421918101}
   - component: {fileID: 8575052411421918098}
   - component: {fileID: 8575052411421918099}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FirstCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 8575052411971476828}
   - component: {fileID: 8575052411971476829}
   - component: {fileID: 8575052411971476826}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SecondCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

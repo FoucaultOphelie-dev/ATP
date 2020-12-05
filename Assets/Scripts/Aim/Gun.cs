@@ -152,7 +152,8 @@ public class Gun : MonoBehaviour
 
         StartCoroutine("CoTir");
         RaycastHit hit;
-        if ( Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        LayerMask hittableLayer = LayerMask.GetMask("Hittable");
+        if ( Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, hittableLayer))
         {
             Target target = hit.transform.GetComponentInParent<Target>();
             if(target != null)

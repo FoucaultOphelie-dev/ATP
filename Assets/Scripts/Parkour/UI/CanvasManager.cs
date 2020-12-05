@@ -15,15 +15,27 @@ public class CanvasManager : MonoBehaviour
     public Transform ScoringCanvas;
     public TextMeshProUGUI scoringParkourNameDisplay;
 
-    [Header("Time")]
+    [Header("Chrono")]
     public TextMeshProUGUI chronoDisplay;
     public TextMeshProUGUI chronoScoreDisplay;
 
     [Header("Hits")]
+    public TextMeshProUGUI hitsLabel;
     public TextMeshProUGUI hitsScore;
-    public TextMeshProUGUI[] hitType;
+    public TextMeshProUGUI hitsCount;
+    int hitsScoreTotal = 0;
+    //public TextMeshProUGUI[] hitType;
 
+    [Header("Total")]
+    public TextMeshProUGUI newBestScoreLabel;
     public TextMeshProUGUI totalScore;
+    public Image totalMedal;
+    private Image medal;
+    public Sprite[] medals = new Sprite[4];
+
+
+    public float timeToFullScore;
+    private float startTime;
 
     [Header("Completion Jauge")]
     public Image backgroundJauge;
@@ -37,42 +49,45 @@ public class CanvasManager : MonoBehaviour
     public List<GameObject> checkpointsUI;
     public Color checkpointValidatedColor;
 
+    [Header("Character")]
+    public AnimationClip[] clips;
+
     public void Start()
     {
         ParkourManager.OnParkourSwitchState += SwitchCanvas;
 
         // Setup Retry buttons
-        transform.Find("ScoringCanvas/Image/ButtonsRow/retry")
+        transform.Find("ScoringCanvas/Container/Footer/ButtonsRow/retry")
             .GetComponent<Button>()
             .onClick.AddListener(ParkourManager.ResetGameplay);
 
-        transform.Find("ScoringCanvas/Image/ButtonsRowWithNextLevel/retry")
+        transform.Find("ScoringCanvas/Container/Footer/ButtonsRowWithNextLevel/retry")
             .GetComponent<Button>()
             .onClick.AddListener(ParkourManager.ResetGameplay);
 
 
         // Next Level buttons
-        Button button = transform.Find("ScoringCanvas/Image/ButtonsRowWithNextLevel/nextLevel")
+        Button button = transform.Find("ScoringCanvas/Container/Footer/ButtonsRowWithNextLevel/nextLevel")
             .GetComponent<Button>();
         button.onClick.AddListener(() => { Loader.Load(ParkourManager.Instance().parkourData.nextParkour.scene.SceneName); });
 
         // Setup return menu buttons
 
-        transform.Find("ScoringCanvas/Image/ButtonsRow/return")
+        transform.Find("ScoringCanvas/Container/Footer/ButtonsRow/return")
             .GetComponent<Button>()
             .onClick.AddListener(ParkourManager.ResetGameplay);
 
-        transform.Find("ScoringCanvas/Image/ButtonsRowWithNextLevel/return")
+        transform.Find("ScoringCanvas/Container/Footer/ButtonsRowWithNextLevel/return")
             .GetComponent<Button>()
             .onClick.AddListener(ParkourManager.ResetGameplay);
 
         if (ParkourManager.Instance().parkourData.nextParkour)
         {
-            transform.Find("ScoringCanvas/Image/ButtonsRowWithNextLevel").gameObject.SetActive(true);
+            transform.Find("ScoringCanvas/Container/Footer/ButtonsRowWithNextLevel").gameObject.SetActive(true);
         }
         else
         {
-            transform.Find("ScoringCanvas/Image/ButtonsRow").gameObject.SetActive(true);
+            transform.Find("ScoringCanvas/Container/Footer/ButtonsRow").gameObject.SetActive(true);
         }
 
         //Setup Gameplay Canvas
@@ -110,28 +125,41 @@ public class CanvasManager : MonoBehaviour
                 GameplayCanvas.gameObject.SetActive(true);
                 break;
             case ParkourState.Scoring:
+                ParkourManager.Instance().player.GetComponent<CharacterMove>().animator.Play(clips[UnityEngine.Random.Range(0, clips.Length-1)].name);
                 scoringParkourNameDisplay.text = ParkourManager.Instance().parkourData.displayName;
                 chronoDisplay.text = ChronoUI.TimerToChrono(ParkourManager.Instance().GetTimer());
-                chronoScoreDisplay.text = ParkourManager.Instance().TimeScore().ToString();
-                Dictionary<int, int> hits = new Dictionary<int, int>();
-                int hitsScoreTotal = 0;
-                foreach (int i in Enum.GetValues(typeof(HitFeedback)))
-                {
-                    hits.Add(i, 0);
-                }
+                //chronoScoreDisplay.text = "+ " + ParkourManager.Instance().TimeScore().ToString();
+                chronoScoreDisplay.text = "";
+                //Dictionary<int, int> hits = new Dictionary<int, int>();
+                //foreach (int i in Enum.GetValues(typeof(HitFeedback)))
+                //{
+                //    hits.Add(i, 0);
+                //}
+                hitsLabel.enabled = false;
+                hitsCount.enabled = false;
                 foreach (var hit in ParkourManager.Instance().hits)
                 {
-                    hits[(int)hit.feedback]++;
+                    //hits[(int)hit.feedback]++;
                     hitsScoreTotal += hit.score;
                 }
-                hitsScore.text = hitsScoreTotal.ToString();
-                for (int i = 0; i < hitType.Length; i++)
-                {
+                //hitsScore.text = "+ " + hitsScoreTotal.ToString();
+                hitsScore.text = "";
+                hitsCount.text = ParkourManager.Instance().hits.Count.ToString();
+                //for (int i = 0; i < hitType.Length; i++)
+                //{
 
-                    hitType[i].text = hits[i].ToString();
+                //    hitType[i].text = hits[i].ToString();
+                //}
+                totalScore.text = "";
+                int i = ParkourManager.Instance().parkourData.medals.Length - 1;
+                while (i >= 0)
+                {
+                    if (ParkourManager.Instance().score < ParkourManager.Instance().parkourData.medals[i].score) break;
+                    i--;
                 }
-                totalScore.text = ParkourManager.Instance().score.ToString();
+                totalMedal.sprite = medals[i];
                 ScoringCanvas.gameObject.SetActive(true);
+                StartCoroutine("ScoringRoutine");
                 break;
         }
     }
@@ -166,5 +194,46 @@ public class CanvasManager : MonoBehaviour
     private void ValidCheckpointUI(int index, float time, float previousTime)
     {
         checkpointsUI[index].GetComponent<Image>().color = checkpointValidatedColor;
+    }
+
+    IEnumerator ScoringRoutine()
+    {
+        float tempScore = 0;
+        float accumulateScore = 0;
+        float pourcentage = 0;
+        startTime = Time.time;
+        while (pourcentage < 1)
+        {
+            tempScore = (int)Mathf.Lerp(0, ParkourManager.Instance().TimeScore(), pourcentage);
+            totalScore.text = (accumulateScore + tempScore).ToString();
+            chronoScoreDisplay.text = "+ " + tempScore.ToString();
+            pourcentage = (Time.time - startTime) / timeToFullScore;
+            yield return null;
+        }
+        accumulateScore += tempScore;
+
+        startTime = Time.time;
+        tempScore = 0;
+        pourcentage = 0;
+        hitsLabel.enabled = true;
+        hitsCount.enabled = true;
+        if (hitsScoreTotal > 0)
+        {
+            while (pourcentage < 1)
+            {
+                tempScore = (int)Mathf.Lerp(0, hitsScoreTotal, pourcentage);
+                hitsScore.text = "+ " + tempScore.ToString();
+                totalScore.text = (accumulateScore + tempScore).ToString();
+                pourcentage = (Time.time - startTime) / timeToFullScore;
+                yield return null;
+            }
+            accumulateScore += tempScore;
+        }
+        totalMedal.color = Color.white;
+        if (ParkourManager.Instance().newBestScore)
+        {
+            newBestScoreLabel.gameObject.SetActive(true);
+        }
+        yield return null;
     }
 }

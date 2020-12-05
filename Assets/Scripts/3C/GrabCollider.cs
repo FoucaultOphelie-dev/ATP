@@ -18,7 +18,7 @@ public class GrabCollider : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)) && player.isGrab)
         {
-            Debug.Log("grab");
+            //Debug.Log("grab");
             lerp = true;
             nextPosition = player.gameObject.transform.position + player.gameObject.transform.TransformDirection(Vector3.up * 1.5f + Vector3.forward * 0.5f);
             
@@ -51,7 +51,7 @@ public class GrabCollider : MonoBehaviour
     {
         if(other.gameObject.tag == "ColliderGrab" && player.playerIsJumping)
         {
-            Debug.Log("collision enter avec " + other.gameObject.name);
+            //Debug.Log("collision enter avec " + other.gameObject.name);
             player.isGrab = true;
             player.CanMove = false;
             player.gameObject.transform.rotation = other.gameObject.transform.rotation;

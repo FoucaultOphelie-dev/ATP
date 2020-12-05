@@ -182,7 +182,7 @@ public class TimeManager : MonoBehaviour
         if (!doAcceleration && !doRalenti)
         {
             m_vignette.intensity.value = 0;
-            Debug.Log("Retour de la vignette");
+            //Debug.Log("Retour de la vignette");
         }
     }
 }

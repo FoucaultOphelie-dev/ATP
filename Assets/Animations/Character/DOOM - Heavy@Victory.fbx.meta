@@ -1,281 +1,11 @@
 fileFormatVersion: 2
-guid: 6b679552c047fb74589b7efd3d87b59c
+guid: a308d7609efab5f4da0731cb607a131a
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
-      1: 100000
-    second: //RootNode
-  - first:
-      1: 100002
-    second: DOOM Heavy
-  - first:
-      1: 100004
-    second: DOOM Heavy.001
-  - first:
-      1: 100006
-    second: Head
-  - first:
-      1: 100008
-    second: Head_end
-  - first:
-      1: 100010
-    second: Hips
-  - first:
-      1: 100012
-    second: Left Arm
-  - first:
-      1: 100014
-    second: Left Elbow
-  - first:
-      1: 100016
-    second: Left Foot
-  - first:
-      1: 100018
-    second: Left Hand
-  - first:
-      1: 100020
-    second: Left Hand End
-  - first:
-      1: 100022
-    second: Left Hand End_end
-  - first:
-      1: 100024
-    second: Left Hand Middle
-  - first:
-      1: 100026
-    second: Left Hips
-  - first:
-      1: 100028
-    second: Left Knee
-  - first:
-      1: 100030
-    second: Left Shoulder
-  - first:
-      1: 100032
-    second: Left Thumb
-  - first:
-      1: 100034
-    second: Left Thumb_end
-  - first:
-      1: 100036
-    second: Left Toe
-  - first:
-      1: 100038
-    second: Left Toe_end
-  - first:
-      1: 100040
-    second: Neck
-  - first:
-      1: 100042
-    second: Right Arm
-  - first:
-      1: 100044
-    second: Right Elbow
-  - first:
-      1: 100046
-    second: Right Foot
-  - first:
-      1: 100048
-    second: Right Hand
-  - first:
-      1: 100050
-    second: Right Hand End
-  - first:
-      1: 100052
-    second: Right Hand End_end
-  - first:
-      1: 100054
-    second: Right Hand Middle
-  - first:
-      1: 100056
-    second: Right Hips
-  - first:
-      1: 100058
-    second: Right Knee
-  - first:
-      1: 100060
-    second: Right Shoulder
-  - first:
-      1: 100062
-    second: Right Thumb
-  - first:
-      1: 100064
-    second: Right Thumb_end
-  - first:
-      1: 100066
-    second: Right Toe
-  - first:
-      1: 100068
-    second: Right Toe_end
-  - first:
-      1: 100070
-    second: Spine 1
-  - first:
-      1: 100072
-    second: Spine 2
-  - first:
-      1: 100074
-    second: Spine 3
-  - first:
-      1: 100076
-    second: Heavy
-  - first:
-      1: 100078
-    second: Heavy Mesh
-  - first:
-      4: 400000
-    second: //RootNode
-  - first:
-      4: 400002
-    second: DOOM Heavy
-  - first:
-      4: 400004
-    second: DOOM Heavy.001
-  - first:
-      4: 400006
-    second: Head
-  - first:
-      4: 400008
-    second: Head_end
-  - first:
-      4: 400010
-    second: Hips
-  - first:
-      4: 400012
-    second: Left Arm
-  - first:
-      4: 400014
-    second: Left Elbow
-  - first:
-      4: 400016
-    second: Left Foot
-  - first:
-      4: 400018
-    second: Left Hand
-  - first:
-      4: 400020
-    second: Left Hand End
-  - first:
-      4: 400022
-    second: Left Hand End_end
-  - first:
-      4: 400024
-    second: Left Hand Middle
-  - first:
-      4: 400026
-    second: Left Hips
-  - first:
-      4: 400028
-    second: Left Knee
-  - first:
-      4: 400030
-    second: Left Shoulder
-  - first:
-      4: 400032
-    second: Left Thumb
-  - first:
-      4: 400034
-    second: Left Thumb_end
-  - first:
-      4: 400036
-    second: Left Toe
-  - first:
-      4: 400038
-    second: Left Toe_end
-  - first:
-      4: 400040
-    second: Neck
-  - first:
-      4: 400042
-    second: Right Arm
-  - first:
-      4: 400044
-    second: Right Elbow
-  - first:
-      4: 400046
-    second: Right Foot
-  - first:
-      4: 400048
-    second: Right Hand
-  - first:
-      4: 400050
-    second: Right Hand End
-  - first:
-      4: 400052
-    second: Right Hand End_end
-  - first:
-      4: 400054
-    second: Right Hand Middle
-  - first:
-      4: 400056
-    second: Right Hips
-  - first:
-      4: 400058
-    second: Right Knee
-  - first:
-      4: 400060
-    second: Right Shoulder
-  - first:
-      4: 400062
-    second: Right Thumb
-  - first:
-      4: 400064
-    second: Right Thumb_end
-  - first:
-      4: 400066
-    second: Right Toe
-  - first:
-      4: 400068
-    second: Right Toe_end
-  - first:
-      4: 400070
-    second: Spine 1
-  - first:
-      4: 400072
-    second: Spine 2
-  - first:
-      4: 400074
-    second: Spine 3
-  - first:
-      4: 400076
-    second: Heavy
-  - first:
-      4: 400078
-    second: Heavy Mesh
-  - first:
-      21: 2100000
-    second: Material.001
-  - first:
-      21: 2100002
-    second: Machine
-  - first:
-      21: 2100004
-    second: Visor
-  - first:
-      21: 2100006
-    second: Armor
-  - first:
-      21: 2100008
-    second: GLoves
-  - first:
-      43: 4300000
-    second: DOOM Heavy
-  - first:
-      43: 4300002
-    second: Heavy Mesh
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: DOOM Heavy
-  - first:
-      137: 13700002
-    second: Heavy Mesh
-  - first:
-      41386430: 2186277476908879412
-    second: ImportLogs
+      74: -203655887218126122
+    second: Victory
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -303,8 +33,37 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
-    isReadable: 1
+    clipAnimations:
+    - serializedVersion: 16
+      name: Victory
+      takeName: mixamo.com
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 256
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -316,9 +75,9 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    fileIdsGeneration: 1
+    fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -332,7 +91,7 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 0
+    secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
@@ -342,7 +101,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
@@ -729,11 +488,12 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 0
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6b679552c047fb74589b7efd3d87b59c,
+    type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

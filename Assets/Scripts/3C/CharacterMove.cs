@@ -97,7 +97,7 @@ public class CharacterMove : MonoBehaviour
     private Quaternion rotationInitialBody;
     private Quaternion rotationInitialCam;
 
-    private bool bobbing = true;
+    public bool bobbing = true;
     #endregion
 
     void Start()
@@ -187,25 +187,21 @@ public class CharacterMove : MonoBehaviour
 
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1.0f, LayerMask.GetMask("WallRun")))
         {
-            wallRunRight = false;
+            if (wallRunRight)
+            {
+                wallRunRight = false;
+                OnExitWallRun();
+            }
         }
 
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1.0f, LayerMask.GetMask("WallRun")))
         {
-            wallRunLeft = false;
-        }
-
-
-
-        if (!wallRunLeft && !wallRunRight)
-        {
-            m_rb.useGravity = true;
-            bobbing = true;
-            cam.GetComponent<Animator>().Play("Bobbing");
-            GetComponent<CameraMove>().active = true;
-            playerWallRunForce = initialPlayerWallRunForce;
-            m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        }
+            if (wallRunLeft)
+            {
+                wallRunLeft = false;
+                OnExitWallRun();
+            }
+        }   
 
         #endregion
 
@@ -384,6 +380,16 @@ public class CharacterMove : MonoBehaviour
         #endregion
     }
 
+    private void OnExitWallRun()
+    {
+        m_rb.useGravity = true;
+        bobbing = true;
+        cam.GetComponent<Animator>().Play("Bobbing");
+        GetComponent<CameraMove>().active = true;
+        playerWallRunForce = initialPlayerWallRunForce;
+        m_rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+
     private void MoveCharacter()
     {
         if (m_direction != Vector3.zero)
@@ -401,7 +407,7 @@ public class CharacterMove : MonoBehaviour
             }
             
 
-            Debug.Log(cam.GetComponent<Animator>().name);
+            //Debug.Log(cam.GetComponent<Animator>().name);
 
             Vector3 force = playerForce * m_deltaTime * speed * transform.TransformDirection(m_direction);
             m_rb.AddForce(force, appliedForceMode);

@@ -38,6 +38,7 @@ public class ParkourManager : MonoBehaviour
     private CharacterMove playerMovement;
     private CameraMove cameraMove;
     private GameObject spectatingCamera;
+    public Camera scoringCamera;
     int lastCheckpoint = 0;
     bool firstRun = true;
 
@@ -58,6 +59,7 @@ public class ParkourManager : MonoBehaviour
     //private int lastScore;
     [HideInInspector()]
     public int score;
+    public bool newBestScore = false;
 
     private List<Transform> targetBuffer;
     private List<Hit> hitBuffer;
@@ -105,6 +107,7 @@ public class ParkourManager : MonoBehaviour
         playerRigidbody = player.GetComponent<Rigidbody>();
         playerMovement = player.GetComponent<CharacterMove>();
         cameraMove = player.GetComponent<CameraMove>();
+        scoringCamera = player.transform.Find("Body/ScoringCamera").GetComponent<Camera>();
 
         checkpoints = GameObject.FindObjectsOfType<CheckPoint>().OrderBy(checkpoint => checkpoint.index).ToList<CheckPoint>();
         lenghtByCheckpoint = new List<float>();
@@ -221,6 +224,7 @@ public class ParkourManager : MonoBehaviour
     {
         isStarted = true;
         playerMovement.CanMove = true;
+        playerMovement.bobbing = true;
     }
 
     public bool PlayerEnterCheckpoint(int index)
@@ -279,8 +283,10 @@ public class ParkourManager : MonoBehaviour
     {
         score = CalculateScore();
         isFinished = true;
-        playerMovement.CanMove = false;
+        playerMovement.enabled = false;
         playerMovement.cam.GetComponent<Camera>().enabled = false;
+        scoringCamera.enabled = true;
+        cameraMove.enabled = false;
         spectatingCamera.SetActive(true);
         spectatingCamera.GetComponent<Camera>().enabled = true;
         SwitchParkourState(ParkourState.Scoring);
@@ -296,6 +302,7 @@ public class ParkourManager : MonoBehaviour
 
         if(score > data.bestScore)
         {
+            newBestScore = true;
             BesttimerByCheckpoint = new List<float>(timerByCheckpoint);
             data.bestScore = score;
             data.timerByCheckpoint = new List<float>(timerByCheckpoint);
@@ -303,11 +310,10 @@ public class ParkourManager : MonoBehaviour
             while (i >= 0)
             {
                 if (score < parkourData.medals[i].score) break;
-                data.bestMedalObtained = i;
                 i--;
             }
+            data.bestMedalObtained = i;
             string jsonData = JsonUtility.ToJson(data);
-            Debug.Log(jsonData);
             StreamWriter writer = new StreamWriter(path, false);
             writer.Write(jsonData);
             writer.Close();
@@ -347,11 +353,14 @@ public class ParkourManager : MonoBehaviour
     public static void ResetGameplay()
     {
         ParkourManager instance = ParkourManager.Instance();
+        if (!instance) return;
         instance.spectatingCamera.GetComponent<Camera>().enabled = false;
+        instance.scoringCamera.enabled = false;
         instance.spectatingCamera.SetActive(false);
         instance.playerMovement.cam.GetComponent<Camera>().enabled = true;
         instance.playerMovement.enabled = true;
         instance.playerMovement.CanMove = false;
+        instance.playerMovement.bobbing = false;
         instance.cameraMove.enabled = true;
         instance.player.GetComponent<Animator>().Rebind();
 
@@ -368,6 +377,7 @@ public class ParkourManager : MonoBehaviour
             instance.lastCheckpoint = 0;
             instance.isFinished = false;
             instance.isStarted = false;
+            instance.newBestScore = false;
 
             foreach (var trigger in instance.triggerBuffer)
             {

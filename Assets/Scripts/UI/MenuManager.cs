@@ -40,15 +40,18 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI bronzeRequired;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LoadParkoursAssets();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Quit()
     {
-        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
 

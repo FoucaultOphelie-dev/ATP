@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CheckPoint
+  m_Name: red transparent
   m_Shader: {fileID: -6465566751694194690, guid: 735a400b53810b14b81f3c8cf1cb973d,
     type: 3}
   m_ShaderKeywords: 
@@ -24,5 +24,5 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors:
-    - Color_233E1796: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0.13333334}
+    - Color_233E1796: {r: 1, g: 0, b: 0, a: 0.2980392}
   m_BuildTextureStacks: []

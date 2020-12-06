@@ -33,6 +33,7 @@ public class CharacterMove : MonoBehaviour
     public float playerJumpForce;
     public ForceMode appliedJumpForceMode;
     public float factorMoveJump;
+    public AK.Wwise.Event wwiseEventJump;
 
     [Header("Wall Run")]
     public bool wallRunRight;
@@ -445,6 +446,7 @@ public class CharacterMove : MonoBehaviour
     private void Jump(float jumpForce, ForceMode forceMode, Vector3 direction)
     {
         playerIsGrounded = false;
+        wwiseEventJump.Post(gameObject);
         //Debug.Log(transform.TransformDirection(Vector3.forward) * speed * m_deltaTime);
         m_rb.AddForce((jumpForce * m_rb.mass * Time.deltaTime * direction), forceMode);
         playerIsJumping = true;

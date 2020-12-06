@@ -931,9 +931,11 @@ MonoBehaviour:
   hardResetKey: 8
   parkourData: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
   player: {fileID: 0}
+  scoringCamera: {fileID: 0}
   timerByCheckpoint: []
   BesttimerByCheckpoint: []
   score: 0
+  newBestScore: 0
   maxCompletion: 0
   currentCompletionCheckpoint: 0
   alreadyDone: 0

@@ -96,6 +96,12 @@ public class TimeManager : MonoBehaviour
         //Debug.Log(Time.timeScale);
         if (Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
         {
+            Time.timeScale = 0;
+            doAcceleration = false;
+            doRalenti = false;
+        }
+        else */if(Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
+        {
             playerCharacterMove.scaled = false;
             Time.timeScale = accelerationValue;
             doAcceleration = true;

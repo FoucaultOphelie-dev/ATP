@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Neon rouge
+  m_Name: Neon vert
   m_Shader: {fileID: -6465566751694194690, guid: ea6edc4925172a54ea4f872ab54553fd,
     type: 3}
   m_ShaderKeywords: 
@@ -24,5 +24,5 @@ Material:
     m_TexEnvs: []
     m_Floats: []
     m_Colors:
-    - Color_C42363FF: {r: 16.062746, g: 0, b: 0, a: 1}
+    - Color_C42363FF: {r: 0, g: 16.062746, b: 0, a: 1}
   m_BuildTextureStacks: []

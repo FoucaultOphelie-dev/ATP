@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 451466361829428299}
   - component: {fileID: 451466361829428149}
   - component: {fileID: 451466361829428298}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 451466362066110480}
   - component: {fileID: 451466362066110482}
   - component: {fileID: 451466362066110483}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 451466362187946595}
   - component: {fileID: 451466362187946592}
   - component: {fileID: 451466362187946593}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 451466362516135259}
   - component: {fileID: 451466362516135257}
   - component: {fileID: 451466362516135256}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: tir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 451466362581605249}
   - component: {fileID: 451466362581605251}
   - component: {fileID: 451466362581605248}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Gun_Bullet_Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 451466362630073708}
   - component: {fileID: 451466362630073710}
   - component: {fileID: 451466362630073711}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Gun_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 451466362817728751}
   - component: {fileID: 451466362817728745}
   - component: {fileID: 451466362817728750}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Gun_Tigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1310,7 @@ GameObject:
   - component: {fileID: 451466363122733711}
   - component: {fileID: 451466363122733705}
   - component: {fileID: 451466363122733710}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1384,7 +1384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451466363338951455}
   - component: {fileID: 451466363338951452}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1429,6 @@ MonoBehaviour:
   reloadMessage: {fileID: 0}
   maxAmo: 10
   reloadingTime: 2
-  tir: {fileID: 451466362516135257}
   wwiseEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -1446,7 +1445,7 @@ GameObject:
   - component: {fileID: 451466363455287438}
   - component: {fileID: 451466363455287432}
   - component: {fileID: 451466363455287433}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Gun_Loader
   m_TagString: Untagged
   m_Icon: {fileID: 0}

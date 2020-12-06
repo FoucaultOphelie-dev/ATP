@@ -161,6 +161,42 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="crash" ID="{7BD2B922-B63B-43B4-8DA5-D23C085064A2}">
+					<ChildrenList>
+						<Action Name="" ID="{972E327E-5582-4DD8-B4E5-5CF6246267E5}" ShortID="717097823">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="crash" ID="{FE4D522F-1F0A-46B4-A95A-5320514BCC96}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="craquements" ID="{D3C6B64A-4CD2-44C5-8582-50FF01871031}">
+					<ChildrenList>
+						<Action Name="" ID="{37CD8A9C-7CAD-47AE-A2AA-9F743E34D6B0}" ShortID="724979147">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="craquements" ID="{5B7F0710-DB89-4295-84E8-0245E34B292D}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="craquementsStop" ID="{57467F66-FFE4-43ED-95FF-FB635BC7E508}">
+					<ChildrenList>
+						<Action Name="" ID="{98193C29-58DD-4F82-A095-74DE5F5ABCF3}" ShortID="86984591">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="craquements" ID="{5B7F0710-DB89-4295-84E8-0245E34B292D}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

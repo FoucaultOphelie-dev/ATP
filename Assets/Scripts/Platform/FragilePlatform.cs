@@ -8,6 +8,9 @@ public class FragilePlatform : MonoBehaviour
     public float breakingTime;
     private bool isTouched;
     private MeshDestroy meshDestroy;
+    public AK.Wwise.Event craquementsEvent;
+    public AK.Wwise.Event craquementStopEvent;
+    public AK.Wwise.Event crashEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,8 @@ public class FragilePlatform : MonoBehaviour
     {
         if (isTouched && Time.time - firstHitTime >= breakingTime)
         {
+            craquementStopEvent.Post(gameObject);
+            crashEvent.Post(gameObject);
             meshDestroy.DestroyMesh();
         }
     }
@@ -30,6 +35,7 @@ public class FragilePlatform : MonoBehaviour
         {
             firstHitTime = Time.time;
             isTouched = true;
+            craquementsEvent.Post(gameObject);
         }
     }
 

@@ -109,7 +109,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1813d29f37596db499a13a83ddfb37e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakingTime: 10
+  breakingTime: 1
+  craquementsEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2ff933cb548d1604a904f955e5d8bf1b,
+      type: 2}
+  craquementStopEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c3591ec91168900459122486bd029a14,
+      type: 2}
+  crashEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0939c75d2fb54d949bc9d9fb9832a7c5,
+      type: 2}
 --- !u!114 &6742757705828979627
 MonoBehaviour:
   m_ObjectHideFlags: 0

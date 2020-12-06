@@ -7,7 +7,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-22</Value>
+								<Value>-11</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -38,13 +38,6 @@
 					</ActiveSourceList>
 				</Sound>
 				<RandomSequenceContainer Name="footstep" ID="{99B3FEF6-9FC9-42F4-A35F-C53C63A21436}" ShortID="949969928">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-16</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -249,7 +242,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-24</Value>
+								<Value>-8</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -283,7 +276,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-24</Value>
+								<Value>-8</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -316,7 +309,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-22</Value>
+								<Value>-13</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -346,13 +339,6 @@
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="explosion_plateforme" ID="{C9091E33-B16C-4DBB-B219-377F3CC68361}" ShortID="731741055">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-20</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -378,7 +364,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-24</Value>
+								<Value>-14</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -404,6 +390,13 @@
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="depart123" ID="{DA971C4C-6AC2-4F36-B630-A9902F48BD88}" ShortID="730797212">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-3</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -431,6 +424,13 @@
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="depart_fin" ID="{F058A7B6-53AA-4293-A9A0-E0C61A0D0C30}" ShortID="131284386">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-3</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -458,6 +458,13 @@
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="Jump" ID="{5A6BA003-A8B0-4830-B4CA-E61891D3E860}" ShortID="253112702">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -481,6 +488,63 @@
 					</ChildrenList>
 					<ActiveSourceList>
 						<ActiveSource Name="jump" ID="{00595315-F574-4D09-8379-5B685ED5F672}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="craquements" ID="{5B7F0710-DB89-4295-84E8-0245E34B292D}" ShortID="941883253">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0D734EEA-BAF2-4049-A510-DE91B52FC026}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="craquement" ID="{800011B1-8DF5-4563-9829-A9E799E3F584}">
+							<PropertyList>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>craquement.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="71110553"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="craquement" ID="{800011B1-8DF5-4563-9829-A9E799E3F584}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="crash" ID="{FE4D522F-1F0A-46B4-A95A-5320514BCC96}" ShortID="158911792">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{0D734EEA-BAF2-4049-A510-DE91B52FC026}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="crashFin" ID="{A5CD77D0-A93C-4FAD-B8C0-23372CEB3ACB}">
+							<Language>SFX</Language>
+							<AudioFile>crashFin.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="994342170"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="crashFin" ID="{A5CD77D0-A93C-4FAD-B8C0-23372CEB3ACB}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 			</ChildrenList>

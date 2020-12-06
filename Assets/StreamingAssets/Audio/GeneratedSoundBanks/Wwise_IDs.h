@@ -13,6 +13,9 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CRAQUEMENTS = 3178670581U;
+        static const AkUniqueID CRAQUEMENTSSTOP = 2480716781U;
+        static const AkUniqueID CRASH = 3048106310U;
         static const AkUniqueID DEPART123 = 3546791133U;
         static const AkUniqueID DEPARTEND = 4293480634U;
         static const AkUniqueID EXPLOSION = 13776098U;
@@ -38,7 +41,7 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
-        static const AkUniqueID NEW_MASTER_BUS = 3193046343U;
+        static const AkUniqueID MUSIC_BUS = 3127962312U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

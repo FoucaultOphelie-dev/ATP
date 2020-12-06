@@ -11,11 +11,28 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="3257968856">
+		<SoundBank Id="393239870" Language="SFX" Hash="384111992">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3178670581" Name="craquements" ObjectPath="\Events\Default Work Unit\craquements" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="71110553" Language="SFX">
+							<ShortName>craquement.wav</ShortName>
+							<Path>SFX\craquement_C5579977.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2480716781" Name="craquementsStop" ObjectPath="\Events\Default Work Unit\craquementsStop" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="3048106310" Name="crash" ObjectPath="\Events\Default Work Unit\crash" DurationType="OneShot" DurationMin="1.626304" DurationMax="1.626304">
+					<IncludedMemoryFiles>
+						<File Id="994342170" Language="SFX">
+							<ShortName>crashFin.wav</ShortName>
+							<Path>SFX\crashFin_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3546791133" Name="Depart123" ObjectPath="\Events\Default Work Unit\Depart123" DurationType="OneShot" DurationMin="0.921800" DurationMax="0.921800">
 					<IncludedMemoryFiles>
 						<File Id="135379503" Language="SFX">
@@ -154,7 +171,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="427219716">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1936403222">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>

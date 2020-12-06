@@ -6,8 +6,11 @@ Event	ID	Name			Wwise Object Path	Notes
 	980206266	tir			\Default Work Unit\tir	
 	1610286127	TargetDisapear			\Default Work Unit\TargetDisapear	
 	1866025847	footstep			\Default Work Unit\footstep	
+	2480716781	craquementsStop			\Default Work Unit\craquementsStop	
 	2953965439	Music_niveau			\Default Work Unit\Music_niveau	
+	3048106310	crash			\Default Work Unit\crash	
 	3096711473	Music_choix_niveau			\Default Work Unit\Music_choix_niveau	
+	3178670581	craquements			\Default Work Unit\craquements	
 	3546791133	Depart123			\Default Work Unit\Depart123	
 	3686556480	slide			\Default Work Unit\slide	
 	3833651337	Jump			\Default Work Unit\Jump	
@@ -16,6 +19,7 @@ Event	ID	Name			Wwise Object Path	Notes
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	62959402	footstep6	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_B955896D.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep6		18318
+	71110553	craquements	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\craquement_C5579977.wem		\Actor-Mixer Hierarchy\Default Work Unit\craquements		1538236
 	131783153	footstep1	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_8A34946D.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep1		22374
 	132483023	Time_Fast	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Time_D0C8D6C9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Time_Fast		248600
 	135379503	depart123	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\depart_DDB7C963.wem		\Actor-Mixer Hierarchy\Default Work Unit\depart123		162672
@@ -32,6 +36,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	844276013	footstep2	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_12D9BCF4.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep2		20346
 	845647722	Heros	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Heros_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\musique choix de niveau\Heros\Heros		21515080
 	967523465	footstep3	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_8F52AD5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep3		20346
+	994342170	crash	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\crashFin_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\crash		286944
 	1011844167	footstep4	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_94A82360.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep4		24402
 	1014395605	footstep7	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_BD02B801.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep7		22374
 	1058241748	5Keer	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\5Keer_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\musique niveau\5Keer\5Keer		39513668

@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
     [Header("Level View")]
     [Header("General")]
     public TextMeshProUGUI parkourName;
+    public Image parkourImage;
     public TextMeshProUGUI bestScoreText;
     public Image bestMedalSprite;
     public Button startParkourButton;
@@ -125,6 +126,7 @@ public class MenuManager : MonoBehaviour
         {
             GameObject parkourbutton = Instantiate(ParkourUIButtonPrefab, parent);
             parkourbutton.transform.Find("parkourName").GetComponent<TextMeshProUGUI>().text = parkourAsset.displayName;
+            parkourbutton.transform.Find("image").GetComponent<Image>().sprite = parkourAsset.displayImage;
             parkourbutton.transform.Find("cadre").GetComponent<Image>().sprite = parkoursAxisSprite[(int)parkourAsset.axis];
             parkourbutton.GetComponent<Button>().onClick.AddListener(() => { ParkourSelected(parkourAsset); });
         }
@@ -150,6 +152,7 @@ public class MenuManager : MonoBehaviour
     {
         //general
         parkourName.text = parkour.displayName;
+        parkourImage.sprite = parkour.displayImage;
         bestScoreText.text = saveData != null ? saveData.bestScore.ToString() : "";
         bestMedalSprite.sprite = saveData != null ? medalsSprites[saveData.bestMedalObtained] : null;
         if(saveData == null) bestMedalSprite.color = Color.clear;

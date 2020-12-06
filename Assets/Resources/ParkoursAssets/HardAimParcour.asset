@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
   m_Name: HardAimParcour
   m_EditorClassIdentifier: 
+  guid: 02bb5c35-496b-4c88-b255-9bf733b9f802
   displayName: Aim 2
+  displayImage: {fileID: 21300000, guid: 82d7cbe3331efb6418e029ed706faa55, type: 3}
   axis: 2
   parkourDifficulty: 0
   aimDifficulty: 0
@@ -33,4 +35,5 @@ MonoBehaviour:
     m_SceneAsset: {fileID: 102900000, guid: 5e9bd5fdc610e7c4d9927ec42d86984c, type: 3}
     m_SceneName: HardAimParcour
   nextParkour: {fileID: 11400000, guid: d2b917fed8535bc42a2dd80840f320ed, type: 2}
+  isTutorial: 0
   timerByCheckpoint: []

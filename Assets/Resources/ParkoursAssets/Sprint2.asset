@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
   m_Name: Sprint2
   m_EditorClassIdentifier: 
+  guid: 8fdbcbce-f050-4ae9-b274-0f79c3de2a10
   displayName: '[ALPHA] Sprint 2'
   axis: 0
   parkourDifficulty: 3

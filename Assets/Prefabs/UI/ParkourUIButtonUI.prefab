@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 3853074895512985903}
   - component: {fileID: 7523571574406343215}
   m_Layer: 5
-  m_Name: ParkourImage
+  m_Name: image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

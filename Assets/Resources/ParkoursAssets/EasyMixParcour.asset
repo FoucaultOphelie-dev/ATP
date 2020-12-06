@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
   m_Name: EasyMixParcour
   m_EditorClassIdentifier: 
+  guid: f0803a43-de6f-4aac-9851-bd19e7e9cf4e
   displayName: Complete 1
+  displayImage: {fileID: 21300000, guid: bb3ee82f22307364aa99fc8f1d3f9181, type: 3}
   axis: 0
   parkourDifficulty: 0
   aimDifficulty: 0
@@ -33,4 +35,5 @@ MonoBehaviour:
     m_SceneAsset: {fileID: 102900000, guid: dd5aa8e25049f6d42b6f40ac325f2706, type: 3}
     m_SceneName: EasyMixParcour
   nextParkour: {fileID: 11400000, guid: 4eccbe1bd4cf93d409718667551f7021, type: 2}
+  isTutorial: 0
   timerByCheckpoint: []

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
   m_Name: EasyParkourParcour
   m_EditorClassIdentifier: 
+  guid: 2cbd93b4-659d-4ffd-b3f2-a63a09888bd2
   displayName: Parkour 1
+  displayImage: {fileID: 21300000, guid: c0341d4c1af4ec44386f25deb080c5b9, type: 3}
   axis: 1
   parkourDifficulty: 0
   aimDifficulty: 0
@@ -33,4 +35,5 @@ MonoBehaviour:
     m_SceneAsset: {fileID: 102900000, guid: 481679127a981fe408d33ee9ccffd411, type: 3}
     m_SceneName: EasyParkourParcour
   nextParkour: {fileID: 11400000, guid: 1ec57cdabdb0ce6429f156654517efa3, type: 2}
+  isTutorial: 0
   timerByCheckpoint: []

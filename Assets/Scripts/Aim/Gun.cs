@@ -41,7 +41,7 @@ public class Gun : MonoBehaviour
     private bool reloading;
     private float reloadStartTime;
     public float reloadingTime;
-    public VisualEffect tir;
+    //public VisualEffect tir;
     private string feedback;
 
     public AK.Wwise.Event wwiseEvent;
@@ -147,7 +147,7 @@ public class Gun : MonoBehaviour
     void shoot()
     {
         amountOfBullets--;
-        tir.SetFloat("alpha", 1);
+        //tir.SetFloat("alpha", 1);
         wwiseEvent.Post(gameObject);
 
         StartCoroutine("CoTir");
@@ -274,7 +274,7 @@ public class Gun : MonoBehaviour
     {
         
         yield return new WaitForSeconds(0.1f);
-        tir.SetFloat("alpha", -1.0f);
+        //tir.SetFloat("alpha", -1.0f);
     } 
     private void reload()
     {

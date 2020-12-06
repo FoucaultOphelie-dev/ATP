@@ -8,6 +8,7 @@ public class StartingCheckpoint : MonoBehaviour
     public AK.Wwise.Event soundDepartGo;
 
     private Animator animator;
+    public TutorialManager tutorialManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,10 @@ public class StartingCheckpoint : MonoBehaviour
     {
         soundDepartGo.Post(gameObject);
         ParkourManager.Instance().StartRun();
+        if (tutorialManager)
+        {
+            tutorialManager.startTutorial();
+        }
         animator.ResetTrigger("Reset");
     }
 

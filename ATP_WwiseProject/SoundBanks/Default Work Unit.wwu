@@ -10,9 +10,16 @@
 						<ObjectRef Name="tir" ID="{88A4858A-D7BC-40BF-B0A2-FB931D6F3380}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="explosion" ID="{9863F071-5CA7-41D0-93A9-2A9A3FFD8603}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Music_niveau" ID="{13B37B9F-9B19-4370-9365-3CBCCA8C26AB}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="crash" ID="{7BD2B922-B63B-43B4-8DA5-D23C085064A2}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="craquementsStop" ID="{57467F66-FFE4-43ED-95FF-FB635BC7E508}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="craquements" ID="{D3C6B64A-4CD2-44C5-8582-50FF01871031}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Jump" ID="{EC92CAE7-D425-4511-85A1-F2AAB72EA5DE}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Depart123" ID="{7F438EB2-BBFE-4554-90E8-5CC38DCA5078}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="fastmotion" ID="{B8E76A11-7F2B-46D4-B5C0-750CB5D5C3FE}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="DepartEnd" ID="{DBC19A38-BD60-4894-9B0C-D83E46F009E1}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Music_choix_niveau" ID="{A42261BA-ABBB-4900-AA88-138691323087}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Music_fin_niveau" ID="{EDC874B2-FC8D-49B5-80F7-F73160E7E061}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Music_menu_principal" ID="{0DF5AA70-803D-49BB-9EEE-63EB81137B2E}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="slowmotion" ID="{87ABEB7A-D5E7-4BC5-BD2B-A3B0DF7577CD}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="footstep" ID="{FE54BAD7-A20E-4E91-8BBB-AF0FF666F8B7}" WorkUnitID="{6C4FDEDC-DE67-42BF-925A-DE4F5F8A1AB7}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>

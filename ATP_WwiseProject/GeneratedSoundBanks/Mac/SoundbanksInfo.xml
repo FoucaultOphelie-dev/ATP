@@ -11,16 +11,33 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1108392696">
+		<SoundBank Id="393239870" Language="SFX" Hash="384111992">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3178670581" Name="craquements" ObjectPath="\Events\Default Work Unit\craquements" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="71110553" Language="SFX">
+							<ShortName>craquement.wav</ShortName>
+							<Path>SFX\craquement_C5579977.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2480716781" Name="craquementsStop" ObjectPath="\Events\Default Work Unit\craquementsStop" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="3048106310" Name="crash" ObjectPath="\Events\Default Work Unit\crash" DurationType="OneShot" DurationMin="1.626304" DurationMax="1.626304">
+					<IncludedMemoryFiles>
+						<File Id="994342170" Language="SFX">
+							<ShortName>crashFin.wav</ShortName>
+							<Path>SFX\crashFin_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3546791133" Name="Depart123" ObjectPath="\Events\Default Work Unit\Depart123" DurationType="OneShot" DurationMin="0.921800" DurationMax="0.921800">
 					<IncludedMemoryFiles>
 						<File Id="135379503" Language="SFX">
 							<ShortName>depart.wav</ShortName>
-							<Path>SFX\depart_168063E8.wem</Path>
+							<Path>SFX\depart_DDB7C963.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -28,7 +45,7 @@
 					<IncludedMemoryFiles>
 						<File Id="609535076" Language="SFX">
 							<ShortName>depart.wav</ShortName>
-							<Path>SFX\depart_67DA5DFB.wem</Path>
+							<Path>SFX\depart_D2C10F2F.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -80,6 +97,38 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3833651337" Name="Jump" ObjectPath="\Events\Default Work Unit\Jump" DurationType="OneShot" DurationMin="0.247984" DurationMax="0.247984">
+					<IncludedMemoryFiles>
+						<File Id="740364709" Language="SFX">
+							<ShortName>jump.wav</ShortName>
+							<Path>SFX\jump_A26F2657.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3096711473" Name="Music_choix_niveau" ObjectPath="\Events\Default Work Unit\Music_choix_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+					<IncludedMemoryFiles>
+						<File Id="845647722" Language="SFX">
+							<ShortName>Heros.wav</ShortName>
+							<Path>SFX\Heros_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="90594921" Name="Music_fin_niveau" ObjectPath="\Events\Default Work Unit\Music_fin_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+					<IncludedMemoryFiles>
+						<File Id="314569221" Language="SFX">
+							<ShortName>Belinda.wav</ShortName>
+							<Path>SFX\Belinda_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="17986547" Name="Music_menu_principal" ObjectPath="\Events\Default Work Unit\Music_menu_principal" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+					<IncludedMemoryFiles>
+						<File Id="701294281" Language="SFX">
+							<ShortName>Chameleon.wav</ShortName>
+							<Path>SFX\Chameleon_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2953965439" Name="Music_niveau" ObjectPath="\Events\Default Work Unit\Music_niveau" DurationType="OneShot" DurationMin="224.000015" DurationMax="224.000015">
 					<IncludedMemoryFiles>
 						<File Id="1058241748" Language="SFX">
@@ -122,7 +171,7 @@
 				</Event>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="427219716">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1936403222">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>

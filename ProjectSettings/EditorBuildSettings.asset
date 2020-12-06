@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EasyParkourParcour.unity
     guid: 481679127a981fe408d33ee9ccffd411
+  - enabled: 1
+    path: Assets/Scenes/HardParkourParcour.unity
+    guid: eb906c7189b751540aa852243397ed10
+  - enabled: 1
+    path: Assets/Scenes/EasyMixParcour.unity
+    guid: dd5aa8e25049f6d42b6f40ac325f2706
+  - enabled: 1
+    path: Assets/Scenes/HardAimParcour.unity
+    guid: 5e9bd5fdc610e7c4d9927ec42d86984c
   m_configObjects: {}

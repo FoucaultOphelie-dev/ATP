@@ -6,6 +6,7 @@ public class TutorialManager : MonoBehaviour
 {
     public CharacterMove characterMove;
     public ParkourManager parkourManager;
+    public TimeManager timeManager;
 
     private bool tutorialStarted = false;
     private bool taughtToWalk = false;
@@ -113,7 +114,7 @@ public class TutorialManager : MonoBehaviour
     private void teachGameBasics()
     {
         //timeManager.pauseGame();
-        tutorialText = "Bienvenue dans votre premier parcours. Avant de démarrer un parcours, une caméra de présentation te montreras le chemin à suivre. Cela permet de se faire une première idée du parcours.\n\n\n Pour te lancer dans le pourcours, appuies sur la touche " + KeyCode.Return.ToString();
+        tutorialText = "Bienvenue dans ton premier parcours. Avant de démarrer un parcours, une caméra de présentation te montreras le chemin à suivre. Cela permet de se faire une première idée du parcours.\n\n\n Pour te lancer dans le pourcours, appuies sur la touche " + KeyCode.Return.ToString();
         popUp.openPopUp(tutorialText);
         taughtGameBasics = true;
     }
@@ -169,7 +170,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToGrab()
     {
         //timeManager.pauseGame();
-        tutorialText = "Lors d'un saut où tu manques légèrement de hauteur ou de distance, tu peux t'aggriper aux rebords d'une plateforme. Une fois aggripé, tu peux soit monter sur la plateforme, soit sauter depuis le rebord de la plateforme.\n\n\n Pour monter sur la plateforme, utilises la touche "+KeyCode.Z.ToString()+".\n\n Pour sauter depuis le rebords de la plateforme, utilises la touche "+characterMove.keyJump;
+        tutorialText = "Lors d'un saut où tu manques légèrement de hauteur ou de distance, tu peux t'aggriper aux rebords d'une plateforme. Une fois aggripé, tu peux soit monter sur la plateforme, soit sauter depuis le rebord de la plateforme.\n\n\n Pour monter sur la plateforme, utilises la touche \"avancer\".\n\n Pour sauter depuis le rebords de la plateforme, utilises la touche "+characterMove.keyJump;
         popUp.openPopUp(tutorialText);
         taughtToGrab = true;
     }
@@ -201,7 +202,7 @@ public class TutorialManager : MonoBehaviour
     private void teachReloading()
     {
         //timeManager.pauseGame();
-        tutorialText = "Lorsque tu n'as plus de munitions, tu devras recharger ! Tu peux recharger ton arme à tout moment, même si elle n'est pas dégainée.\n\n\n Pour recharger, utilise la touche "+KeyCode.R.ToString();
+        tutorialText = "Lorsque tu n'as plus de munitions, tu devras recharger ! Attention, pour recharger, tu dois avoir ton arme en main !\n\n\n Pour recharger, utilise la touche "+KeyCode.R.ToString();
         popUp.openPopUp(tutorialText);
         taughtReloading = true;
     }
@@ -217,7 +218,7 @@ public class TutorialManager : MonoBehaviour
     private void teachPower()
     {
         //timeManager.pauseGame();
-        tutorialText = "Certaines platformes ou cibles se déplacent trop vite pour être facilement apréhendables. Pour pouvoir faire face à ces situations tu possède le pouvoir de maitriser le temps. Lorsque tu accélère le temps, ta jauge de temps augmente. Tu peux alors consommer cette jauge de temps pour le ralentir. Ralentir le temps te permettra de mieux assurer tes tirs et tes sauts sur des objets très rapides\n\n\n - Pour accélerer le temps, utilises la touche "+KeyCode.E.ToString()+"\n - Pour ralentir le temps, utilise la touche "+KeyCode.A.ToString();
+        tutorialText = "Certaines platformes ou cibles se déplacent trop vite pour être facilement apréhendables. Pour pouvoir faire face à ces situations tu possède le pouvoir de maitriser le temps. Lorsque tu accélère le temps, ta jauge de temps augmente. Tu peux alors consommer cette jauge de temps pour le ralentir. Ralentir le temps te permettra de mieux assurer tes tirs et tes sauts sur des objets très rapides\n\n\n - Pour accélerer le temps, utilises la touche "+timeManager.keyAcceleration.ToString()+"\n - Pour ralentir le temps, utilise la touche "+timeManager.keyRalenti.ToString();
         popUp.openPopUp(tutorialText);
         taughtPower = true;
     }

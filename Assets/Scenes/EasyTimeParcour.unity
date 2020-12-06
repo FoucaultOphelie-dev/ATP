@@ -3962,6 +3962,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingPlatform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: points.Array.data[1].z
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: points.Array.data[0].z
+      value: 535
+      objectReference: {fileID: 0}
     - target: {fileID: 7989333833652714573, guid: 9c74337f954dfb9468547606f223ae9e,
         type: 3}
       propertyPath: points.Array.size
@@ -4198,6 +4218,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MovingPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: points.Array.data[1].z
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951244639973742801, guid: 9c74337f954dfb9468547606f223ae9e,
+        type: 3}
+      propertyPath: points.Array.data[0].z
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7989333833652714573, guid: 9c74337f954dfb9468547606f223ae9e,
         type: 3}

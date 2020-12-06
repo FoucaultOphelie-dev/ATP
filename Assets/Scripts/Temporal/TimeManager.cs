@@ -26,6 +26,7 @@ public class TimeManager : MonoBehaviour
 
     [Header("Player")]
     private CharacterMove playerCharacterMove;
+    public bool powerActivate = false;
 
     [Header("PostProcess")]
     private ChromaticAberration m_chroma;
@@ -75,91 +76,93 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(keyAcceleration))
+        if (powerActivate)
         {
-            wwiseEventFast.Post(gameObject);
-        }
-        if (Input.GetKeyDown(keyRalenti) && jauge>0)
-        {
-            soundRalentiDone = true;
-            wwiseEventSlow.Post(gameObject);
-        }
-        if (Input.GetKeyUp(keyAcceleration))
-        {
-            wwiseEventSlow.Post(gameObject);
-        }
-        if (Input.GetKeyUp(keyRalenti) && soundRalentiDone)
-        {
-            soundRalentiDone = false;
-            wwiseEventFast.Post(gameObject);
-        }
-        //Debug.Log(Time.timeScale);
-        if (Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
-        {
-            playerCharacterMove.scaled = false;
-            Time.timeScale = accelerationValue;
-            doAcceleration = true;
-        }
-        else if(Input.GetKey(keyRalenti) && !Input.GetKey(keyAcceleration) && jauge > 0f)
-        {
-            playerCharacterMove.scaled = true;
-            Time.timeScale = ralentiValue;
-            doRalenti = true;
-        }
-        else
-        {
-            Time.timeScale = 1;
-            doAcceleration = false;
-            doRalenti = false;
-        }
-
-
-        if (doAcceleration)
-        {
-            //postPorecessing.profile.TryGetSubclassOf<>
-            m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
-            m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0.5f, 0.1f);
-            
-            jauge += Time.unscaledDeltaTime * accelerationFacteur;
-            if (jauge > maxJauge)
+            if (Input.GetKeyDown(keyAcceleration))
             {
-                jauge = maxJauge;
+                wwiseEventFast.Post(gameObject);
             }
-            jaugeUI.fillAmount = jauge / maxJauge;
-        }
-        else
-        {
-            StartCoroutine("ReturnChroma");
-            //m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0, 0.1f);
-            //m_chroma.intensity.value = 0;
-        }
-
-        if (doRalenti)
-        {
-            m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
-            m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(0.3568441f, 0.752427f, 0.764151f, 0), 0.1f);
-            jauge -= Time.unscaledDeltaTime * ralentiFacteur;
-            if (jauge < 0f)
+            if (Input.GetKeyDown(keyRalenti) && jauge > 0)
             {
-                jauge = 0f;
+                soundRalentiDone = true;
+                wwiseEventSlow.Post(gameObject);
             }
-            jaugeUI.fillAmount = jauge / maxJauge;
-        }
-        else
-        {
-            StartCoroutine("ReturnColor");
-            //m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(1, 1, 1, 0), 0.1f);
-            //m_color.colorFilter.value = new Color(1, 1, 1, 0);
-        }
+            if (Input.GetKeyUp(keyAcceleration))
+            {
+                wwiseEventSlow.Post(gameObject);
+            }
+            if (Input.GetKeyUp(keyRalenti) && soundRalentiDone)
+            {
+                soundRalentiDone = false;
+                wwiseEventFast.Post(gameObject);
+            }
+            //Debug.Log(Time.timeScale);
+            if (Input.GetKey(keyAcceleration) && !Input.GetKey(keyRalenti))
+            {
+                playerCharacterMove.scaled = false;
+                Time.timeScale = accelerationValue;
+                doAcceleration = true;
+            }
+            else if (Input.GetKey(keyRalenti) && !Input.GetKey(keyAcceleration) && jauge > 0f)
+            {
+                playerCharacterMove.scaled = true;
+                Time.timeScale = ralentiValue;
+                doRalenti = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                doAcceleration = false;
+                doRalenti = false;
+            }
 
-        if (!doAcceleration && !doRalenti)
-        {
-            StartCoroutine("ReturnVignette");
-            //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
-            //m_vignette.intensity.value = 0;
+
+            if (doAcceleration)
+            {
+                //postPorecessing.profile.TryGetSubclassOf<>
+                m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
+                m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0.5f, 0.1f);
+
+                jauge += Time.unscaledDeltaTime * accelerationFacteur;
+                if (jauge > maxJauge)
+                {
+                    jauge = maxJauge;
+                }
+                jaugeUI.fillAmount = jauge / maxJauge;
+            }
+            else
+            {
+                StartCoroutine("ReturnChroma");
+                //m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0, 0.1f);
+                //m_chroma.intensity.value = 0;
+            }
+
+            if (doRalenti)
+            {
+                m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
+                m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(0.3568441f, 0.752427f, 0.764151f, 0), 0.1f);
+                jauge -= Time.unscaledDeltaTime * ralentiFacteur;
+                if (jauge < 0f)
+                {
+                    jauge = 0f;
+                }
+                jaugeUI.fillAmount = jauge / maxJauge;
+            }
+            else
+            {
+                StartCoroutine("ReturnColor");
+                //m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(1, 1, 1, 0), 0.1f);
+                //m_color.colorFilter.value = new Color(1, 1, 1, 0);
+            }
+
+            if (!doAcceleration && !doRalenti)
+            {
+                StartCoroutine("ReturnVignette");
+                //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
+                //m_vignette.intensity.value = 0;
+            }
+
         }
-
-
     }
 
     IEnumerator ReturnColor()

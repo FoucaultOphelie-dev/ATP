@@ -37,6 +37,7 @@ public class ParkourManager : MonoBehaviour
     private Rigidbody playerRigidbody;
     private CharacterMove playerMovement;
     private CameraMove cameraMove;
+    private TimeManager timeManager;
     private GameObject spectatingCamera;
     public Camera scoringCamera;
     int lastCheckpoint = 0;
@@ -106,6 +107,7 @@ public class ParkourManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerRigidbody = player.GetComponent<Rigidbody>();
         playerMovement = player.GetComponent<CharacterMove>();
+        timeManager = FindObjectOfType<TimeManager>();
         cameraMove = player.GetComponent<CameraMove>();
         scoringCamera = player.transform.Find("Body/ScoringCamera").GetComponent<Camera>();
 
@@ -225,6 +227,7 @@ public class ParkourManager : MonoBehaviour
         isStarted = true;
         playerMovement.CanMove = true;
         playerMovement.bobbing = true;
+        timeManager.powerActivate = true;
     }
 
     public bool PlayerEnterCheckpoint(int index)

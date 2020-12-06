@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI bestScoreText;
     public Image bestMedalSprite;
     public Button startParkourButton;
+    public Button lockParkourButton;
 
     [Header("Score by Medal")]
     public TextMeshProUGUI goldScore;
@@ -37,6 +38,8 @@ public class MenuManager : MonoBehaviour
     public Image temporalDifficultyRating;
 
     [Header("Required Medals")]
+    public Color conditionValid;
+    public Color conditionUnvalid;
     public TextMeshProUGUI goldRequired;
     public TextMeshProUGUI silverRequired;
     public TextMeshProUGUI bronzeRequired;
@@ -129,15 +132,34 @@ public class MenuManager : MonoBehaviour
             parkourbutton.transform.Find("image").GetComponent<Image>().sprite = parkourAsset.displayImage;
             parkourbutton.transform.Find("cadre").GetComponent<Image>().sprite = parkoursAxisSprite[(int)parkourAsset.axis];
             parkourbutton.GetComponent<Button>().onClick.AddListener(() => { ParkourSelected(parkourAsset); });
+
+
+            if (ProfileManager.Instance().IsCurrentProfileValid())
+            {
+                Profile profile = ProfileManager.Instance().GetCurrentProfile();
+                int i = parkourAsset.required.Length - 1;
+                bool requiredMedals = true;
+                while (i > 0 && requiredMedals)
+                {
+                    if (profile.medalsObtained[i] < parkourAsset.required[i])
+                        requiredMedals = false;
+                    i--;
+                }
+                if (!requiredMedals)
+                {
+                    parkourbutton.transform.Find("locked").gameObject.SetActive(true);
+                }
+            }
         }
     }
 
     public void ParkourSelected(Parkour parkour)
     {
+        Profile profile = new Profile();
         ParkourSaveData data = null;
         if (ProfileManager.Instance().IsCurrentProfileValid())
         {
-            Profile profile = ProfileManager.Instance().GetCurrentProfile();
+            profile = ProfileManager.Instance().GetCurrentProfile();
             if (profile.parkoursSaveData.ContainsKey(parkour.guid))
             {
                 data = profile.parkoursSaveData[parkour.guid];
@@ -145,10 +167,10 @@ public class MenuManager : MonoBehaviour
         }
         levelSelection.SetActive(false);
         LevelView.SetActive(true);
-        LoadView(parkour, data);
+        LoadView(profile, parkour, data);
     }
 
-    private void LoadView(Parkour parkour, ParkourSaveData saveData)
+    private void LoadView(Profile profile, Parkour parkour, ParkourSaveData saveData)
     {
         //general
         parkourName.text = parkour.displayName;
@@ -166,10 +188,47 @@ public class MenuManager : MonoBehaviour
         aimDifficultyRating.fillAmount = ratio * parkour.aimDifficulty;
         temporalDifficultyRating.fillAmount = ratio * parkour.timePowerDifficulty;
         //Required
+        bool RequiredMedals = true;
+        // Gold
         goldRequired.text = parkour.required[1].ToString();
-        silverRequired.text = parkour.required[2].ToString();
-        bronzeRequired.text = parkour.required[3].ToString();
+        if (profile.medalsObtained[1] >= parkour.required[1])
+            goldRequired.color = conditionValid;
+        else
+        {
+            RequiredMedals = false;
+            goldRequired.color = conditionUnvalid;
+        }
 
-        startParkourButton.onClick.AddListener(() => { Loader.LoadWithLoadingScreen(parkour.scene.SceneName); });
+        // Silver
+        silverRequired.text = parkour.required[2].ToString();
+        if (profile.medalsObtained[2] >= parkour.required[2])
+            silverRequired.color = conditionValid;
+        else
+        {
+            RequiredMedals = false;
+            silverRequired.color = conditionUnvalid;
+        }
+
+        // Bronze
+        bronzeRequired.text = parkour.required[3].ToString();
+        if (profile.medalsObtained[3] >= parkour.required[3])
+            bronzeRequired.color = conditionValid;
+        else
+        {
+            RequiredMedals = false;
+            bronzeRequired.color = conditionUnvalid;
+        }
+
+        if (RequiredMedals)
+        {
+            startParkourButton.gameObject.SetActive(true);
+            lockParkourButton.gameObject.SetActive(false);
+            startParkourButton.onClick.AddListener(() => { Loader.LoadWithLoadingScreen(parkour.scene.SceneName); });
+        }
+        else
+        {
+            lockParkourButton.gameObject.SetActive(true);
+            startParkourButton.gameObject.SetActive(false);
+        }
     }
 }

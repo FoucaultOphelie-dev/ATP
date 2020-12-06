@@ -309,6 +309,7 @@ public class ParkourManager : MonoBehaviour
             BesttimerByCheckpoint = new List<float>(timerByCheckpoint);
             data.bestScore = score;
             data.timerByCheckpoint = new List<float>(timerByCheckpoint);
+            int previousBestMedal = data.bestMedalObtained;
             int i = parkourData.medals.Length - 1;
             while (i >= 0)
             {
@@ -326,6 +327,12 @@ public class ParkourManager : MonoBehaviour
                 else
                 {
                     profile.parkoursSaveData.Add(parkourData.guid, data);
+                }
+                int j = data.bestMedalObtained;
+                while (j < previousBestMedal)
+                {
+                    profile.medalsObtained[j]++;
+                    j++;
                 }
                 ProfileManager.Instance().SaveCurrentProfile();
             }

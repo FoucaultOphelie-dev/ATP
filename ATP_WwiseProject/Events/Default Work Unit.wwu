@@ -113,6 +113,54 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Music_choix_niveau" ID="{A42261BA-ABBB-4900-AA88-138691323087}">
+					<ChildrenList>
+						<Action Name="" ID="{7126CE9A-E17C-4A87-8FBB-9E2EE564DD3B}" ShortID="980957039">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="musique choix de niveau" ID="{151EDD94-1407-4B84-92FD-D29648385169}" WorkUnitID="{A675FB82-CE0C-4903-B1EF-3A811776BB4F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Music_menu_principal" ID="{0DF5AA70-803D-49BB-9EEE-63EB81137B2E}">
+					<ChildrenList>
+						<Action Name="" ID="{8393D196-164E-4E87-A8B6-683241044CA1}" ShortID="1054626261">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="musique menu principal" ID="{E8C4EC78-4F48-4CB6-9760-B0C5A265C6CB}" WorkUnitID="{A675FB82-CE0C-4903-B1EF-3A811776BB4F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Music_fin_niveau" ID="{EDC874B2-FC8D-49B5-80F7-F73160E7E061}">
+					<ChildrenList>
+						<Action Name="" ID="{ADBA6348-E60C-4A45-A9EA-DD65AFC5CC8D}" ShortID="989132157">
+							<PropertyList>
+								<Property Name="FadeInCurve" Type="int16" Value="6"/>
+								<Property Name="FadeTime" Type="Real64" Value="1"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="musique fin de niveau" ID="{80405D94-00D4-4EDC-8183-A7DA3C72096D}" WorkUnitID="{A675FB82-CE0C-4903-B1EF-3A811776BB4F}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Jump" ID="{EC92CAE7-D425-4511-85A1-F2AAB72EA5DE}">
+					<ChildrenList>
+						<Action Name="" ID="{C81FEE27-CA04-4C33-B1BE-2325AC222863}" ShortID="233031835">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Jump" ID="{5A6BA003-A8B0-4830-B4CA-E61891D3E860}" WorkUnitID="{171931B1-B92D-4CBE-BDFF-5ADAFA829963}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

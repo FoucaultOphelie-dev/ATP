@@ -18,6 +18,10 @@ namespace AK
         static const AkUniqueID EXPLOSION = 13776098U;
         static const AkUniqueID FASTMOTION = 3918031937U;
         static const AkUniqueID FOOTSTEP = 1866025847U;
+        static const AkUniqueID JUMP = 3833651337U;
+        static const AkUniqueID MUSIC_CHOIX_NIVEAU = 3096711473U;
+        static const AkUniqueID MUSIC_FIN_NIVEAU = 90594921U;
+        static const AkUniqueID MUSIC_MENU_PRINCIPAL = 17986547U;
         static const AkUniqueID MUSIC_NIVEAU = 2953965439U;
         static const AkUniqueID SLIDE = 3686556480U;
         static const AkUniqueID SLOWMOTION = 340593036U;

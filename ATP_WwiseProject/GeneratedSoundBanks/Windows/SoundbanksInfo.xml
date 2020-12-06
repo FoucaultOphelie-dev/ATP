@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1108392696">
+		<SoundBank Id="393239870" Language="SFX" Hash="3257968856">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -20,7 +20,7 @@
 					<IncludedMemoryFiles>
 						<File Id="135379503" Language="SFX">
 							<ShortName>depart.wav</ShortName>
-							<Path>SFX\depart_168063E8.wem</Path>
+							<Path>SFX\depart_DDB7C963.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -28,7 +28,7 @@
 					<IncludedMemoryFiles>
 						<File Id="609535076" Language="SFX">
 							<ShortName>depart.wav</ShortName>
-							<Path>SFX\depart_67DA5DFB.wem</Path>
+							<Path>SFX\depart_D2C10F2F.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -77,6 +77,38 @@
 						<File Id="1014395605" Language="SFX">
 							<ShortName>footsteps.wav</ShortName>
 							<Path>SFX\footsteps_BD02B801.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3833651337" Name="Jump" ObjectPath="\Events\Default Work Unit\Jump" DurationType="OneShot" DurationMin="0.247984" DurationMax="0.247984">
+					<IncludedMemoryFiles>
+						<File Id="740364709" Language="SFX">
+							<ShortName>jump.wav</ShortName>
+							<Path>SFX\jump_A26F2657.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3096711473" Name="Music_choix_niveau" ObjectPath="\Events\Default Work Unit\Music_choix_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+					<IncludedMemoryFiles>
+						<File Id="845647722" Language="SFX">
+							<ShortName>Heros.wav</ShortName>
+							<Path>SFX\Heros_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="90594921" Name="Music_fin_niveau" ObjectPath="\Events\Default Work Unit\Music_fin_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+					<IncludedMemoryFiles>
+						<File Id="314569221" Language="SFX">
+							<ShortName>Belinda.wav</ShortName>
+							<Path>SFX\Belinda_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="17986547" Name="Music_menu_principal" ObjectPath="\Events\Default Work Unit\Music_menu_principal" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+					<IncludedMemoryFiles>
+						<File Id="701294281" Language="SFX">
+							<ShortName>Chameleon.wav</ShortName>
+							<Path>SFX\Chameleon_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

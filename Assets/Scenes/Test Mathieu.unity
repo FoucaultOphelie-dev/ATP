@@ -877,50 +877,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: volumeLayerMask.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: clearColorMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: backgroundColorHDR.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: backgroundColorHDR.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: backgroundColorHDR.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: backgroundColorHDR.a
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611721, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: allowDynamicResolution
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611723, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: m_AllowDynamicResolution
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611723, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: field of view
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611723, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: m_projectionMatrixMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666611723, guid: b21efc280a1f68245a72c862a41e8152, type: 3}
-      propertyPath: m_Depth
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 451466362516135256, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

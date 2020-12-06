@@ -45,8 +45,11 @@ public enum ParkourAxis
 [CreateAssetMenu(fileName = "newParkour", menuName = "New Parkour")]
 public class Parkour : ScriptableObject
 {
+    [ReadOnly]
+    public string guid;
     [Tooltip("Nom affiché au joueur")]
     public string displayName;
+    public Sprite displayImage;
     public ParkourAxis axis;
     [Tooltip("Difficulté Affiché")]
     ///[Range(0,5)]
@@ -81,6 +84,10 @@ public class Parkour : ScriptableObject
 
 
     public List<float> timerByCheckpoint = new List<float>();
+    public Parkour()
+    {
+        guid = Guid.NewGuid().ToString();
+    }
 }
 [System.Serializable]
 public class ParkourSaveData

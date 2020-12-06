@@ -137,6 +137,7 @@ public class CanvasManager : MonoBehaviour
                 //}
                 hitsLabel.enabled = false;
                 hitsCount.enabled = false;
+                hitsScoreTotal = 0;
                 foreach (var hit in ParkourManager.Instance().hits)
                 {
                     //hits[(int)hit.feedback]++;
@@ -157,7 +158,8 @@ public class CanvasManager : MonoBehaviour
                     if (ParkourManager.Instance().score < ParkourManager.Instance().parkourData.medals[i].score) break;
                     i--;
                 }
-                totalMedal.sprite = medals[i];
+                //Si il a eu une médialle on l'affiche
+                if(i < ParkourManager.Instance().parkourData.medals.Length) totalMedal.sprite = medals[i+1];
                 ScoringCanvas.gameObject.SetActive(true);
                 StartCoroutine("ScoringRoutine");
                 break;
@@ -205,12 +207,14 @@ public class CanvasManager : MonoBehaviour
         while (pourcentage < 1)
         {
             tempScore = (int)Mathf.Lerp(0, ParkourManager.Instance().TimeScore(), pourcentage);
-            totalScore.text = (accumulateScore + tempScore).ToString();
             chronoScoreDisplay.text = "+ " + tempScore.ToString();
+            totalScore.text = (accumulateScore + tempScore).ToString();
             pourcentage = (Time.time - startTime) / timeToFullScore;
             yield return null;
         }
-        accumulateScore += tempScore;
+        chronoScoreDisplay.text = "+ " + ParkourManager.Instance().TimeScore().ToString();
+        totalScore.text = (accumulateScore + ParkourManager.Instance().TimeScore()).ToString();
+        accumulateScore += ParkourManager.Instance().TimeScore();
 
         startTime = Time.time;
         tempScore = 0;
@@ -227,7 +231,9 @@ public class CanvasManager : MonoBehaviour
                 pourcentage = (Time.time - startTime) / timeToFullScore;
                 yield return null;
             }
-            accumulateScore += tempScore;
+            hitsScore.text = "+ " + hitsScoreTotal.ToString();
+            totalScore.text = (accumulateScore + hitsScoreTotal).ToString();
+            accumulateScore += hitsScoreTotal;
         }
         totalMedal.color = Color.white;
         if (ParkourManager.Instance().newBestScore)

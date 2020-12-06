@@ -26,7 +26,7 @@ public class ParkourManager : MonoBehaviour
     #endregion
 
     public KeyCode softResetKey = KeyCode.R;
-    public KeyCode hardResetKey= KeyCode.Backspace;
+    public KeyCode hardResetKey = KeyCode.Backspace;
 
     public Parkour parkourData;
 
@@ -239,6 +239,11 @@ public class ParkourManager : MonoBehaviour
 
             // handle Old State
             hits.AddRange(hitBuffer);
+
+            foreach (var trigger in triggerBuffer)
+            {
+                trigger.ResetTrigger();
+            }
             hitBuffer.Clear();
             targetBuffer.Clear();
             triggerBuffer.Clear();
@@ -267,15 +272,13 @@ public class ParkourManager : MonoBehaviour
     }
     static public ParkourSaveData loadData(Parkour parkour)
     {
-        string path = Path.Combine(Application.persistentDataPath, parkour.GetInstanceID().ToString() + ".json");
-
-        if (File.Exists(path))
+        if (ProfileManager.Instance().IsCurrentProfileValid())
         {
-            //Read the text from directly from the test.txt file
-            StreamReader reader = new StreamReader(path);
-            ParkourSaveData data = JsonUtility.FromJson<ParkourSaveData>(reader.ReadToEnd());
-            reader.Close();
-            return data;
+            Profile profile = ProfileManager.Instance().GetCurrentProfile();
+            if (profile.parkoursSaveData.ContainsKey(parkour.guid))
+            {
+                return profile.parkoursSaveData[parkour.guid];
+            }
         }
         return null;
     }
@@ -290,9 +293,6 @@ public class ParkourManager : MonoBehaviour
         spectatingCamera.SetActive(true);
         spectatingCamera.GetComponent<Camera>().enabled = true;
         SwitchParkourState(ParkourState.Scoring);
-
-
-        string path = Path.Combine(Application.persistentDataPath, parkourData.GetInstanceID().ToString() + ".json");
 
         ParkourSaveData data = loadData(parkourData);
         if (data == null)
@@ -312,11 +312,20 @@ public class ParkourManager : MonoBehaviour
                 if (score < parkourData.medals[i].score) break;
                 i--;
             }
-            data.bestMedalObtained = i;
-            string jsonData = JsonUtility.ToJson(data);
-            StreamWriter writer = new StreamWriter(path, false);
-            writer.Write(jsonData);
-            writer.Close();
+            data.bestMedalObtained = i+1;
+            if (ProfileManager.Instance().IsCurrentProfileValid())
+            {
+                Profile profile = ProfileManager.Instance().GetCurrentProfile();
+                if (profile.parkoursSaveData.ContainsKey(parkourData.guid))
+                {
+                    profile.parkoursSaveData[parkourData.guid] = data;
+                }
+                else
+                {
+                    profile.parkoursSaveData.Add(parkourData.guid, data);
+                }
+                ProfileManager.Instance().SaveCurrentProfile();
+            }
         }
     }
 
@@ -386,6 +395,7 @@ public class ParkourManager : MonoBehaviour
             instance.triggerBuffer.Clear();
             instance.targetBuffer.Clear();
             instance.hitBuffer.Clear();
+            instance.hits.Clear();
 
             foreach (var checkpoint in instance.checkpoints)
             {

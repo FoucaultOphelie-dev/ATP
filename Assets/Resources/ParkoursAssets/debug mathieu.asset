@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
-  m_Name: newParkour
+  m_Name: debug mathieu
   m_EditorClassIdentifier: 
+  guid: becce731-64e3-4513-aff9-7a75785d2b0c
   displayName: '[DEBUG] Parkour Mathieu'
+  displayImage: {fileID: 21300000, guid: 7ca454ac55612a74cb9d3af460dfc16d, type: 3}
   axis: 1
   parkourDifficulty: 1
   aimDifficulty: 3

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class MenuManager : MonoBehaviour
 {
@@ -39,9 +40,28 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI silverRequired;
     public TextMeshProUGUI bronzeRequired;
 
+    [Header("Profiles")]
+    public GameObject profileForm;
+    public TMP_InputField profileNameInput;
+    public Button createProfileButton;
+    public TMP_Dropdown dropdownProfiles;
+    private List<string> guidList = new List<string>();
+    public TextMeshProUGUI nameValue;
+    public TextMeshProUGUI[] profileMedalObtainedCount = new TextMeshProUGUI[4];
+
     // Start is called before the first frame update
     void Awake()
     {
+        createProfileButton.onClick.AddListener(() => {
+            ProfileManager.Instance().CreateProfile(profileNameInput.text);
+            LoadProfiles();
+            profileForm.SetActive(false);
+        });
+        dropdownProfiles.onValueChanged.AddListener((int dropdownIndex) => {
+            ProfileManager.Instance().SwitchProfile(guidList[dropdownIndex]);
+            UpdateProfile(ProfileManager.Instance().profiles[ProfileManager.Instance().currentGUIDProfile]);
+        });
+        LoadProfiles();
         LoadParkoursAssets();
     }
 
@@ -54,6 +74,49 @@ public class MenuManager : MonoBehaviour
 #endif
     }
 
+    public void LoadProfiles()
+    {
+        guidList = new List<string>();
+        dropdownProfiles.ClearOptions();
+        ProfileManager manager = ProfileManager.Instance();
+        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+        int selected = -1;
+        if(manager.currentGUIDProfile != "")
+        {
+            foreach (KeyValuePair<string, Profile> profile in manager.profiles)
+            {
+                options.Add(new TMP_Dropdown.OptionData(profile.Value.name));
+                guidList.Add(profile.Key);
+                if (profile.Key == manager.currentGUIDProfile)
+                {
+                    selected = options.Count - 1;
+                    UpdateProfile(profile.Value);
+                }
+            }
+            dropdownProfiles.AddOptions(options);
+            dropdownProfiles.value = selected;
+            if(dropdownProfiles.value == -1)
+            {
+                Debug.LogError("profile guid:" + manager.currentGUIDProfile + " not found");
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log("First play");
+            profileForm.SetActive(true);
+            return;
+        }
+    }
+
+    public void UpdateProfile(Profile profile)
+    {
+        nameValue.text = profile.name;
+        for(int i = 0; i < 4; i++)
+        {
+            profileMedalObtainedCount[i].text = profile.medalsObtained[i].ToString();
+        }
+    }
 
     public void LoadParkoursAssets()
     {
@@ -69,7 +132,15 @@ public class MenuManager : MonoBehaviour
 
     public void ParkourSelected(Parkour parkour)
     {
-        ParkourSaveData data = ParkourManager.loadData(parkour);
+        ParkourSaveData data = null;
+        if (ProfileManager.Instance().IsCurrentProfileValid())
+        {
+            Profile profile = ProfileManager.Instance().GetCurrentProfile();
+            if (profile.parkoursSaveData.ContainsKey(parkour.guid))
+            {
+                data = profile.parkoursSaveData[parkour.guid];
+            }
+        }
         levelSelection.SetActive(false);
         LevelView.SetActive(true);
         LoadView(parkour, data);

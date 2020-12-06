@@ -16,20 +16,20 @@ MonoBehaviour:
   displayName: Complete 2
   displayImage: {fileID: 21300000, guid: 02dc8e707e138a24cae5a6567eb2accf, type: 3}
   axis: 0
-  parkourDifficulty: 0
-  aimDifficulty: 0
-  timePowerDifficulty: 0
-  startingScore: 0
+  parkourDifficulty: 4
+  aimDifficulty: 4
+  timePowerDifficulty: 4
+  startingScore: 3000
   reward: 0
   medals:
   - type: 0
-    score: 0
+    score: 3200
   - type: 1
-    score: 0
+    score: 2800
   - type: 2
-    score: 0
+    score: 2400
   - type: 3
-    score: 0
+    score: 1600
   required: 00000000000000000000000000000000
   scene:
     m_SceneAsset: {fileID: 102900000, guid: c3298db983e7ce947a9c5702510e07c7, type: 3}

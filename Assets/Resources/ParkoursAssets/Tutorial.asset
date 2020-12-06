@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
   m_Name: Tutorial
   m_EditorClassIdentifier: 
+  guid: d9dc4326-5b51-4e74-b55a-cb757070d1f8
   displayName: Tutorial
-  difficulty: 0
+  displayImage: {fileID: 0}
+  axis: 0
+  parkourDifficulty: 0
+  aimDifficulty: 0
+  timePowerDifficulty: 0
   startingScore: 5000
   reward: 100
   medals:
@@ -25,8 +30,10 @@ MonoBehaviour:
     score: 3500
   - type: 3
     score: 3000
+  required: 00000000000000000000000000000000
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 650d0d0c3b7449a47a02c888e4c5fd25, type: 3}
     m_SceneName: Tutorial
   nextParkour: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
+  isTutorial: 1
   timerByCheckpoint: []

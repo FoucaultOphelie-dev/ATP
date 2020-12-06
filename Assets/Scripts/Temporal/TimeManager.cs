@@ -42,9 +42,9 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
-        //volume.profile.TryGet<Vignette>(out m_vignette);
-        //volume.profile.TryGet<ChromaticAberration>(out m_chroma);
-        //volume.profile.TryGet<ColorAdjustments>(out m_color);
+        volume.profile.TryGet<Vignette>(out m_vignette);
+        volume.profile.TryGet<ChromaticAberration>(out m_chroma);
+        volume.profile.TryGet<ColorAdjustments>(out m_color);
 
         if (!playerCharacterMove)
         {

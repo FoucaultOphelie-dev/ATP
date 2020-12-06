@@ -25,7 +25,7 @@ public class MeshDestroy : MonoBehaviour
     {
         if (isExploded)
         {
-            transform.localScale = (1.0f-(Time.deltaTime/3.0f))  * transform.localScale;
+            transform.localScale = (1.0f - (Time.deltaTime / 1.0f)) * transform.localScale;
             if(transform.localScale.magnitude < 0.1 || transform.localScale.x <= 0)
             {
                 Destroy(gameObject);

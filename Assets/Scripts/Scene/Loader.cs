@@ -20,10 +20,7 @@ public static class Loader
 
     public static void LoaderCallback()
     {
-        if(onLoaderCallback != null)
-        {
-            onLoaderCallback();
-            onLoaderCallback = null;
-        }
+        onLoaderCallback?.Invoke();
+        onLoaderCallback = null;
     }
 }

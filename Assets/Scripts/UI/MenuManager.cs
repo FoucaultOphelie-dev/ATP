@@ -223,7 +223,10 @@ public class MenuManager : MonoBehaviour
         {
             startParkourButton.gameObject.SetActive(true);
             lockParkourButton.gameObject.SetActive(false);
-            startParkourButton.onClick.AddListener(() => { Loader.LoadWithLoadingScreen(parkour.scene.SceneName); });
+            startParkourButton.onClick.AddListener(() => {
+                Fadder.OnFadeOutEnd += () => { Loader.LoadWithLoadingScreen(parkour.scene.SceneName); };
+                Fadder.BeginFadeOut();
+            });
         }
         else
         {

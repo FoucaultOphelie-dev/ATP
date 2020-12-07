@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HardTimeParcour.unity
     guid: 2c47577bacf17484b9dc5b01d5d57207
+  - enabled: 1
+    path: Assets/Scenes/EasyTimeParcour.unity
+    guid: f4f970eb8e75c43439c3bebb30ed13c7
   m_configObjects: {}

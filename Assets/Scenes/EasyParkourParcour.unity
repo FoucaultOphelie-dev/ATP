@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Target
       objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b5a32bfdf0e5f4588b0377c2a765cc, type: 3}
 --- !u!4 &79737973 stripped
@@ -305,6 +310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DestructibleObstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5248260417400982617, guid: 5f4945b9d79da5044a5e4d012ec23afc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6988122284671750849, guid: 5f4945b9d79da5044a5e4d012ec23afc,
         type: 3}
@@ -559,6 +569,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1374267416}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1675,6 +1690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DestructibleObstacle (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5248260417400982617, guid: 5f4945b9d79da5044a5e4d012ec23afc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6988122284671750849, guid: 5f4945b9d79da5044a5e4d012ec23afc,
         type: 3}
@@ -2794,6 +2814,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1374267416}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2878,6 +2903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DestructibleObstacle (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5248260417400982617, guid: 5f4945b9d79da5044a5e4d012ec23afc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6988122284671750849, guid: 5f4945b9d79da5044a5e4d012ec23afc,
         type: 3}
@@ -3334,6 +3364,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1374267416}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3876,6 +3911,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestructibleObstacle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5248260417400982617, guid: 5f4945b9d79da5044a5e4d012ec23afc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6988122284671750849, guid: 5f4945b9d79da5044a5e4d012ec23afc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4206,6 +4246,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1374267416}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4744,6 +4789,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DestructibleObstacle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5248260417400982617, guid: 5f4945b9d79da5044a5e4d012ec23afc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6988122284671750849, guid: 5f4945b9d79da5044a5e4d012ec23afc,
         type: 3}

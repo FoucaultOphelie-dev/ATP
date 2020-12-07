@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: 8fdbcbce-f050-4ae9-b274-0f79c3de2a10
   displayName: '[ALPHA] Sprint 2'
+  displayImage: {fileID: 0}
   axis: 0
   parkourDifficulty: 3
   aimDifficulty: 3
@@ -33,5 +34,6 @@ MonoBehaviour:
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 69a78325ceb51d9448f7e00134832b9c, type: 3}
     m_SceneName: Sprint2
-  nextParkour: {fileID: 0}
+  nextParkour: {fileID: 11400000, guid: 1ec57cdabdb0ce6429f156654517efa3, type: 2}
+  isTutorial: 0
   timerByCheckpoint: []

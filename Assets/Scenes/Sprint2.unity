@@ -2019,18 +2019,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c871343e1ad989844adf2947e58e3c89, type: 3}
---- !u!114 &1337870163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7989333833652714573, guid: 9c74337f954dfb9468547606f223ae9e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1628677996}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6445ba52a33abfb4fb58d426a366ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1337870168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4873306913239295026, guid: 9c74337f954dfb9468547606f223ae9e,
@@ -2276,7 +2264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parkourState: 0
-  softResetKey: 308
+  softResetKey: 103
   hardResetKey: 8
   parkourData: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
   player: {fileID: 0}
@@ -3195,7 +3183,7 @@ MonoBehaviour:
   onEnterAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1337870163}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6

@@ -23,6 +23,7 @@ public class TutorialManager : MonoBehaviour
     private bool taughtDestructibleObstacle = false;
     private bool taughtPower = false;
     private bool taughtGameBasics = false;
+    private string keyTextColor;
 
     public CheckPoint[] checkpoints;
     public PopupSystem popUp;
@@ -34,7 +35,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        keyTextColor = "<#FFFFFF>";
     }
 
     // Update is called once per frame
@@ -114,7 +115,7 @@ public class TutorialManager : MonoBehaviour
     private void teachGameBasics()
     {
         //timeManager.pauseGame();
-        tutorialText = "Bienvenue dans ton premier parcours. Avant de démarrer un parcours, une caméra de présentation te montreras le chemin à suivre. Cela permet de se faire une première idée du parcours.\n\n\n Pour te lancer dans le pourcours, appuies sur la touche " + KeyCode.Return.ToString();
+        tutorialText = "Bienvenue dans ton premier parcours. Avant de démarrer un parcours, une caméra de présentation te montreras le chemin à suivre. Cela permet de se faire une première idée du parcours.\n\n\n Pour te lancer dans le pourcours, appuies sur la touche " + keyTextColor + KeyCode.Return.ToString()+"</color>";
         popUp.openPopUp(tutorialText);
         taughtGameBasics = true;
     }
@@ -122,7 +123,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToWalk()
     {
         //timeManager.pauseGame();
-        tutorialText = "Dans chaque parcours, tu dois franchir tous les points de passage le plus rapidement possible ! Pour cela, tu vas devoir te déplacer : \n\n\n - Pour se déplacer vers la gauche utilises la touche "+KeyCode.Q.ToString()+"\n - Pour se déplacer vers l'avant, utilises la touche "+KeyCode.Z.ToString()+"\n - Pour se déplacer vers la droite, utilises la touche "+KeyCode.D.ToString()+"\n - Pour se déplacer vers l'arrière, utilises la touche "+KeyCode.S.ToString()+"\n - Pour revenir au dernier point de passage franchi, utilises la touche "+parkourManager.softResetKey+"\n - Pour revenir au début du parcours, utilises la touche "+parkourManager.hardResetKey;
+        tutorialText = "Dans chaque parcours, tu dois franchir tous les points de passage le plus rapidement possible ! Pour cela, tu vas devoir te déplacer : \n\n\n - Pour se déplacer vers la gauche utilises la touche " + keyTextColor + KeyCode.Q.ToString() + "</color>" + "\n - Pour se déplacer vers l'avant, utilises la touche " + keyTextColor + KeyCode.Z.ToString() + "</color>" + "\n - Pour se déplacer vers la droite, utilises la touche " + keyTextColor + KeyCode.D.ToString() + "</color>" + "\n - Pour se déplacer vers l'arrière, utilises la touche " + keyTextColor + KeyCode.S.ToString() + "</color>" + "\n - Pour revenir au dernier point de passage franchi, utilises la touche " + keyTextColor + parkourManager.softResetKey + "</color>" + "\n - Pour revenir au début du parcours, utilises la touche " + keyTextColor + parkourManager.hardResetKey + "</color>";
         popUp.openPopUp(tutorialText);
         taughtToWalk = true;
     }
@@ -130,7 +131,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToJump()
     {
         //timeManager.pauseGame();
-        tutorialText = "Tu peux sauter au dessus des obstacles pour les franchir.\n\n\n Pour sauter, appuies sur "+ characterMove.keyJump.ToString();
+        tutorialText = "Tu peux sauter au dessus des obstacles pour les franchir.\n\n\n Pour sauter, appuies sur " + keyTextColor + characterMove.keyJump.ToString() + "</color>";
         popUp.openPopUp(tutorialText);
         taughtToJump = true;
     }
@@ -138,7 +139,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToRun()
     {
         //timeManager.pauseGame();
-        tutorialText = "Courir permet de gagner de la vitesse et de sauter par dessus des obstacles plus longs.\n\n\n Pour courir appuies sur "+ characterMove.keyRun.ToString();
+        tutorialText = "Courir permet de gagner de la vitesse et de sauter par dessus des obstacles plus longs.\n\n\n Pour courir appuies sur " + keyTextColor + characterMove.keyRun.ToString() + "</color>";
         popUp.openPopUp(tutorialText);
         taughtToRun = true;
     }
@@ -146,7 +147,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToSlide()
     {
         //timeManager.pauseGame();
-        tutorialText = "Il sera parfois nécessaire de glisser sous certains obstacles pour les franchir.\n\n\n Pour glisser, appuyer sur la touche "+ characterMove.keySlide.ToString();
+        tutorialText = "Il sera parfois nécessaire de glisser sous certains obstacles pour les franchir.\n\n\n Pour glisser, appuyer sur la touche " + keyTextColor + characterMove.keySlide.ToString() + "</color>";
         popUp.openPopUp(tutorialText);
         taughtToSlide = true;
     }
@@ -154,7 +155,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToWallride()
     {
         //timeManager.pauseGame();
-        tutorialText = "Les murs verticaux sont parfaits pour gagner un peu de distance avant un saut. Il est possible d'utiliser ces murs pour prendre quelques pas d'appuis.\n\n\n Pour courir sur un mur, courir vers le mur et appuyer sur "+characterMove.keyJump.ToString()+" pour s'élancer dessus.";
+        tutorialText = "Les murs verticaux sont parfaits pour gagner un peu de distance avant un saut. Il est possible d'utiliser ces murs pour prendre quelques pas d'appuis.\n\n\n Pour courir sur un mur, courir vers le mur et appuyer sur " + keyTextColor + characterMove.keyJump.ToString() + "</color>" + " pour s'élancer dessus.";
         popUp.openPopUp(tutorialText);
         taughtToWallride = true;
     }
@@ -162,7 +163,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToJumpWhileWallriding()
     {
         //timeManager.pauseGame();
-        tutorialText = "Tout en courant sur les murs, il est possible de sauter pour se donner un peu de distance supplémentaire ou pour passer d'un mur à un autre.\n\n\n Pour sauter depuis un mur, appuis sur la touche " + characterMove.keyJump.ToString();
+        tutorialText = "Tout en courant sur les murs, il est possible de sauter pour se donner un peu de distance supplémentaire ou pour passer d'un mur à un autre.\n\n\n Pour sauter depuis un mur, appuis sur la touche " + keyTextColor + characterMove.keyJump.ToString() + "</color>";
         popUp.openPopUp(tutorialText);
         taughtToJumpWhileWallriding = true;
     }
@@ -170,7 +171,7 @@ public class TutorialManager : MonoBehaviour
     private void teachToGrab()
     {
         //timeManager.pauseGame();
-        tutorialText = "Lors d'un saut où tu manques légèrement de hauteur ou de distance, tu peux t'aggriper aux rebords d'une plateforme. Une fois aggripé, tu peux soit monter sur la plateforme, soit sauter depuis le rebord de la plateforme.\n\n\n Pour monter sur la plateforme, utilises la touche \"avancer\".\n\n Pour sauter depuis le rebords de la plateforme, utilises la touche "+characterMove.keyJump;
+        tutorialText = "Lors d'un saut où tu manques légèrement de hauteur ou de distance, tu peux t'aggriper aux rebords d'une plateforme. Une fois aggripé, tu peux soit monter sur la plateforme, soit sauter depuis le rebord de la plateforme.\n\n\n Pour monter sur la plateforme, utilises la touche <#FFFFFF>\"avancer\"</color>.\n\n Pour sauter depuis le rebords de la plateforme, utilises la touche " + keyTextColor + characterMove.keyJump + "</color>";
         popUp.openPopUp(tutorialText);
         taughtToGrab = true;
     }
@@ -194,7 +195,7 @@ public class TutorialManager : MonoBehaviour
     private void teachAimingAndShooting()
     {
         //timeManager.pauseGame();
-        tutorialText = "Tout au long du parcours, tu croiseras des cibles. Pour gagner encore plus de points il faudra tirer sur ces cibles. Plus tu tireras au centre d'une cible, plus tu gagneras de points !\nAttention, toutes les cibles ne valent pas le même nombre de points ! Les cibles bleues valent 100 points. Les cibles rouges valent 200 points. Attention tirer sur une cible verte te feras perdre des points !\n\n - Pour dégainer ton pistolet, utilise ton clique droit\n - Pour tirer, utilise le clique gauche";
+        tutorialText = "Tout au long du parcours, tu croiseras des cibles. Pour gagner encore plus de points il faudra tirer sur ces cibles. Plus tu tireras au centre d'une cible, plus tu gagneras de points !\nAttention, toutes les cibles ne valent pas le même nombre de points ! Les cibles bleues valent 100 points. Les cibles rouges valent 200 points. Attention tirer sur une cible verte te feras perdre des points !\n\n - Pour dégainer ton pistolet, utilise ton <#FFFFFF>clique droit</color>\n - Pour tirer, utilise le <#FFFFFF>clique gauche" + "</color>";
         popUp.openPopUp(tutorialText);
         taughtAimingAndShooting = true;
     }
@@ -202,7 +203,7 @@ public class TutorialManager : MonoBehaviour
     private void teachReloading()
     {
         //timeManager.pauseGame();
-        tutorialText = "Lorsque tu n'as plus de munitions, tu devras recharger ! Attention, pour recharger, tu dois avoir ton arme en main !\n\n\n Pour recharger, utilise la touche "+KeyCode.R.ToString();
+        tutorialText = "Lorsque tu n'as plus de munitions, tu devras recharger ! Attention, pour recharger, tu dois avoir ton arme en main !\n\n\n Pour recharger, utilise la touche " + keyTextColor + KeyCode.R.ToString() + "</color>";
         popUp.openPopUp(tutorialText);
         taughtReloading = true;
     }
@@ -218,7 +219,7 @@ public class TutorialManager : MonoBehaviour
     private void teachPower()
     {
         //timeManager.pauseGame();
-        tutorialText = "Certaines platformes ou cibles se déplacent trop vite pour être facilement apréhendables. Pour pouvoir faire face à ces situations tu possède le pouvoir de maitriser le temps. Lorsque tu accélère le temps, ta jauge de temps augmente. Tu peux alors consommer cette jauge de temps pour le ralentir. Ralentir le temps te permettra de mieux assurer tes tirs et tes sauts sur des objets très rapides\n\n\n - Pour accélerer le temps, utilises la touche "+timeManager.keyAcceleration.ToString()+"\n - Pour ralentir le temps, utilise la touche "+timeManager.keyRalenti.ToString();
+        tutorialText = "Certaines platformes ou cibles se déplacent trop vite pour être facilement apréhendables. Pour pouvoir faire face à ces situations tu possède le pouvoir de maitriser le temps. Lorsque tu accélère le temps, ta jauge de temps augmente. Tu peux alors consommer cette jauge de temps pour le ralentir. Ralentir le temps te permettra de mieux assurer tes tirs et tes sauts sur des objets très rapides\n\n\n - Pour accélerer le temps, utilises la touche " + keyTextColor + timeManager.keyAcceleration.ToString() + "</color>" + "\n - Pour ralentir le temps, utilise la touche " + keyTextColor + timeManager.keyRalenti.ToString() + "</color>";
         popUp.openPopUp(tutorialText);
         taughtPower = true;
     }

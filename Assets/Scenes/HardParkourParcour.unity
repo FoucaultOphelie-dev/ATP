@@ -252,8 +252,8 @@ Transform:
   - {fileID: 528005969}
   - {fileID: 921555262}
   - {fileID: 1996373295}
-  - {fileID: 1085884087}
   - {fileID: 947208413}
+  - {fileID: 1085884087}
   - {fileID: 1670550610}
   - {fileID: 888528202}
   m_Father: {fileID: 493894412}
@@ -2389,7 +2389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parkourState: 0
-  softResetKey: 308
+  softResetKey: 103
   hardResetKey: 8
   parkourData: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
   player: {fileID: 0}

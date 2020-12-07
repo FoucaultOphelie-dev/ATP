@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="219991761">
+		<SoundBank Id="393239870" Language="SFX" Hash="1684810050">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -101,7 +101,7 @@
 					<IncludedMemoryFiles>
 						<File Id="740364709" Language="SFX">
 							<ShortName>jump.wav</ShortName>
-							<Path>SFX\jump_A26F2657.wem</Path>
+							<Path>SFX\jump_39C24F2A.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

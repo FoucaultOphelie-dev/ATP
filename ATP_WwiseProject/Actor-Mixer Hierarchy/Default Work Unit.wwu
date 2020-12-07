@@ -364,7 +364,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-23</Value>
+								<Value>-65</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>

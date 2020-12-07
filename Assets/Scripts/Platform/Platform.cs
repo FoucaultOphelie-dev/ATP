@@ -82,14 +82,20 @@ public class Platform : MonoBehaviour
 
     public void SoftReset()
     {
-        transform.position = positionOnLastCheckpoint;
-        currentTarget = targetOnLastCheckpoint;
+        if (points.Length > 0)
+        {
+            transform.position = positionOnLastCheckpoint;
+            currentTarget = targetOnLastCheckpoint;
+        }
     }
 
     public void HardReset()
     {
-        transform.position = initialPosition;
-        currentTarget = points[0];
+        if (points.Length > 0)
+        {
+            transform.position = initialPosition;
+            currentTarget = points[0];
+        }
     }
 }
 

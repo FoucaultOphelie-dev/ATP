@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 34.074635, g: 193.3037, b: 251.1162, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7175,6 +7175,7 @@ MonoBehaviour:
   - {fileID: 1127779011}
   - {fileID: 1315087105}
   popUp: {fileID: 2034494957}
+  textColorHexCode: FFFFFF
 --- !u!4 &2034494956
 Transform:
   m_ObjectHideFlags: 0

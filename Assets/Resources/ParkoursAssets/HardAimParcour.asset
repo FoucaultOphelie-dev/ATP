@@ -34,6 +34,6 @@ MonoBehaviour:
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 5e9bd5fdc610e7c4d9927ec42d86984c, type: 3}
     m_SceneName: HardAimParcour
-  nextParkour: {fileID: 11400000, guid: d2b917fed8535bc42a2dd80840f320ed, type: 2}
+  nextParkour: {fileID: 11400000, guid: 472d430e89adbef44ad5a4bee4e93537, type: 2}
   isTutorial: 0
   timerByCheckpoint: []

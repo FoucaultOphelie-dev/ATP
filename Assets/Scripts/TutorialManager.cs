@@ -28,6 +28,7 @@ public class TutorialManager : MonoBehaviour
     public CheckPoint[] checkpoints;
     public PopupSystem popUp;
 
+    public string textColorHexCode = "FFFFFF";
     private string tutorialText;
 
     //public TimeManager timeManager;
@@ -35,7 +36,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keyTextColor = "<#FFFFFF>";
+        keyTextColor = "<#"+textColorHexCode+">";
     }
 
     // Update is called once per frame

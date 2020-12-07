@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: neon bleu
-  m_Shader: {fileID: -6465566751694194690, guid: ea6edc4925172a54ea4f872ab54553fd,
+  m_Name: fragil
+  m_Shader: {fileID: -6465566751694194690, guid: 0a611c0a4b45c31488a14d7772a40270,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -29,5 +29,4 @@ Material:
     m_Floats: []
     m_Colors:
     - Color_8B2825E4: {r: 0, g: 1.552941, b: 1.490196, a: 0}
-    - Color_C42363FF: {r: 0, g: 650.62854, b: 995.88995, a: 0}
   m_BuildTextureStacks: []

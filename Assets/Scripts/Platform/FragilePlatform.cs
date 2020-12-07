@@ -6,7 +6,7 @@ public class FragilePlatform : MonoBehaviour
 {
     private float firstHitTime;
     public float breakingTime;
-    private bool isTouched;
+    public bool isTouched;
     private MeshDestroy meshDestroy;
     public AK.Wwise.Event craquementsEvent;
     public AK.Wwise.Event craquementStopEvent;
@@ -25,18 +25,15 @@ public class FragilePlatform : MonoBehaviour
             craquementStopEvent.Post(gameObject);
             crashEvent.Post(gameObject);
             meshDestroy.DestroyMesh();
+            isTouched = false;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void TriggerCollision()
     {
-        Debug.Log(collision.transform.name);
-        if (collision.transform.tag == "Player")
-        {
-            firstHitTime = Time.time;
-            isTouched = true;
-            craquementsEvent.Post(gameObject);
-        }
+        firstHitTime = Time.time;
+        isTouched = true;
+        craquementsEvent.Post(gameObject);
     }
 
     private void OnCollisionExit(Collision collision)

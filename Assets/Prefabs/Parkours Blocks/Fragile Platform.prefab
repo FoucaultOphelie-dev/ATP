@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4240276617313263109}
   - component: {fileID: 7777584641332457900}
   - component: {fileID: 6742757705828979627}
+  - component: {fileID: 6152948147829727874}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakingTime: 1
+  isTouched: 0
   craquementsEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -139,6 +141,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CutCascades: 4
   ExplodeForce: 1
+  isExploded: 0
+--- !u!114 &6152948147829727874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057008541505352163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bdc31df1695ce4988cb1d96a91bfca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onlyOnce: 0
+  method: 2
+  resetPosition: 1
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7777584641332457900}
+        m_TargetAssemblyTypeName: FragilePlatform, Assembly-CSharp
+        m_MethodName: TriggerCollision
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onResetAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1057008541505352163}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &5625005561800832196
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5625005561800832196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 123.56922, y: 80.75643, z: 138.44505}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1251211055494724499}

@@ -3,6 +3,8 @@
 public class Target : MonoBehaviour
 {
     public int multiplier = 1;
+    public bool initialState;
+
 
     public void takeAShot()
     {
@@ -11,6 +13,8 @@ public class Target : MonoBehaviour
 
     public void ResetTarget()
     {
+        if (initialState)
+            ShowTarget();
     }
 
     public void ShowTarget()

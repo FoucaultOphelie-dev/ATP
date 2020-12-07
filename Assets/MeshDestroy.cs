@@ -13,7 +13,7 @@ public class MeshDestroy : MonoBehaviour
 
     public int CutCascades = 1;
     public float ExplodeForce = 0;
-    private bool isExploded = false;
+    public bool isExploded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +78,8 @@ public class MeshDestroy : MonoBehaviour
             parts[i].GameObject.GetComponent<Rigidbody>().AddForceAtPosition(parts[i].Bounds.center * ExplodeForce, transform.position);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void setExploded(bool exploded)

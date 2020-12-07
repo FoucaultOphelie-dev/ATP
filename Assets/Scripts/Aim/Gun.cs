@@ -158,7 +158,6 @@ public class Gun : MonoBehaviour
             Target target = hit.transform.GetComponentInParent<Target>();
             if(target != null)
             {
-                target.takeAShot();
                 Hit hitfeedBack = new Hit();
                 switch (hit.transform.name)
                 {
@@ -216,7 +215,12 @@ public class Gun : MonoBehaviour
             DestructibleObstacle destructibleObstacle = hit.transform.GetComponentInParent<DestructibleObstacle>();
             if(destructibleObstacle != null)
             {
-                destructibleObstacle.takeAShot();
+                //destructibleObstacle.takeAShot();
+            }
+            ParkourTrigger trigger = hit.transform.GetComponentInParent<ParkourTrigger>();
+            if(trigger != null)
+            {
+                if (trigger.method == ParkourTrigger.TriggerMethod.Hit) trigger.DoTrigger();
             }
             switch (hit.transform.name)
             {

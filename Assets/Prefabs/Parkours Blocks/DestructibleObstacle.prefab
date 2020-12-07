@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5248260417400982617}
   - component: {fileID: 6456376970486940948}
   - component: {fileID: -8706176478746665799}
+  - component: {fileID: 8166125165496945392}
   m_Layer: 13
   m_Name: DestructibleObstacle
   m_TagString: Untagged
@@ -110,8 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449b4516534f83b4f9ae86a5ec41d929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: []
-  speed: 0
   soundEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -147,3 +146,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CutCascades: 4
   ExplodeForce: 10000
+  isExploded: 0
+--- !u!114 &8166125165496945392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072351904292412154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bdc31df1695ce4988cb1d96a91bfca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onlyOnce: 0
+  method: 3
+  resetPosition: 1
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5248260417400982617}
+        m_TargetAssemblyTypeName: DestructibleObstacle, Assembly-CSharp
+        m_MethodName: takeAShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onResetAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3072351904292412154}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2

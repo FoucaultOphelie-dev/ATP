@@ -62,9 +62,11 @@ public class ParkourManager : MonoBehaviour
     public int score;
     public bool newBestScore = false;
 
+    private Platform[] platforms;
     private List<Transform> targetBuffer;
     private List<Hit> hitBuffer;
     private List<ParkourTrigger> triggerBuffer;
+    private List<ParkourTrigger> alreadyTriggered;
     private List<Transform> targets;
     public List<Hit> hits;
 
@@ -134,8 +136,10 @@ public class ParkourManager : MonoBehaviour
         targetBuffer = new List<Transform>();
         hitBuffer = new List<Hit>();
         triggerBuffer = new List<ParkourTrigger>();
+        alreadyTriggered = new List<ParkourTrigger>();
         targets = new List<Transform>();
         hits = new List<Hit>();
+        platforms = FindObjectsOfType<Platform>();
 
         //Load best run
         ParkourSaveData data = loadData(parkourData);
@@ -197,6 +201,7 @@ public class ParkourManager : MonoBehaviour
         }
         if (Input.GetKeyDown(softResetKey))
         {
+            foreach (Platform platform in platforms) platform.SoftReset();
             player.transform.position = lastPos;
             player.transform.rotation = lastRotation;
             playerRigidbody.velocity = lastVelocity;
@@ -209,6 +214,7 @@ public class ParkourManager : MonoBehaviour
             triggerBuffer.Clear();
             targetBuffer.Clear();
             hitBuffer.Clear();
+            maxCompletion = 0;
         }
         if (Input.GetKeyDown(hardResetKey))
         {
@@ -242,13 +248,9 @@ public class ParkourManager : MonoBehaviour
 
             // handle Old State
             hits.AddRange(hitBuffer);
-
-            foreach (var trigger in triggerBuffer)
-            {
-                trigger.ResetTrigger();
-            }
             hitBuffer.Clear();
             targetBuffer.Clear();
+            alreadyTriggered.AddRange(triggerBuffer);
             triggerBuffer.Clear();
 
             // Trigger Checkpoint Done
@@ -397,16 +399,17 @@ public class ParkourManager : MonoBehaviour
             instance.isFinished = false;
             instance.isStarted = false;
             instance.newBestScore = false;
-
-            foreach (var trigger in instance.triggerBuffer)
+            instance.alreadyTriggered.AddRange(instance.triggerBuffer);
+            foreach (var trigger in instance.alreadyTriggered)
             {
                 trigger.ResetTrigger();
             }
+            instance.alreadyTriggered.Clear();
             instance.triggerBuffer.Clear();
             instance.targetBuffer.Clear();
             instance.hitBuffer.Clear();
             instance.hits.Clear();
-
+            foreach (Platform platform in instance.platforms) platform.HardReset();
             foreach (var checkpoint in instance.checkpoints)
             {
                 checkpoint.ResetCheckpoint();

@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleObstacle : MonoBehaviour
+public class DestructibleObstacle : Platform
 {
-    public Vector3[] points;
-    private int pointNumber;
-    private Vector3 currentTarget;
-
-    private float tolerance;
-    public float speed;
 
     private bool isFragile = true;
     private bool hit = false;
@@ -21,42 +15,23 @@ public class DestructibleObstacle : MonoBehaviour
     {
         if (points.Length > 0)
         {
-            currentTarget = points[0];
-        }
-        tolerance = speed * Time.deltaTime;
-        meshDestroy = GetComponent<MeshDestroy>();
-    }
 
-    void Update()
-    {
-        if (transform.position != currentTarget)
-        {
-            moveObstacle();
+            initialPosition = transform.position;
+            positionOnLastCheckpoint = transform.position;
+            ParkourManager.OnCheckpointDone += (int index, float time, float previousTime) =>
+            {
+                positionOnLastCheckpoint = transform.position;
+                targetOnLastCheckpoint = currentTarget;
+            };
+            targetOnLastCheckpoint = points[0];
+            currentTarget = points[0];
         }
         else
         {
-            updateTarget();
+            enabled = false;
         }
-    }
-
-    void moveObstacle()
-    {
-        Vector3 heading = currentTarget - transform.position;
-        transform.position += (heading / heading.magnitude) * speed * Time.deltaTime;
-        if (heading.magnitude < tolerance)
-        {
-            transform.position = currentTarget;
-        }
-    }
-
-    void updateTarget()
-    {
-        pointNumber++;
-        if (pointNumber >= points.Length)
-        {
-            pointNumber = 0;
-        }
-        currentTarget = points[pointNumber];
+        tolerance = speed * Time.deltaTime;
+        meshDestroy = GetComponent<MeshDestroy>();
     }
 
     public void takeAShot()

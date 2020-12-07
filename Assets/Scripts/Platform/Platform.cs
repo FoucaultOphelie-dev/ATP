@@ -3,19 +3,35 @@
 public class Platform : MonoBehaviour
 {
     public Vector3[] points;
-    private int pointNumber;
-    private Vector3 currentTarget;
+    protected int pointNumber;
+    protected Vector3 currentTarget;
+    protected Vector3 positionOnLastCheckpoint;
+    protected Vector3 initialPosition;
+    protected Vector3 targetOnLastCheckpoint;
 
-    private float tolerance;
+    protected float tolerance;
     public float speed;
-    private Vector3 heading;
+    protected Vector3 heading;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(points.Length > 0)
+        if (points.Length > 0)
         {
+
+            initialPosition = transform.position;
+            positionOnLastCheckpoint = transform.position;
+            ParkourManager.OnCheckpointDone += (int index, float time, float previousTime) =>
+            {
+                positionOnLastCheckpoint = transform.position;
+                targetOnLastCheckpoint = currentTarget;
+            };
+            targetOnLastCheckpoint = points[0];
             currentTarget = points[0];
+        }
+        else
+        {
+            enabled = false;
         }
         tolerance = speed * Time.deltaTime;
     }
@@ -54,11 +70,7 @@ public class Platform : MonoBehaviour
     {
         if(points.Length > 0)
         {
-            pointNumber++;
-            if (pointNumber >= points.Length)
-            {
-                pointNumber = 0;
-            }
+            pointNumber = (pointNumber + 1) % points.Length;
             currentTarget = points[pointNumber];
         }
     }
@@ -66,6 +78,18 @@ public class Platform : MonoBehaviour
     public Vector3 getHeading()
     {
         return heading;
+    }
+
+    public void SoftReset()
+    {
+        transform.position = positionOnLastCheckpoint;
+        currentTarget = targetOnLastCheckpoint;
+    }
+
+    public void HardReset()
+    {
+        transform.position = initialPosition;
+        currentTarget = points[0];
     }
 }
 

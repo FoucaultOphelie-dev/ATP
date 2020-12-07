@@ -6,33 +6,47 @@ using UnityEngine.Events;
 
 public class ParkourTrigger : MonoBehaviour
 {
+    public enum TriggerMethod
+    {
+        None,
+        Trigger,
+        Collision,
+        Hit
+    }
     public delegate void Trigger(ParkourTrigger trigger);
     public static event Trigger OnTrigger;
 
     public bool onlyOnce;
+    public TriggerMethod method = TriggerMethod.Trigger;
+    public bool resetPosition = true;
     private bool alreadyTriggered = false;
 
     public UnityEvent onEnterAction;
     public UnityEvent onExitAction;
     public UnityEvent onResetAction;
 
+
     private void OnTriggerEnter(Collider other)
     {
+        if (method != TriggerMethod.Trigger) return;
         if(other.tag == "Player")
         {
-            if (!onlyOnce)
-            {
-                DoTrigger();
-            }
-            else
-            {
-                if(!alreadyTriggered) DoTrigger();
-            }
+            DoTrigger();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (method != TriggerMethod.Collision) return;
+        if (collision.transform.tag == "Player")
+        {
+            DoTrigger();
         }
     }
 
     public void DoTrigger()
     {
+        if (alreadyTriggered && onlyOnce) return;
         onEnterAction?.Invoke();
         OnTrigger?.Invoke(this);
         alreadyTriggered = true;

@@ -2513,7 +2513,7 @@ GameObject:
   - component: {fileID: 451466362214190342}
   m_Layer: 11
   m_Name: CharacterFinal
-  m_TagString: Player
+  m_TagString: PlayerRoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

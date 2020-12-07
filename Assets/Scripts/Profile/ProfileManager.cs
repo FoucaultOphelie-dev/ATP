@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
+using System.Text;
 
 public struct Profile
 {
@@ -43,8 +44,12 @@ public class ProfileManager : MonoBehaviour
             return instance;
         }
     }
+#if UNITY_EDITOR
     [ReadOnly]
     public string currentGUIDProfile;
+#else
+    public string currentGUIDProfile;
+#endif
     string path;
     public Dictionary<string, Profile> profiles = new Dictionary<string, Profile>();
     public void Awake()
@@ -58,6 +63,7 @@ public class ProfileManager : MonoBehaviour
         path = Path.Combine(Application.persistentDataPath, "Profiles");
         LoadProfiles();
         currentGUIDProfile = PlayerPrefs.GetString("lastProfile");
+        Debug.Log(currentGUIDProfile);
         if (!profiles.ContainsKey(currentGUIDProfile))
         {
             currentGUIDProfile = "";
@@ -82,18 +88,23 @@ public class ProfileManager : MonoBehaviour
             Directory.CreateDirectory(path);
             return;
         }
-        foreach (string file in Directory.EnumerateFiles(path, "*.json")) {
-            Profile profile = JsonConvert.DeserializeObject<Profile>(File.ReadAllText(file));
-            profiles.Add(profile.GetGuid(), profile);
+        foreach (string file in Directory.GetFiles(path))
+        {
+            string filepath = Path.Combine(path, file);
+            string jsonData = File.ReadAllText(filepath);
+            if (jsonData != "")
+            {
+                Profile profile = JsonConvert.DeserializeObject<Profile>(jsonData);
+                profiles.Add(profile.GetGuid(), profile);
+            }
         }
     }
 
     public void SaveProfile(string guid)
     {
         string profilePath = Path.Combine(path, guid + ".json");
-        StreamWriter writer = new StreamWriter(profilePath, false);
-        writer.Write(JsonConvert.SerializeObject(profiles[guid]));
-        writer.Close();
+        string jsonData = JsonConvert.SerializeObject(profiles[guid]);
+        File.WriteAllText(profilePath, jsonData);
     }
 
     public void SwitchProfile(string guid)

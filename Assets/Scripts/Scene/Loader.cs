@@ -9,8 +9,16 @@ public static class Loader
     public static void LoadWithLoadingScreen(string scene)
     {
         Debug.Log("Loading scene:" + scene);
-        SceneManager.LoadScene("Loading");
         onLoaderCallback += () => { SceneManager.LoadScene(scene); };
+        if (Fadder.Instance())
+        {
+            Fadder.OnFadeOutEnd += () => { SceneManager.LoadScene("Loading"); };
+            Fadder.BeginFadeOut();
+        }
+        else
+        {
+            SceneManager.LoadScene("Loading");
+        }
     }
 
     public static void Load(string scene)

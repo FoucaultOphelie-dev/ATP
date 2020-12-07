@@ -49,7 +49,7 @@ public class TimeManager : MonoBehaviour
 
         if (!playerCharacterMove)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("PlayerRoot");
             if (player)
             {
                 CharacterMove moveComponent = player.GetComponent<CharacterMove>();

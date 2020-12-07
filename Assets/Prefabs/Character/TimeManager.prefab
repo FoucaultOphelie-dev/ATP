@@ -39,7 +39,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7221567532016521380}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 059ea562fc626f149999ef1a6053906d, type: 3}
   m_Name: 
@@ -54,6 +54,7 @@ MonoBehaviour:
   doAcceleration: 0
   jauge: 0
   maxJauge: 10
+  powerActivate: 0
   volume: {fileID: 7221567532858609487}
   wwiseEventSlow:
     idInternal: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: d9dc4326-5b51-4e74-b55a-cb757070d1f8
   displayName: Tutorial
-  displayImage: {fileID: 0}
+  displayImage: {fileID: 21300000, guid: 55350588e2f87ab43a86b825f7b4f761, type: 3}
   axis: 0
   parkourDifficulty: 0
   aimDifficulty: 0

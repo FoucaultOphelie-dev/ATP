@@ -26,10 +26,10 @@ public class ParkourTrigger : MonoBehaviour
     public UnityEvent onResetAction;
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
         if (method != TriggerMethod.Trigger) return;
-        if(other.tag == "Player")
+        if (collider.tag == "Player")
         {
             DoTrigger();
         }
@@ -38,7 +38,7 @@ public class ParkourTrigger : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (method != TriggerMethod.Collision) return;
-        if (collision.transform.tag == "Player")
+        if (collision.collider.tag == "Player")
         {
             DoTrigger();
         }

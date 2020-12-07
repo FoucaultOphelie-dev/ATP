@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ColliderGrab
   - SpectatingCamera
+  - PlayerRoot
   layers:
   - Default
   - TransparentFX

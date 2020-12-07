@@ -45,7 +45,9 @@ public enum ParkourAxis
 [CreateAssetMenu(fileName = "newParkour", menuName = "New Parkour")]
 public class Parkour : ScriptableObject
 {
+#if UNITY_EDITOR
     [ReadOnly]
+#endif
     public string guid;
     [Tooltip("Nom affiché au joueur")]
     public string displayName;
@@ -128,8 +130,8 @@ public class ParkourEditor : Editor
             }
         }
 
-        int min = parkour.startingScore;
-        int i = 0;
+        int min = parkour.medals[0].score;
+        int i = 1;
         while(i < parkour.medals.Length)
         {
             if (parkour.medals[i].score > min)

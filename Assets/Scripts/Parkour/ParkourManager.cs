@@ -106,14 +106,31 @@ public class ParkourManager : MonoBehaviour
         OnCheckpointDone = null;
         OnParkourSwitchState = null;
         timerByCheckpoint = new List<float>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("PlayerRoot");
+        if (!player)
+            Debug.LogError("Player is missing");
+        else
+        {
+            Debug.Log(player.name);
+        }
         playerRigidbody = player.GetComponent<Rigidbody>();
+        if (!playerRigidbody)
+            Debug.LogError("playerRigidbody is missing");
         playerMovement = player.GetComponent<CharacterMove>();
-        timeManager = FindObjectOfType<TimeManager>();
+        if (!playerMovement)
+            Debug.LogError("playerMovement is missing");
+        timeManager = GameObject.FindObjectOfType<TimeManager>();
+        if (!timeManager)
+            Debug.LogError("timeManager is missing");
         cameraMove = player.GetComponent<CameraMove>();
+        if (!cameraMove)
+            Debug.LogError("cameraMove is missing");
         scoringCamera = player.transform.Find("Body/ScoringCamera").GetComponent<Camera>();
+        if (!scoringCamera)
+            Debug.LogError("scoringCamera is missing");
 
         checkpoints = GameObject.FindObjectsOfType<CheckPoint>().OrderBy(checkpoint => checkpoint.index).ToList<CheckPoint>();
+        Debug.Log(checkpoints.Count + " checkpoints found");
         lenghtByCheckpoint = new List<float>();
         for (int i = 1; i < checkpoints.Count; i++)
         {
@@ -123,6 +140,8 @@ public class ParkourManager : MonoBehaviour
         }
 
         startingCheckpoint = GameObject.FindObjectOfType<StartingCheckpoint>();
+        if (!startingCheckpoint)
+            Debug.LogError("startingCheckpoint is missing");
         lastPos = player.transform.position;
         lastRotation = player.transform.rotation;
 
@@ -132,6 +151,8 @@ public class ParkourManager : MonoBehaviour
         {
             spectatingCamera = GameObject.FindGameObjectWithTag("SpectatingCamera");
         }
+        if (!spectatingCamera)
+            Debug.LogError("spectatingCamera is missing");
 
         targetBuffer = new List<Transform>();
         hitBuffer = new List<Hit>();
@@ -220,6 +241,10 @@ public class ParkourManager : MonoBehaviour
         if (Input.GetKeyDown(hardResetKey))
         {
             ResetGameplay();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Loader.LoadWithLoadingScreen("Main Menu");
         }
     }
 
@@ -377,13 +402,14 @@ public class ParkourManager : MonoBehaviour
         ParkourManager instance = ParkourManager.Instance();
         if (!instance) return;
         instance.spectatingCamera.GetComponent<Camera>().enabled = false;
+        instance.playerMovement.cam.GetComponent<Camera>().enabled = true;
         instance.scoringCamera.enabled = false;
         instance.spectatingCamera.SetActive(false);
-        instance.playerMovement.cam.GetComponent<Camera>().enabled = true;
         instance.playerMovement.enabled = true;
         instance.playerMovement.CanMove = false;
         instance.playerMovement.bobbing = false;
         instance.cameraMove.enabled = true;
+        instance.timeManager.enabled = true;
         instance.player.GetComponent<Animator>().Rebind();
 
         if (instance.firstRun)

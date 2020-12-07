@@ -69,17 +69,17 @@ public class CanvasManager : MonoBehaviour
         // Next Level buttons
         Button button = transform.Find("ScoringCanvas/Container/Footer/ButtonsRowWithNextLevel/nextLevel")
             .GetComponent<Button>();
-        button.onClick.AddListener(() => { Loader.Load(ParkourManager.Instance().parkourData.nextParkour.scene.SceneName); });
+        button.onClick.AddListener(() => { Loader.LoadWithLoadingScreen(ParkourManager.Instance().parkourData.nextParkour.scene.SceneName); });
 
         // Setup return menu buttons
 
         transform.Find("ScoringCanvas/Container/Footer/ButtonsRow/return")
             .GetComponent<Button>()
-            .onClick.AddListener(ParkourManager.ResetGameplay);
+            .onClick.AddListener(() => { Loader.LoadWithLoadingScreen("Main Menu"); });
 
         transform.Find("ScoringCanvas/Container/Footer/ButtonsRowWithNextLevel/return")
             .GetComponent<Button>()
-            .onClick.AddListener(ParkourManager.ResetGameplay);
+            .onClick.AddListener(() => { Loader.LoadWithLoadingScreen("Main Menu"); });
 
         if (ParkourManager.Instance().parkourData.nextParkour)
         {
@@ -122,9 +122,13 @@ public class CanvasManager : MonoBehaviour
                 parkourNameDisplay.text = ParkourManager.Instance().parkourData.displayName;
                 break;
             case ParkourState.Gameplay:
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = false;
                 GameplayCanvas.gameObject.SetActive(true);
                 break;
             case ParkourState.Scoring:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 ParkourManager.Instance().player.GetComponent<CharacterMove>().animator.Play(clips[UnityEngine.Random.Range(0, clips.Length-1)].name);
                 scoringParkourNameDisplay.text = ParkourManager.Instance().parkourData.displayName;
                 chronoDisplay.text = ChronoUI.TimerToChrono(ParkourManager.Instance().GetTimer());

@@ -56,6 +56,9 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Fadder.BeginFadeIn();
         createProfileButton.onClick.AddListener(() => {
             ProfileManager.Instance().CreateProfile(profileNameInput.text);
             LoadProfiles();
@@ -85,31 +88,31 @@ public class MenuManager : MonoBehaviour
         ProfileManager manager = ProfileManager.Instance();
         List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
         int selected = -1;
-        if(manager.currentGUIDProfile != "")
+        foreach (KeyValuePair<string, Profile> profile in manager.profiles)
         {
-            foreach (KeyValuePair<string, Profile> profile in manager.profiles)
+            options.Add(new TMP_Dropdown.OptionData(profile.Value.name));
+            guidList.Add(profile.Key);
+            if (profile.Key == manager.currentGUIDProfile)
             {
-                options.Add(new TMP_Dropdown.OptionData(profile.Value.name));
-                guidList.Add(profile.Key);
-                if (profile.Key == manager.currentGUIDProfile)
-                {
-                    selected = options.Count - 1;
-                    UpdateProfile(profile.Value);
-                }
+                selected = options.Count - 1;
+                UpdateProfile(profile.Value);
             }
-            dropdownProfiles.AddOptions(options);
-            dropdownProfiles.value = selected;
-            if(dropdownProfiles.value == -1)
+        }
+        dropdownProfiles.AddOptions(options);
+        dropdownProfiles.value = selected;
+        if(dropdownProfiles.value == -1)
+        {
+            if(manager.currentGUIDProfile != "")
             {
                 Debug.LogError("profile guid:" + manager.currentGUIDProfile + " not found");
                 return;
             }
-        }
-        else
-        {
-            Debug.Log("First play");
-            profileForm.SetActive(true);
-            return;
+            else
+            {
+                Debug.Log("First play");
+                profileForm.SetActive(true);
+                return;
+            }
         }
     }
 
@@ -155,7 +158,7 @@ public class MenuManager : MonoBehaviour
 
     public void ParkourSelected(Parkour parkour)
     {
-        Profile profile = new Profile();
+        Profile profile = new Profile("ERROR");
         ParkourSaveData data = null;
         if (ProfileManager.Instance().IsCurrentProfileValid())
         {
@@ -189,34 +192,38 @@ public class MenuManager : MonoBehaviour
         temporalDifficultyRating.fillAmount = ratio * parkour.timePowerDifficulty;
         //Required
         bool RequiredMedals = true;
-        // Gold
         goldRequired.text = parkour.required[1].ToString();
-        if (profile.medalsObtained[1] >= parkour.required[1])
-            goldRequired.color = conditionValid;
-        else
-        {
-            RequiredMedals = false;
-            goldRequired.color = conditionUnvalid;
-        }
-
-        // Silver
         silverRequired.text = parkour.required[2].ToString();
-        if (profile.medalsObtained[2] >= parkour.required[2])
-            silverRequired.color = conditionValid;
-        else
-        {
-            RequiredMedals = false;
-            silverRequired.color = conditionUnvalid;
-        }
-
-        // Bronze
         bronzeRequired.text = parkour.required[3].ToString();
-        if (profile.medalsObtained[3] >= parkour.required[3])
-            bronzeRequired.color = conditionValid;
-        else
+        if (profile.name != "ERROR")
         {
-            RequiredMedals = false;
-            bronzeRequired.color = conditionUnvalid;
+
+            // Gold
+            if (profile.medalsObtained[1] >= parkour.required[1])
+                goldRequired.color = conditionValid;
+            else
+            {
+                RequiredMedals = false;
+                goldRequired.color = conditionUnvalid;
+            }
+
+            // Silver
+            if (profile.medalsObtained[2] >= parkour.required[2])
+                silverRequired.color = conditionValid;
+            else
+            {
+                RequiredMedals = false;
+                silverRequired.color = conditionUnvalid;
+            }
+
+            // Bronze
+            if (profile.medalsObtained[3] >= parkour.required[3])
+                bronzeRequired.color = conditionValid;
+            else
+            {
+                RequiredMedals = false;
+                bronzeRequired.color = conditionUnvalid;
+            }
         }
 
         if (RequiredMedals)
@@ -224,8 +231,7 @@ public class MenuManager : MonoBehaviour
             startParkourButton.gameObject.SetActive(true);
             lockParkourButton.gameObject.SetActive(false);
             startParkourButton.onClick.AddListener(() => {
-                Fadder.OnFadeOutEnd += () => { Loader.LoadWithLoadingScreen(parkour.scene.SceneName); };
-                Fadder.BeginFadeOut();
+                Loader.LoadWithLoadingScreen(parkour.scene.SceneName);
             });
         }
         else

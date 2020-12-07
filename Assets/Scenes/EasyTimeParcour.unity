@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7497c7c41d0c7df48baf30363c33fa9e, type: 3}
 --- !u!4 &22897376 stripped
@@ -222,6 +227,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 629454211}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -377,6 +387,11 @@ PrefabInstance:
     - target: {fileID: 8575052410667842686, guid: 7497c7c41d0c7df48baf30363c33fa9e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -927,6 +942,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b5a32bfdf0e5f4588b0377c2a765cc, type: 3}
 --- !u!4 &195609060 stripped
@@ -1035,6 +1055,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7497c7c41d0c7df48baf30363c33fa9e, type: 3}
 --- !u!4 &232691798 stripped
@@ -1062,6 +1087,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 629454211}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1507,6 +1537,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7497c7c41d0c7df48baf30363c33fa9e, type: 3}
 --- !u!4 &422063868 stripped
@@ -1673,6 +1708,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b5a32bfdf0e5f4588b0377c2a765cc, type: 3}
 --- !u!4 &522776715 stripped
@@ -1763,6 +1803,11 @@ PrefabInstance:
     - target: {fileID: 7395917601240857582, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1877,6 +1922,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 629454211}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2427,6 +2477,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7497c7c41d0c7df48baf30363c33fa9e, type: 3}
 --- !u!4 &799175639 stripped
@@ -2665,6 +2720,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 629454211}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2757,6 +2817,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 629454211}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3097,6 +3162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyOnce: 1
+  method: 1
+  resetPosition: 1
   onEnterAction:
     m_PersistentCalls:
       m_Calls:
@@ -3178,10 +3245,34 @@ MonoBehaviour:
   onResetAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 894952893}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1101957282}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 232691799}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3378,6 +3469,11 @@ PrefabInstance:
     - target: {fileID: 7395917601240857582, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3631,6 +3727,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b5a32bfdf0e5f4588b0377c2a765cc, type: 3}
 --- !u!4 &1170445891 stripped
@@ -3786,6 +3887,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyOnce: 1
+  method: 1
+  resetPosition: 1
   onEnterAction:
     m_PersistentCalls:
       m_Calls:
@@ -3987,10 +4090,94 @@ MonoBehaviour:
   onResetAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 550278352}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 880579234}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1914988903}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 195609061}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1693529691}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1773898010}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 422063869}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1438433877}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4672,6 +4859,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7497c7c41d0c7df48baf30363c33fa9e, type: 3}
 --- !u!4 &1438433876 stripped
@@ -5205,6 +5397,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b5a32bfdf0e5f4588b0377c2a765cc, type: 3}
 --- !u!4 &1693529690 stripped
@@ -5295,6 +5492,11 @@ PrefabInstance:
     - target: {fileID: 8575052410667842686, guid: 7497c7c41d0c7df48baf30363c33fa9e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575052410667842687, guid: 7497c7c41d0c7df48baf30363c33fa9e,
+        type: 3}
+      propertyPath: initialState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5895,6 +6097,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 629454211}
     m_Modifications:
+    - target: {fileID: 3324321280917565714, guid: d0b94e1d33c71af489ee208f38780b05,
+        type: 3}
+      propertyPath: initialState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3324321280917565715, guid: d0b94e1d33c71af489ee208f38780b05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6037,6 +6244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyOnce: 1
+  method: 1
+  resetPosition: 1
   onEnterAction:
     m_PersistentCalls:
       m_Calls:
@@ -6237,7 +6446,103 @@ MonoBehaviour:
         m_CallState: 2
   onResetAction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 259762989}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 25301318}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 522776716}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2075798660}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 534393744}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1170445892}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 29436040}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 22897377}
+        m_TargetAssemblyTypeName: Target, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &2026540580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6321,6 +6626,11 @@ PrefabInstance:
     - target: {fileID: 7395917601240857582, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395917601240857583, guid: 54b5a32bfdf0e5f4588b0377c2a765cc,
+        type: 3}
+      propertyPath: initialState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

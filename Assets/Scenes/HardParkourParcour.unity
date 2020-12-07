@@ -918,6 +918,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestructibleObstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 5248260417400982617, guid: 5f4945b9d79da5044a5e4d012ec23afc,
+        type: 3}
+      propertyPath: initialState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6988122284671750849, guid: 5f4945b9d79da5044a5e4d012ec23afc,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -158,6 +158,7 @@ public class ParkourManager : MonoBehaviour
         SwitchParkourState(ParkourState.Intro);
         ParkourTrigger.OnTrigger += TriggerParkour;
         Gun.OnTargetHit += TargetHit;
+        Fadder.BeginFadeIn();
     }
 
     // Update is called once per frame

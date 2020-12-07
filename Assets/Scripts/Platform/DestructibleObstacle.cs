@@ -8,6 +8,7 @@ public class DestructibleObstacle : Platform
     private bool isFragile = true;
     private bool hit = false;
     private MeshDestroy meshDestroy;
+    public bool initialState;
 
     public AK.Wwise.Event soundEvent;
     // Start is called before the first frame update

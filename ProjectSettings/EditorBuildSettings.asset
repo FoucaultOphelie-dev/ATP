@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HardMixParcour.unity
     guid: c3298db983e7ce947a9c5702510e07c7
+  - enabled: 1
+    path: Assets/Scenes/HardTimeParcour.unity
+    guid: 2c47577bacf17484b9dc5b01d5d57207
   m_configObjects: {}

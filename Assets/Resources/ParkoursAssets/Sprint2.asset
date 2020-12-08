@@ -15,6 +15,7 @@ MonoBehaviour:
   guid: 8fdbcbce-f050-4ae9-b274-0f79c3de2a10
   displayName: '[ALPHA] Sprint 2'
   displayImage: {fileID: 0}
+  isDevParkour: 1
   axis: 0
   parkourDifficulty: 3
   aimDifficulty: 3
@@ -31,6 +32,7 @@ MonoBehaviour:
   - type: 3
     score: 200
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 0}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 69a78325ceb51d9448f7e00134832b9c, type: 3}
     m_SceneName: Sprint2

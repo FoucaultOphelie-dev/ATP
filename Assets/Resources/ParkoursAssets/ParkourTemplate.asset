@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eff7539bbb5d4289bb27efd1db584, type: 3}
   m_Name: ParkourTemplate
   m_EditorClassIdentifier: 
+  guid: d7d4c85d-befd-4b73-b090-e94935382ba9
   displayName: '[DEBUG] TEST'
+  displayImage: {fileID: 0}
+  isDevParkour: 1
   axis: 2
   parkourDifficulty: 0
   aimDifficulty: 0
@@ -29,8 +32,10 @@ MonoBehaviour:
   - type: 3
     score: 250
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 0}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 0abf7a160d6f9b045b4e03d8bf780959, type: 3}
     m_SceneName: ParkourTemplate
-  nextParkour: {fileID: 11400000, guid: 945b3efac1c15e345936ca403dca067e, type: 2}
+  nextParkour: {fileID: 0}
+  isTutorial: 0
   timerByCheckpoint: []

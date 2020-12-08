@@ -231,15 +231,17 @@ public class CharacterMove : MonoBehaviour
         {
             isAiming = true;
             CanRun = false;
-            weapon.SetActive(true);
+            //weapon.SetActive(true);
         }
 
-        if (Input.GetButtonUp("Fire2"))
+        if (!Input.GetButton("Fire2") && !gun.IsReloading())
         {
             isAiming = false;
             CanRun = true;
-            weapon.SetActive(false);
+            //weapon.SetActive(false);
         }
+        if(isAiming) CanRun = false;
+        else CanRun = true;
         #endregion
 
         #region SLIDE

@@ -941,10 +941,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 451466362089929409, guid: b21efc280a1f68245a72c862a41e8152,
+    - target: {fileID: 365156742311733653, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
-      propertyPath: m_TagString
-      value: Player
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 451466362516135256, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
@@ -955,11 +955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CharacterFinal
-      objectReference: {fileID: 0}
-    - target: {fileID: 452538108969510803, guid: b21efc280a1f68245a72c862a41e8152,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerRoot
       objectReference: {fileID: 0}
     - target: {fileID: 455676387012425227, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
@@ -1254,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parkourState: 0
-  softResetKey: 114
+  softResetKey: 103
   hardResetKey: 8
   parkourData: {fileID: 11400000, guid: 7c394a4d371c7914db2901f6abbfaf54, type: 2}
   player: {fileID: 0}

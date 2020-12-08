@@ -35,19 +35,41 @@ public class Gun : MonoBehaviour
     public TextMeshProUGUI reloadMessage;
     private int score;
     private string textFeedback;
+    public GameObject mesh;
     
     public int maxAmo;
     private int amountOfBullets;
     private bool reloading;
-    private float reloadStartTime;
     public float reloadingTime;
+    private float reloadingTimer;
     //public VisualEffect tir;
     private string feedback;
 
+    private int lastCheckAmmo;
+    private bool lastCheckReloading = false;
+    private float lastCheckReloadingTimer = 0;
+
+    public CharacterMove playerMove;
     public AK.Wwise.Event wwiseEvent;
 
     void Start()
     {
+        lastCheckAmmo = maxAmo;
+        ParkourManager.OnCheckpointDone += (int index, float time, float lastTime) => {
+            lastCheckAmmo = amountOfBullets;
+            lastCheckReloading = reloading;
+            lastCheckReloadingTimer = reloadingTimer;
+        };
+        ParkourManager.OnCheckpointReset += () => {
+            amountOfBullets = lastCheckAmmo;
+            reloading = lastCheckReloading;
+            reloadingTimer = lastCheckReloadingTimer;
+        };
+        ParkourManager.OnParkourReset += () => {
+            amountOfBullets = maxAmo;
+            reloading = false;
+            reloadingTimer = 0;
+        };
         //Find UI
         RectTransform gameplayCanvas = GameObject.Find("CanvasManager").transform.Find("GameplayCanvas").GetComponent<RectTransform>();
         if (gameplayCanvas)
@@ -107,6 +129,8 @@ public class Gun : MonoBehaviour
         bullets.color = Color.white;
         reloadMessage.text = "";
         bullets.text = amountOfBullets.ToString();
+        if(!playerMove) playerMove = FindObjectOfType<CharacterMove>();
+        if (!playerMove) Debug.LogError("no player move on gun");
     }
     // Update is called once per frame
     void Update()
@@ -115,33 +139,45 @@ public class Gun : MonoBehaviour
         {
             if (ParkourManager.Instance().parkourState != ParkourState.Gameplay) return;
         }
-        if (Input.GetButtonDown("Fire1") && !reloading)
+        if (playerMove.isAiming)
         {
-            if (amountOfBullets <= 0)
+            if (!mesh.activeSelf) mesh.SetActive(true);
+            if (reloading)
             {
-                reloadMessage.text = "You need to reload ! (press R)";
+                reloadingTimer += Time.deltaTime;
+                if (reloadingTimer >= reloadingTime)
+                {
+                    setReloading(false);
+                    reloadMessage.text = "";
+                    reloadingTimer = 0;
+                }
             }
             else
             {
-                shoot();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    if (amountOfBullets <= 0)
+                    {
+                        reloadMessage.text = "You need to reload ! (press R)";
+                    }
+                    else
+                    {
+                        shoot();
+                    }
+                }
+                if (Input.GetKeyDown("r") && getAmountOfBullets() < maxAmo)
+                {
+                    reload();
+                    reloadMessage.text = "Reloading";
+                }
             }
         }
-
-        if (getReloading() && Time.time - getReloadStartTime() > reloadingTime)
+        else
         {
-            setReloading(false);
-            reloadMessage.text = "";
-        }
-        if (getReloading())
-        {
-            reloadMessage.text = "Reloading";
-        }
-        if (Input.GetKeyDown("r") && getAmountOfBullets() < maxAmo)
-        {
-            reload();
+            if (mesh.activeSelf) mesh.SetActive(false);
         }
         if(bullets)
-            bullets.text = getAmountOfBullets().ToString();
+            bullets.text = amountOfBullets.ToString();
     }
 
     void shoot()
@@ -273,29 +309,11 @@ public class Gun : MonoBehaviour
             }
         }
     }
-
-    private IEnumerator CoTir()
-    {
-        
-        yield return new WaitForSeconds(0.1f);
-        //tir.SetFloat("alpha", -1.0f);
-    } 
     private void reload()
     {
         setReloading(true);
-        setReloadStartTime(Time.time);
         setAmountOfBullets(maxAmo);
         reloadMessage.text = "";
-    }
-
-    public float getReloadStartTime()
-    {
-        return reloadStartTime;
-    }
-
-    public bool getReloading()
-    {
-        return reloading;
     }
 
     public void setReloading(bool isReloading)
@@ -312,8 +330,14 @@ public class Gun : MonoBehaviour
         amountOfBullets = bullets;
     }
 
-    public void setReloadStartTime(float startTime)
+    public bool IsReloading()
     {
-        reloadStartTime = startTime;
+        return reloading;
+    }
+    private IEnumerator CoTir()
+    {
+
+        yield return new WaitForSeconds(0.1f);
+        //tir.SetFloat("alpha", -1.0f);
     }
 }

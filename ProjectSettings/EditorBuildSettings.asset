@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: 019d53985e8446646b6f29d97c90ea81
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Sprint2.unity
     guid: 69a78325ceb51d9448f7e00134832b9c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Test Mathieu.unity
     guid: 88a8e16c452e7fa4d98ab201e89e8cf1
   - enabled: 1

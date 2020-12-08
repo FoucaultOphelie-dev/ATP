@@ -30,11 +30,16 @@ public class Gun : MonoBehaviour
 
     public float range = 100f;
     public Camera fpsCam;
+
+    [Header("UI Feedback")]
     public TextMeshProUGUI shotFeedback;
     public TextMeshProUGUI bullets;
     public TextMeshProUGUI reloadMessage;
+    public float showTime;
+    public float fadeTime;
+    public int initalSize;
+    public int fadeSize;
     private int score;
-    private string textFeedback;
     public GameObject mesh;
     
     public int maxAmo;
@@ -44,6 +49,7 @@ public class Gun : MonoBehaviour
     private float reloadingTimer;
     //public VisualEffect tir;
     private string feedback;
+    private IEnumerator feedbackFadeRoutine;
 
     private int lastCheckAmmo;
     private bool lastCheckReloading = false;
@@ -68,12 +74,18 @@ public class Gun : MonoBehaviour
                 reloadMessage.text = "Reloading";
             else
                 reloadMessage.text = "";
+            StopFeedbackFadeRoutine();
+            shotFeedback.fontSize = initalSize;
+            shotFeedback.color = Color.clear;
         };
         ParkourManager.OnParkourReset += () => {
             amountOfBullets = maxAmo;
             reloading = false;
             reloadingTimer = 0;
             reloadMessage.text = "";
+            StopFeedbackFadeRoutine();
+            shotFeedback.fontSize = initalSize;
+            shotFeedback.color = Color.clear;
         };
         //Find UI
         RectTransform gameplayCanvas = GameObject.Find("CanvasManager").transform.Find("GameplayCanvas").GetComponent<RectTransform>();
@@ -199,6 +211,9 @@ public class Gun : MonoBehaviour
             Target target = hit.transform.GetComponentInParent<Target>();
             if(target != null)
             {
+                StopFeedbackFadeRoutine();
+
+                feedbackFadeRoutine = HitUIFeedbackRoutine();
                 Hit hitfeedBack = new Hit();
                 switch (hit.transform.name)
                 {
@@ -250,6 +265,7 @@ public class Gun : MonoBehaviour
                         break;
                 }
                 shotFeedback.text = hitfeedBack.text;
+                shotFeedback.fontSize = initalSize;
                 shotFeedback.color = hitfeedBack.color;
                 OnTargetHit?.Invoke(hitfeedBack, hit.transform);
             }
@@ -263,55 +279,56 @@ public class Gun : MonoBehaviour
             {
                 if (trigger.method == ParkourTrigger.TriggerMethod.Hit) trigger.DoTrigger();
             }
-            switch (hit.transform.name)
-            {
-                case "InnerCircle":
-                    score = 100 * target.multiplier;
-                    feedback = "Perfect ";
-                    if(score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.yellow;
-                    break;
-                case "FirstCircle":
-                    score = 80 * target.multiplier; ;
-                    feedback = "Great ";
-                    if (score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.magenta;
-                    break;
-                case "SecondCircle":
-                    score = 60 * target.multiplier;
-                    feedback = "Good ";
-                    if (score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.red;
-                    break;
-                case "OuterCircle":
-                    score = 40 * target.multiplier;
-                    feedback = "Ok ";
-                    if (score > 0)
-                    {
-                        feedback += "+";
-                    }
-                    feedback += score;
-                    shotFeedback.text = feedback;
-                    shotFeedback.color = Color.cyan;
-                    break;
-                default:
-                    break;
-            }
+            StartCoroutine(feedbackFadeRoutine);
+            //switch (hit.transform.name)
+            //{
+            //    case "InnerCircle":
+            //        score = 100 * target.multiplier;
+            //        feedback = "Perfect ";
+            //        if(score > 0)
+            //        {
+            //            feedback += "+";
+            //        }
+            //        feedback += score;
+            //        shotFeedback.text = feedback;
+            //        shotFeedback.color = Color.yellow;
+            //        break;
+            //    case "FirstCircle":
+            //        score = 80 * target.multiplier; ;
+            //        feedback = "Great ";
+            //        if (score > 0)
+            //        {
+            //            feedback += "+";
+            //        }
+            //        feedback += score;
+            //        shotFeedback.text = feedback;
+            //        shotFeedback.color = Color.magenta;
+            //        break;
+            //    case "SecondCircle":
+            //        score = 60 * target.multiplier;
+            //        feedback = "Good ";
+            //        if (score > 0)
+            //        {
+            //            feedback += "+";
+            //        }
+            //        feedback += score;
+            //        shotFeedback.text = feedback;
+            //        shotFeedback.color = Color.red;
+            //        break;
+            //    case "OuterCircle":
+            //        score = 40 * target.multiplier;
+            //        feedback = "Ok ";
+            //        if (score > 0)
+            //        {
+            //            feedback += "+";
+            //        }
+            //        feedback += score;
+            //        shotFeedback.text = feedback;
+            //        shotFeedback.color = Color.cyan;
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
     }
     private void reload()
@@ -344,5 +361,24 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         //tir.SetFloat("alpha", -1.0f);
+    }
+    private IEnumerator HitUIFeedbackRoutine()
+    {
+
+        yield return new WaitForSeconds(showTime);
+        float timer = 0;
+        Color feedbackColor = shotFeedback.color;
+        while (timer < fadeTime)
+        {
+            float ratio = timer / fadeTime;
+            shotFeedback.color = Color.Lerp(feedbackColor, Color.clear, ratio);
+            shotFeedback.fontSize = Mathf.Lerp(initalSize, fadeSize, ratio);
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+    }
+    private void StopFeedbackFadeRoutine()
+    {
+        if (feedbackFadeRoutine != null) StopCoroutine(feedbackFadeRoutine);
     }
 }

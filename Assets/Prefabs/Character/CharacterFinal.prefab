@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5242170184782826657
 Transform:
   m_ObjectHideFlags: 0
@@ -759,7 +759,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451466362516135262}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1424,7 +1424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &451466363338951455
 Transform:
   m_ObjectHideFlags: 0
@@ -1458,6 +1458,10 @@ MonoBehaviour:
   shotFeedback: {fileID: 0}
   bullets: {fileID: 0}
   reloadMessage: {fileID: 0}
+  showTime: 2
+  fadeTime: 0.33
+  initalSize: 40
+  fadeSize: 32
   mesh: {fileID: 365156742311733653}
   maxAmo: 10
   reloadingTime: 2

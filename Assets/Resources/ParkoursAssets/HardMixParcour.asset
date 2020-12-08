@@ -15,6 +15,7 @@ MonoBehaviour:
   guid: c42d22e4-8737-4060-8bc6-0ae25a13ef28
   displayName: Complete 2
   displayImage: {fileID: 21300000, guid: 02dc8e707e138a24cae5a6567eb2accf, type: 3}
+  isDevParkour: 0
   axis: 0
   parkourDifficulty: 4
   aimDifficulty: 4
@@ -31,6 +32,8 @@ MonoBehaviour:
   - type: 3
     score: 1600
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 7400000, guid: 91e34e1f8ddc60f48b2f7c88667ef0ec,
+    type: 2}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: c3298db983e7ce947a9c5702510e07c7, type: 3}
     m_SceneName: HardMixParcour

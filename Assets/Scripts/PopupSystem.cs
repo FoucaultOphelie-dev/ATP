@@ -13,6 +13,7 @@ public class PopupSystem : MonoBehaviour
     {
         popUpBox.SetActive(true);
         popUpText.text = text;
+        Cursor.visible = true;
         //animator.SetTrigger("pop");
     }
 }

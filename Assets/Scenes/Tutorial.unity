@@ -5150,20 +5150,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7380358245494763587, guid: 01e0df55b9aef854db4dd78f2d105379,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7380358245494763596, guid: 01e0df55b9aef854db4dd78f2d105379,
         type: 3}
       propertyPath: m_Name
       value: CanvasManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7380358245494763596, guid: 01e0df55b9aef854db4dd78f2d105379,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e0df55b9aef854db4dd78f2d105379, type: 3}

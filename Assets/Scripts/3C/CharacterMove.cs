@@ -99,11 +99,24 @@ public class CharacterMove : MonoBehaviour
     private Quaternion rotationInitialCam;
 
     public bool bobbing = true;
+
+    //Saved state for reset
+    private bool wasAiming;
     #endregion
 
     void Start()
     {
-        #region INITIALISATION
+        ParkourManager.OnCheckpointDone += (int index, float time, float lastTime) => {
+            wasAiming = isAiming;
+        };
+        ParkourManager.OnCheckpointReset += () => {
+            isAiming = wasAiming;
+        };
+        ParkourManager.OnParkourReset += () =>
+        {
+            isAiming = false;
+        };
+            #region INITIALISATION
         m_rb = GetComponent<Rigidbody>();
 
         speed = speedWalk;

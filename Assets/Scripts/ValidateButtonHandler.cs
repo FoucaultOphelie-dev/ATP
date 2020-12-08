@@ -9,6 +9,7 @@ public class ValidateButtonHandler : MonoBehaviour
     public void closePopUp()
     {
         popUpSystem.SetActive(false);
+        Cursor.visible = false;
         //timeManager.unpauseGame();
     }
 }

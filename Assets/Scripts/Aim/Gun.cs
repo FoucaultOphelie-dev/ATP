@@ -64,11 +64,16 @@ public class Gun : MonoBehaviour
             amountOfBullets = lastCheckAmmo;
             reloading = lastCheckReloading;
             reloadingTimer = lastCheckReloadingTimer;
+            if(reloading)
+                reloadMessage.text = "Reloading";
+            else
+                reloadMessage.text = "";
         };
         ParkourManager.OnParkourReset += () => {
             amountOfBullets = maxAmo;
             reloading = false;
             reloadingTimer = 0;
+            reloadMessage.text = "";
         };
         //Find UI
         RectTransform gameplayCanvas = GameObject.Find("CanvasManager").transform.Find("GameplayCanvas").GetComponent<RectTransform>();

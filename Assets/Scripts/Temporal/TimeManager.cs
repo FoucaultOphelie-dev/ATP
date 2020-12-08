@@ -32,6 +32,13 @@ public class TimeManager : MonoBehaviour
     private ChromaticAberration m_chroma;
     private Vignette m_vignette;
     private ColorAdjustments m_color;
+
+    private bool wasSlow;
+    private bool wasFast;
+    private float wasJaugeValue;
+    private float vignetteValue;
+    private float chromaValue;
+
     public Volume volume;
 
     [Header("Sounds")]
@@ -43,6 +50,29 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
+        ParkourManager.OnCheckpointDone += (int index, float time, float lastTime) => {
+            wasSlow = doRalenti;
+            wasFast = doAcceleration;
+            wasJaugeValue = jauge;
+            vignetteValue = m_vignette.intensity.value;
+            chromaValue = m_chroma.intensity.value;
+
+        };
+        ParkourManager.OnCheckpointReset += () => {
+            doRalenti = wasSlow;
+            doAcceleration = wasFast;
+            jauge = wasJaugeValue;
+            m_vignette.intensity.value = vignetteValue;
+            m_chroma.intensity.value = chromaValue;
+        };
+        ParkourManager.OnParkourReset += () => {
+            doRalenti = false;
+            doAcceleration = false;
+            jauge = 0;
+            m_vignette.intensity.value = 0;
+            m_chroma.intensity.value = 0;
+            Debug.Log("jauge" + jauge);
+        };
         volume.profile.TryGet<Vignette>(out m_vignette);
         volume.profile.TryGet<ChromaticAberration>(out m_chroma);
         volume.profile.TryGet<ColorAdjustments>(out m_color);
@@ -128,7 +158,6 @@ public class TimeManager : MonoBehaviour
                 {
                     jauge = maxJauge;
                 }
-                jaugeUI.fillAmount = jauge / maxJauge;
             }
             else
             {
@@ -146,7 +175,6 @@ public class TimeManager : MonoBehaviour
                 {
                     jauge = 0f;
                 }
-                jaugeUI.fillAmount = jauge / maxJauge;
             }
             else
             {
@@ -161,8 +189,8 @@ public class TimeManager : MonoBehaviour
                 //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
                 //m_vignette.intensity.value = 0;
             }
-
         }
+        jaugeUI.fillAmount = jauge / maxJauge;
     }
 
     IEnumerator ReturnColor()

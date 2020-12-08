@@ -223,26 +223,29 @@ public class ParkourManager : MonoBehaviour
         }
         if (Input.GetKeyDown(softResetKey))
         {
-            foreach (Platform platform in platforms) platform.SoftReset();
-            player.transform.position = lastPos;
-            player.transform.rotation = lastRotation;
-            playerRigidbody.velocity = lastVelocity;
-            Camera.main.transform.rotation = lastCameraPitch;
-            timer = lastTime;
-            foreach(var trigger in triggerBuffer)
+            if (lastCheckpoint == 0) ResetGameplay();
+            else
             {
-                trigger.ResetTrigger();
+                foreach (Platform platform in platforms) platform.SoftReset();
+                player.transform.position = lastPos;
+                player.transform.rotation = lastRotation;
+                playerRigidbody.velocity = lastVelocity;
+                Camera.main.transform.rotation = lastCameraPitch;
+                timer = lastTime;
+                foreach (var trigger in triggerBuffer)
+                {
+                    trigger.ResetTrigger();
+                }
+                triggerBuffer.Clear();
+                targetBuffer.Clear();
+                hitBuffer.Clear();
+                maxCompletion = 0;
+                OnCheckpointReset?.Invoke();
             }
-            triggerBuffer.Clear();
-            targetBuffer.Clear();
-            hitBuffer.Clear();
-            maxCompletion = 0;
-            OnCheckpointReset?.Invoke();
         }
         if (Input.GetKeyDown(hardResetKey))
         {
             ResetGameplay();
-            OnParkourReset?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -322,6 +325,7 @@ public class ParkourManager : MonoBehaviour
         playerMovement.enabled = false;
         playerMovement.cam.GetComponent<Camera>().enabled = false;
         scoringCamera.enabled = true;
+        timeManager.enabled = false;
         cameraMove.enabled = false;
         spectatingCamera.SetActive(true);
         spectatingCamera.GetComponent<Camera>().enabled = true;
@@ -411,7 +415,7 @@ public class ParkourManager : MonoBehaviour
         instance.playerMovement.CanMove = false;
         instance.playerMovement.bobbing = false;
         instance.cameraMove.enabled = true;
-        instance.timeManager.enabled = true;
+        instance.timeManager.powerActivate = false;
         instance.player.GetComponent<Animator>().Rebind();
 
         if (instance.firstRun)
@@ -450,6 +454,7 @@ public class ParkourManager : MonoBehaviour
         instance.SwitchParkourState(ParkourState.Gameplay);
         instance.alreadyDone = 0;
         instance.maxCompletion = 0;
+        OnParkourReset?.Invoke();
     }
     public Vector3 FindNearestPointOnLine(Vector3 origin, Vector3 end, Vector3 point)
     {

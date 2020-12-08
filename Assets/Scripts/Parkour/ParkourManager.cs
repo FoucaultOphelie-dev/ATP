@@ -149,9 +149,18 @@ public class ParkourManager : MonoBehaviour
         }
         if (!spectatingCamera)
             Debug.LogError("spectatingCamera is missing");
-        else if(parkourData.spectatingCamAnimClip)
+        else if (parkourData.spectatingCamAnimClip)
         {
-            spectatingCamera.GetComponent<Animator>().Play(parkourData.spectatingCamAnimClip.name);
+            Animator spectatingAnimator = spectatingCamera.GetComponent<Animator>();
+            if (spectatingAnimator)
+            {
+                Debug.LogFormat("Play \"{0}\" ", parkourData.spectatingCamAnimClip.name);
+                spectatingAnimator.Play(parkourData.spectatingCamAnimClip.name);
+            }
+            else
+            {
+                Debug.LogError("Spectating Animator not found");
+            }
         }
 
         targetBuffer = new List<Transform>();

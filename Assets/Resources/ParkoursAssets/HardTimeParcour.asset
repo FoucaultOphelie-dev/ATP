@@ -15,6 +15,7 @@ MonoBehaviour:
   guid: fb00e59e-62df-436d-8050-116623cc4800
   displayName: Time 2
   displayImage: {fileID: 21300000, guid: 60ff713db59454d40a167925ed9f3ac4, type: 3}
+  isDevParkour: 0
   axis: 3
   parkourDifficulty: 0
   aimDifficulty: 0
@@ -31,6 +32,8 @@ MonoBehaviour:
   - type: 3
     score: 2600
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 7400000, guid: b1d81d42ea2ab5f49b32448ec922f9c3,
+    type: 2}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 2c47577bacf17484b9dc5b01d5d57207, type: 3}
     m_SceneName: HardTimeParcour

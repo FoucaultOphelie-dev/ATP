@@ -15,6 +15,7 @@ MonoBehaviour:
   guid: 2cbd93b4-659d-4ffd-b3f2-a63a09888bd2
   displayName: Parkour 1
   displayImage: {fileID: 21300000, guid: c0341d4c1af4ec44386f25deb080c5b9, type: 3}
+  isDevParkour: 0
   axis: 1
   parkourDifficulty: 2
   aimDifficulty: 1
@@ -31,6 +32,8 @@ MonoBehaviour:
   - type: 3
     score: 2400
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 7400000, guid: 3179d17cd00cd7245849cbb250c6b124,
+    type: 2}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 481679127a981fe408d33ee9ccffd411, type: 3}
     m_SceneName: EasyParkourParcour

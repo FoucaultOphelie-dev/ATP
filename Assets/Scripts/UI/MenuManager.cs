@@ -130,6 +130,9 @@ public class MenuManager : MonoBehaviour
         Parkour[] parkoursAssets = Resources.LoadAll<Parkour>("ParkoursAssets");
         foreach (Parkour parkourAsset in parkoursAssets)
         {
+#if !UNITY_EDITOR
+            if (parkourAsset.isDevParkour) continue;
+#endif
             GameObject parkourbutton = Instantiate(ParkourUIButtonPrefab, parent);
             parkourbutton.transform.Find("parkourName").GetComponent<TextMeshProUGUI>().text = parkourAsset.displayName;
             parkourbutton.transform.Find("image").GetComponent<Image>().sprite = parkourAsset.displayImage;

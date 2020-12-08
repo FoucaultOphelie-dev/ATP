@@ -63,10 +63,14 @@ public class ProfileManager : MonoBehaviour
         path = Path.Combine(Application.persistentDataPath, "Profiles");
         LoadProfiles();
         currentGUIDProfile = PlayerPrefs.GetString("lastProfile");
-        Debug.Log(currentGUIDProfile);
         if (!profiles.ContainsKey(currentGUIDProfile))
         {
             currentGUIDProfile = "";
+            Debug.LogWarning("Last profile not found");
+        }
+        else
+        {
+            Debug.LogFormat("Last Profile {0} (guid:{1})", profiles[currentGUIDProfile].name, currentGUIDProfile);
         }
     }
     public void CreateProfile(string name)

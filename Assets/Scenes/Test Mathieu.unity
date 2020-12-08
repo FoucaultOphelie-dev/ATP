@@ -1256,7 +1256,7 @@ MonoBehaviour:
   parkourState: 0
   softResetKey: 114
   hardResetKey: 8
-  parkourData: {fileID: 11400000, guid: abd998d0d69085e4b80360eadae8002b, type: 2}
+  parkourData: {fileID: 11400000, guid: 7c394a4d371c7914db2901f6abbfaf54, type: 2}
   player: {fileID: 0}
   scoringCamera: {fileID: 0}
   timerByCheckpoint: []

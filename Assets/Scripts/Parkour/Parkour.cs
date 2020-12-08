@@ -51,7 +51,11 @@ public class Parkour : ScriptableObject
     public string guid;
     [Tooltip("Nom affiché au joueur")]
     public string displayName;
+    [Tooltip("Image affiché au joueur")]
     public Sprite displayImage;
+    [Tooltip("Détermine si le parkour sera visible sur la sélection de niveau (true = caché)")]
+    public bool isDevParkour;
+
     public ParkourAxis axis;
     [Tooltip("Difficulté Affiché")]
     ///[Range(0,5)]
@@ -80,6 +84,7 @@ public class Parkour : ScriptableObject
         new Medal {type = Medal.MedalType.Bronze, score = 0},
     };
     public int[] required = new int[4];
+    public AnimationClip spectatingCamAnimClip;
     [SerializeField]
     public SceneField scene;
     public Parkour nextParkour;

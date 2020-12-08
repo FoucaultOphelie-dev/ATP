@@ -468,7 +468,7 @@ public class CharacterMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("it's collide with " + collision.gameObject.name);
+        //Debug.Log("it's collide with " + collision.gameObject.name);
         if (collision.gameObject.layer == m_groundLayerMask)
         {
             CheckForGround();

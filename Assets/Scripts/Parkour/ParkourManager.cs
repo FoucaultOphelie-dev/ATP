@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.IO;
+using System;
+
 public enum ParkourState
 {
     Intro,
@@ -23,6 +25,8 @@ public class ParkourManager : MonoBehaviour
 
     public delegate void ParkourReset();
     public static event ParkourReset OnParkourReset;
+    public delegate void CheckpointReset();
+    public static event CheckpointReset OnCheckpointReset;
     #endregion
 
     public KeyCode softResetKey = KeyCode.R;
@@ -106,31 +110,23 @@ public class ParkourManager : MonoBehaviour
         OnCheckpointDone = null;
         OnParkourSwitchState = null;
         timerByCheckpoint = new List<float>();
-        player = GameObject.FindGameObjectWithTag("PlayerRoot");
-        if (!player)
-            Debug.LogError("Player is missing");
-        else
+        try
         {
-            Debug.Log(player.name);
+            player = GameObject.FindGameObjectWithTag("PlayerRoot");
+            playerRigidbody = player.GetComponent<Rigidbody>();
+            playerMovement = player.GetComponent<CharacterMove>();
+            timeManager = GameObject.FindObjectOfType<TimeManager>();
+            cameraMove = player.GetComponent<CameraMove>();
+            scoringCamera = player.transform.Find("Body/ScoringCamera").GetComponent<Camera>();
         }
-        playerRigidbody = player.GetComponent<Rigidbody>();
-        if (!playerRigidbody)
-            Debug.LogError("playerRigidbody is missing");
-        playerMovement = player.GetComponent<CharacterMove>();
-        if (!playerMovement)
-            Debug.LogError("playerMovement is missing");
-        timeManager = GameObject.FindObjectOfType<TimeManager>();
-        if (!timeManager)
-            Debug.LogError("timeManager is missing");
-        cameraMove = player.GetComponent<CameraMove>();
-        if (!cameraMove)
-            Debug.LogError("cameraMove is missing");
-        scoringCamera = player.transform.Find("Body/ScoringCamera").GetComponent<Camera>();
-        if (!scoringCamera)
-            Debug.LogError("scoringCamera is missing");
+        catch(Exception ex)
+        {
+            Debug.LogError("Error on ref missing parkour manager");
+            Debug.LogError(ex);
+        }
+
 
         checkpoints = GameObject.FindObjectsOfType<CheckPoint>().OrderBy(checkpoint => checkpoint.index).ToList<CheckPoint>();
-        Debug.Log(checkpoints.Count + " checkpoints found");
         lenghtByCheckpoint = new List<float>();
         for (int i = 1; i < checkpoints.Count; i++)
         {
@@ -153,6 +149,10 @@ public class ParkourManager : MonoBehaviour
         }
         if (!spectatingCamera)
             Debug.LogError("spectatingCamera is missing");
+        else if(parkourData.spectatingCamAnimClip)
+        {
+            spectatingCamera.GetComponent<Animator>().Play(parkourData.spectatingCamAnimClip.name);
+        }
 
         targetBuffer = new List<Transform>();
         hitBuffer = new List<Hit>();
@@ -237,10 +237,12 @@ public class ParkourManager : MonoBehaviour
             targetBuffer.Clear();
             hitBuffer.Clear();
             maxCompletion = 0;
+            OnCheckpointReset?.Invoke();
         }
         if (Input.GetKeyDown(hardResetKey))
         {
             ResetGameplay();
+            OnParkourReset?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -448,7 +450,6 @@ public class ParkourManager : MonoBehaviour
         instance.SwitchParkourState(ParkourState.Gameplay);
         instance.alreadyDone = 0;
         instance.maxCompletion = 0;
-        OnParkourReset?.Invoke();
     }
     public Vector3 FindNearestPointOnLine(Vector3 origin, Vector3 end, Vector3 point)
     {

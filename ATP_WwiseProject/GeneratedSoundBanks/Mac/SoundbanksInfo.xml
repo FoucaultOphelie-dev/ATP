@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1684810050">
+		<SoundBank Id="393239870" Language="SFX" Hash="588455062">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -105,7 +105,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3096711473" Name="Music_choix_niveau" ObjectPath="\Events\Default Work Unit\Music_choix_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+				<Event Id="3096711473" Name="Music_choix_niveau" ObjectPath="\Events\Default Work Unit\Music_choix_niveau" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="845647722" Language="SFX">
 							<ShortName>Heros.wav</ShortName>
@@ -113,7 +113,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="90594921" Name="Music_fin_niveau" ObjectPath="\Events\Default Work Unit\Music_fin_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+				<Event Id="90594921" Name="Music_fin_niveau" ObjectPath="\Events\Default Work Unit\Music_fin_niveau" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="314569221" Language="SFX">
 							<ShortName>Belinda.wav</ShortName>
@@ -121,7 +121,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="17986547" Name="Music_menu_principal" ObjectPath="\Events\Default Work Unit\Music_menu_principal" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000">
+				<Event Id="17986547" Name="Music_menu_principal" ObjectPath="\Events\Default Work Unit\Music_menu_principal" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="701294281" Language="SFX">
 							<ShortName>Chameleon.wav</ShortName>
@@ -129,14 +129,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2953965439" Name="Music_niveau" ObjectPath="\Events\Default Work Unit\Music_niveau" DurationType="OneShot" DurationMin="224.000015" DurationMax="224.000015">
-					<IncludedMemoryFiles>
-						<File Id="1058241748" Language="SFX">
-							<ShortName>5Keer.wav</ShortName>
-							<Path>SFX\5Keer_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
+				<Event Id="2953965439" Name="Music_niveau" ObjectPath="\Events\Default Work Unit\Music_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="3686556480" Name="slide" ObjectPath="\Events\Default Work Unit\slide" DurationType="OneShot" DurationMin="22.511518" DurationMax="22.511518">
 					<IncludedMemoryFiles>
 						<File Id="766349877" Language="SFX">

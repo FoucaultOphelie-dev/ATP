@@ -39,5 +39,4 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	994342170	crash	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\crashFin_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\crash		286944
 	1011844167	footstep4	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_94A82360.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep4		24402
 	1014395605	footstep7	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_BD02B801.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep7		22374
-	1058241748	5Keer	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\5Keer_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\musique niveau\5Keer\5Keer		39513668
 

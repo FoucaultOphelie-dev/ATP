@@ -243,7 +243,7 @@ public class CharacterMove : MonoBehaviour
         #endregion
 
         #region AIMING
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && CanMove)
         {
             isAiming = true;
             CanRun = false;
@@ -261,7 +261,7 @@ public class CharacterMove : MonoBehaviour
         #endregion
 
         #region SLIDE
-        if (Input.GetKeyDown(keySlide) && !inSlide)
+        if (Input.GetKeyDown(keySlide) && !inSlide && CanMove)
         {
             canSlide = true;
         }
@@ -331,7 +331,7 @@ public class CharacterMove : MonoBehaviour
         #endregion
 
         #region JUMP
-        if (Input.GetKeyDown(keyJump))
+        if (Input.GetKeyDown(keyJump) && CanMove)
         {
             if (playerIsGrounded || isGrab || wallRunLeft || wallRunRight)
             {

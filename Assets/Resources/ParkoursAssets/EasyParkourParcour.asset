@@ -24,7 +24,7 @@ MonoBehaviour:
   reward: 0
   medals:
   - type: 0
-    score: 360
+    score: 3600
   - type: 1
     score: 3200
   - type: 2

@@ -154,8 +154,9 @@ public class ParkourManager : MonoBehaviour
             Animator spectatingAnimator = spectatingCamera.GetComponent<Animator>();
             if (spectatingAnimator)
             {
+                playerMovement.cam.GetComponent<Camera>().enabled = false;
                 Debug.LogFormat("Play \"{0}\" ", parkourData.spectatingCamAnimClip.name);
-                spectatingAnimator.Play(parkourData.spectatingCamAnimClip.name);
+                spectatingAnimator.Play(parkourData.spectatingCamAnimClip.name, 0, 0);
             }
             else
             {

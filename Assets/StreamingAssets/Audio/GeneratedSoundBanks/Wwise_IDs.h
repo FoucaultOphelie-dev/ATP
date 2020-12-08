@@ -32,6 +32,22 @@ namespace AK
         static const AkUniqueID TIR = 980206266U;
     } // namespace EVENTS
 
+    namespace STATES
+    {
+        namespace MUSICAL_STATE
+        {
+            static const AkUniqueID GROUP = 1459251975U;
+
+            namespace STATE
+            {
+                static const AkUniqueID CHOIX = 4143004896U;
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID PRINCIPAL = 2265963081U;
+            } // namespace STATE
+        } // namespace MUSICAL_STATE
+
+    } // namespace STATES
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;

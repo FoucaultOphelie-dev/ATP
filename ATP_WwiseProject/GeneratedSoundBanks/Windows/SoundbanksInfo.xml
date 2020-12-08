@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="588455062">
+		<SoundBank Id="393239870" Language="SFX" Hash="1441324745">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -127,9 +127,35 @@
 							<ShortName>Chameleon.wav</ShortName>
 							<Path>SFX\Chameleon_D79FB2B7.wem</Path>
 						</File>
+						<File Id="845647722" Language="SFX">
+							<ShortName>Heros.wav</ShortName>
+							<Path>SFX\Heros_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{C26F0E65-23BA-4BA8-8B38-CE1A98D9E46E}">
+							<Media>
+								<File Id="845647722"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{5FC20415-16DA-4083-8BEA-8DD61551588D}">
+							<Media>
+								<File Id="701294281"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+					<ActionSetState>
+						<ActionSetStateEntry Id="2265963081" Name="principal" ObjectPath="\States\Default Work Unit\musical_state\principal"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2953965439" Name="Music_niveau" ObjectPath="\Events\Default Work Unit\Music_niveau" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="358973237" Language="SFX">
+							<ShortName>5Keer.wav</ShortName>
+							<Path>SFX\5Keer_D79FB2B7.wem</Path>
+						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2953965439" Name="Music_niveau" ObjectPath="\Events\Default Work Unit\Music_niveau" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="3686556480" Name="slide" ObjectPath="\Events\Default Work Unit\slide" DurationType="OneShot" DurationMin="22.511518" DurationMax="22.511518">
 					<IncludedMemoryFiles>
 						<File Id="766349877" Language="SFX">
@@ -163,8 +189,20 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<StateGroups>
+				<StateGroup Id="1459251975" Name="musical_state" ObjectPath="\States\Default Work Unit\musical_state">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\musical_state\None"/>
+						<State Id="2265963081" Name="principal" ObjectPath="\States\Default Work Unit\musical_state\principal"/>
+						<State Id="4143004896" Name="choix" ObjectPath="\States\Default Work Unit\musical_state\choix"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="2265963081" Name="principal" ObjectPath="\States\Default Work Unit\musical_state\principal">
+					<States/>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2114874212">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3037538448">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>

@@ -17,24 +17,33 @@ Event	ID	Name			Wwise Object Path	Notes
 	3918031937	fastmotion			\Default Work Unit\fastmotion	
 	4293480634	DepartEnd			\Default Work Unit\DepartEnd	
 
+State Group	ID	Name			Wwise Object Path	Notes
+	1459251975	musical_state			\Default Work Unit\musical_state	
+
+State	ID	Name	State Group			Notes
+	748895195	None	musical_state			
+	2265963081	principal	musical_state			
+	4143004896	choix	musical_state			
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	62959402	footstep6	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_B955896D.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep6		18318
 	71110553	craquements	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\craquement_C5579977.wem		\Actor-Mixer Hierarchy\Default Work Unit\craquements		1538236
 	131783153	footstep1	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_8A34946D.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep1		22374
 	132483023	Time_Fast	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Time_D0C8D6C9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Time_Fast		248600
 	135379503	depart123	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\depart_DDB7C963.wem		\Actor-Mixer Hierarchy\Default Work Unit\depart123		162672
-	314569221	Belinda	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Belinda_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\musique fin de niveau\Belinda\Belinda		16334428
+	314569221	Belinda	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Belinda_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\music Level\musique fin de niveau\Belinda\Belinda		16334428
+	358973237	5Keer	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\5Keer_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\music Level\musique niveau\5Keer\5Keer		39513668
 	460868223	Time_Slow	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Time_F75A12A8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Time_Slow		386672
 	552676228	explosion_plateforme	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\explosion_plateforme_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\explosion_plateforme		238480
 	609535076	depart_fin	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\depart_D2C10F2F.wem		\Actor-Mixer Hierarchy\Default Work Unit\depart_fin		213484
 	629213339	laser	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\laser_CDD826EB.wem		\Actor-Mixer Hierarchy\Default Work Unit\laser		84016
-	701294281	Chamaleon	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Chameleon_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\musique menu principal\Chameleon\Chamaleon		37396864
+	701294281	Chamaleon	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Chameleon_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\switch music principal\musique menu principal\Chameleon\Chamaleon		37396864
 	727307116	footstep5	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_7DAF5E06.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep5		16290
 	740364709	Jump	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\jump_39C24F2A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Jump		43808
 	766349877	slip	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\slip_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\slip		3971096
 	797528370	target desapear	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\target desapear_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\target desapear		10628
 	844276013	footstep2	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_12D9BCF4.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep2		20346
-	845647722	Heros	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Heros_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\musique choix de niveau\Heros\Heros		21515080
+	845647722	Heros	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\Heros_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\switch music principal\musique choix de niveau\Heros\Heros		21515080
 	967523465	footstep3	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_8F52AD5C.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep3		20346
 	994342170	crash	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\crashFin_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\crash		286944
 	1011844167	footstep4	D:\documents\UQAC\conception JV\ATP\ATP_WwiseProject\.cache\Windows\SFX\footsteps_94A82360.wem		\Actor-Mixer Hierarchy\Default Work Unit\footstep\footstep4		24402

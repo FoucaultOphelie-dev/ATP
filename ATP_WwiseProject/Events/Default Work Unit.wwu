@@ -126,10 +126,20 @@
 				</Event>
 				<Event Name="Music_menu_principal" ID="{0DF5AA70-803D-49BB-9EEE-63EB81137B2E}">
 					<ChildrenList>
-						<Action Name="" ID="{8393D196-164E-4E87-A8B6-683241044CA1}" ShortID="1054626261">
+						<Action Name="" ID="{2C086D84-1F2D-46F1-8251-AB26DCECD1A6}" ShortID="192745302">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="musique menu principal" ID="{E8C4EC78-4F48-4CB6-9760-B0C5A265C6CB}" WorkUnitID="{A675FB82-CE0C-4903-B1EF-3A811776BB4F}"/>
+									<ObjectRef Name="principal" ID="{5FC20415-16DA-4083-8BEA-8DD61551588D}" WorkUnitID="{DB4F5191-E6FD-45CE-B8DB-D62257E428AA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{FD27C9BC-D41B-4A9E-8F5C-E526E5D7F237}" ShortID="634327280">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="switch music principal" ID="{7CDF7E9D-C034-4726-BFBE-83AD08018ABB}" WorkUnitID="{A675FB82-CE0C-4903-B1EF-3A811776BB4F}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

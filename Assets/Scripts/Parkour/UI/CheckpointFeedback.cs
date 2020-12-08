@@ -26,6 +26,8 @@ public class CheckpointFeedback : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ParkourManager.OnCheckpointReset += StopFeedbackCoroutine;
+        ParkourManager.OnParkourReset += StopFeedbackCoroutine;
         instance = ParkourManager.Instance();
         if (instance == null)
         {
@@ -41,7 +43,7 @@ public class CheckpointFeedback : MonoBehaviour
     // Update is called once per frame
     void UpdateFeedback(int index, float time, float previousTime)
     {
-        if( coroutine != null) StopCoroutine(coroutine);
+        StopFeedbackCoroutine();
         coroutine = WaitAndFadeOut();
         timeTextComponent.alpha = 1;
         timeTextComponent.color = Color.white;
@@ -97,6 +99,15 @@ public class CheckpointFeedback : MonoBehaviour
         timeTextComponent.alpha = 0;
         timeDiffTextComponent.alpha = 0;
         // Size
+        timeTextComponent.fontSize = initalSize;
+        timeDiffTextComponent.fontSize = initalSize;
+    }
+
+    private void StopFeedbackCoroutine()
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        timeTextComponent.alpha = 0;
+        timeDiffTextComponent.alpha = 0;
         timeTextComponent.fontSize = initalSize;
         timeDiffTextComponent.fontSize = initalSize;
     }

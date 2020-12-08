@@ -2030,11 +2030,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 451466362214190343, guid: b21efc280a1f68245a72c862a41e8152,
-        type: 3}
-      propertyPath: timeOfWallRun
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 451466362516135256, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

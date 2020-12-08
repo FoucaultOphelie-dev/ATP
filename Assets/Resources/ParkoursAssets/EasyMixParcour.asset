@@ -15,6 +15,7 @@ MonoBehaviour:
   guid: f0803a43-de6f-4aac-9851-bd19e7e9cf4e
   displayName: Complete 1
   displayImage: {fileID: 21300000, guid: bb3ee82f22307364aa99fc8f1d3f9181, type: 3}
+  isDevParkour: 0
   axis: 0
   parkourDifficulty: 2
   aimDifficulty: 2
@@ -31,6 +32,8 @@ MonoBehaviour:
   - type: 3
     score: 1500
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 7400000, guid: 42bf0965ca6dbea419c043041ab95504,
+    type: 2}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: dd5aa8e25049f6d42b6f40ac325f2706, type: 3}
     m_SceneName: EasyMixParcour

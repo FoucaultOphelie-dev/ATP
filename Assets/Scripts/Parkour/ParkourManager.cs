@@ -415,7 +415,7 @@ public class ParkourManager : MonoBehaviour
         instance.playerMovement.CanMove = false;
         instance.playerMovement.bobbing = false;
         instance.cameraMove.enabled = true;
-        instance.timeManager.enabled = true;
+        instance.timeManager.powerActivate = false;
         instance.player.GetComponent<Animator>().Rebind();
 
         if (instance.firstRun)

@@ -189,8 +189,8 @@ public class TimeManager : MonoBehaviour
                 //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
                 //m_vignette.intensity.value = 0;
             }
-            jaugeUI.fillAmount = jauge / maxJauge;
         }
+        jaugeUI.fillAmount = jauge / maxJauge;
     }
 
     IEnumerator ReturnColor()

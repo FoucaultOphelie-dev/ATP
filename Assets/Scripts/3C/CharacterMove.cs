@@ -25,6 +25,7 @@ public class CharacterMove : MonoBehaviour
     public ForceMode appliedSlideForceMode;
     public GameObject body;
     public GameObject cam;
+    public Animator animCam;
     public AK.Wwise.Event wwiseEventSlide;
 
 
@@ -99,6 +100,8 @@ public class CharacterMove : MonoBehaviour
     private Quaternion rotationInitialCam;
 
     public bool bobbing = true;
+
+    private Vector3 slideInitialPosition;
 
     //Saved state for reset
     private bool wasAiming;
@@ -240,7 +243,7 @@ public class CharacterMove : MonoBehaviour
         #endregion
 
         #region AIMING
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && CanMove)
         {
             isAiming = true;
             CanRun = false;
@@ -258,7 +261,7 @@ public class CharacterMove : MonoBehaviour
         #endregion
 
         #region SLIDE
-        if (Input.GetKeyDown(keySlide) && !inSlide)
+        if (Input.GetKeyDown(keySlide) && !inSlide && CanMove)
         {
             canSlide = true;
         }
@@ -311,17 +314,24 @@ public class CharacterMove : MonoBehaviour
             _frequencyTimer = 0f;
         }
         if (bobbing)
-        { 
-            cam.GetComponent<Animator>().speed = speed;
+        {
+            if (!animCam.GetBool("bobbing"))
+            {
+                animCam.SetBool("bobbing", true);
+            }
+            animCam.speed = speed;
         }
         else
         {
-            cam.GetComponent<Animator>().speed = 0;
+            if (animCam.GetBool("bobbing"))
+            {
+                animCam.SetBool("bobbing", false);
+            }
         }
         #endregion
 
         #region JUMP
-        if (Input.GetKeyDown(keyJump))
+        if (Input.GetKeyDown(keyJump) && CanMove)
         {
             if (playerIsGrounded || isGrab || wallRunLeft || wallRunRight)
             {
@@ -439,9 +449,12 @@ public class CharacterMove : MonoBehaviour
 
     private void Slide(float jumpForce, ForceMode forceMode)
     {
+        slideInitialPosition = cam.transform.parent.localPosition;
         animator.SetBool("Slide", true);
         body.transform.localScale = new Vector3(0.58394f, 0.5f, 1.0f);
-        cam.transform.Translate(new Vector3(0, -.5f, 0));
+        Vector3 slidePos = slideInitialPosition;
+        slidePos.y = 0.5f;
+        cam.transform.parent.localPosition = slidePos;
         m_rb.AddForce(jumpForce * m_rb.mass * m_deltaTime * transform.TransformDirection(Vector3.forward), forceMode);
         wwiseEventSlide.Post(gameObject);
         StartCoroutine(CoSlide());
@@ -452,7 +465,7 @@ public class CharacterMove : MonoBehaviour
         yield return new WaitForSeconds(timeOfSlide);
         wwiseEventSlide.Stop(gameObject);
         body.transform.localScale = new Vector3(0.58394f, 1.99015f, 1.0f);
-        cam.transform.Translate(new Vector3(0, 0.5f, 0));
+        cam.transform.parent.localPosition = slideInitialPosition;
         animator.SetBool("Slide", false);
         inSlide = false;
         GetComponent<CameraMove>().inSlide = false;

@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7221567532016521381, guid: cb9a392421d6c7b47857d9a1c38f23f8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9a392421d6c7b47857d9a1c38f23f8, type: 3}
 --- !u!1 &78689475
@@ -946,10 +951,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 451466362214190342, guid: b21efc280a1f68245a72c862a41e8152,
+        type: 3}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 2134923128}
     - target: {fileID: 451466362516135256, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 451466362516135256, guid: b21efc280a1f68245a72c862a41e8152,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 451466363338951453, guid: b21efc280a1f68245a72c862a41e8152,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 452538108969510803, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
@@ -2069,6 +2089,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d2f525b0fdca44cb4d8f99e5b1d7b3, type: 3}
+--- !u!1 &2134923128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8745550032420772979, guid: b21efc280a1f68245a72c862a41e8152,
+    type: 3}
+  m_PrefabInstance: {fileID: 999230478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6968887866301103734
 PrefabInstance:
   m_ObjectHideFlags: 0

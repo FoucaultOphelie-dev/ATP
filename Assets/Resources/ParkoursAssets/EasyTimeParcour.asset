@@ -15,6 +15,7 @@ MonoBehaviour:
   guid: 925b1db4-8298-4699-9ea2-cabcebeaa839
   displayName: Time 1
   displayImage: {fileID: 21300000, guid: a57545f192047b84a9ec50c946887f97, type: 3}
+  isDevParkour: 0
   axis: 3
   parkourDifficulty: 1
   aimDifficulty: 1
@@ -31,6 +32,8 @@ MonoBehaviour:
   - type: 3
     score: 1800
   required: 00000000000000000000000000000000
+  spectatingCamAnimClip: {fileID: 7400000, guid: ff332a97a6281d147bf7cde06f92c99a,
+    type: 2}
   scene:
     m_SceneAsset: {fileID: 102900000, guid: f4f970eb8e75c43439c3bebb30ed13c7, type: 3}
     m_SceneName: EasyTimeParcour

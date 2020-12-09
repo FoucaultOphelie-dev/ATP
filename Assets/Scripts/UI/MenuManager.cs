@@ -5,6 +5,15 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 
+[System.Serializable]
+public class MedalsDisplay
+{
+    public List<TextMeshProUGUI> display;
+    public MedalsDisplay()
+    {
+        display = new List<TextMeshProUGUI>();
+    }
+}
 public class MenuManager : MonoBehaviour
 {
     [Header("Level Selector")]
@@ -51,7 +60,7 @@ public class MenuManager : MonoBehaviour
     public TMP_Dropdown dropdownProfiles;
     private List<string> guidList = new List<string>();
     public TextMeshProUGUI nameValue;
-    public TextMeshProUGUI[] profileMedalObtainedCount = new TextMeshProUGUI[4];
+    public MedalsDisplay[] profileMedalObtainedCount = new MedalsDisplay[4];
 
     // Start is called before the first frame update
     void Awake()
@@ -121,7 +130,7 @@ public class MenuManager : MonoBehaviour
         nameValue.text = profile.name;
         for(int i = 0; i < 4; i++)
         {
-            profileMedalObtainedCount[i].text = profile.medalsObtained[i].ToString();
+            for(int j =0; j < profileMedalObtainedCount[i].display.Count; j++) profileMedalObtainedCount[i].display[j].text = profile.medalsObtained[i].ToString();
         }
     }
 

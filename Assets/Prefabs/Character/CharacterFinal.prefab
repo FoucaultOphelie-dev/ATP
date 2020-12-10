@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 8745550032420772979}
-  speed: 300
+  speed: 150
   maxY: 0.6
   minY: -0.6
   inSlide: 0

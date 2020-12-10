@@ -14,6 +14,19 @@
 					</ReferenceList>
 					<ChildrenList>
 						<MusicPlaylistContainer Name="musique choix de niveau" ID="{151EDD94-1407-4B84-92FD-D29648385169}" ShortID="655540179">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -149,6 +162,19 @@
 							</Playlist>
 						</MusicPlaylistContainer>
 						<MusicPlaylistContainer Name="musique menu principal" ID="{E8C4EC78-4F48-4CB6-9760-B0C5A265C6CB}" ShortID="559942275">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -299,6 +325,19 @@
 					</ReferenceList>
 					<ChildrenList>
 						<MusicPlaylistContainer Name="musique fin de niveau" ID="{80405D94-00D4-4EDC-8183-A7DA3C72096D}" ShortID="483266975">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{B470EAAB-E6E5-4750-8FB2-A07802E054E8}"/>
@@ -402,6 +441,17 @@
 						</MusicPlaylistContainer>
 						<MusicPlaylistContainer Name="musique niveau" ID="{F8C86AA3-3E0E-4AEA-8D3A-29449483A554}" ShortID="201773063">
 							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>5</Value>

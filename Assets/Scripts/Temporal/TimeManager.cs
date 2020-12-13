@@ -47,9 +47,16 @@ public class TimeManager : MonoBehaviour
 
     private bool soundRalentiDone = false;
 
+    private bool aberrationState;
+    private bool vignetteState;
+
 
     private void Start()
     {
+        //player Option loading
+        aberrationState = PlayerPrefs.GetInt("aberration_chromatique") == 1 ? true : false;
+        vignetteState = PlayerPrefs.GetInt("vignette") == 1 ? true : false;
+
         ParkourManager.OnCheckpointDone += (int index, float time, float lastTime) => {
             wasSlow = doRalenti;
             wasFast = doAcceleration;
@@ -150,8 +157,11 @@ public class TimeManager : MonoBehaviour
             if (doAcceleration)
             {
                 //postPorecessing.profile.TryGetSubclassOf<>
-                m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
-                m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0.5f, 0.1f);
+                if(vignetteState)
+                    m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
+
+                if(aberrationState)
+                    m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0.5f, 0.1f);
 
                 jauge += Time.unscaledDeltaTime * accelerationFacteur;
                 if (jauge > maxJauge)
@@ -161,14 +171,16 @@ public class TimeManager : MonoBehaviour
             }
             else
             {
-                StartCoroutine("ReturnChroma");
+                if (aberrationState)
+                    StartCoroutine("ReturnChroma");
                 //m_chroma.intensity.value = Mathf.Lerp(m_chroma.intensity.value, 0, 0.1f);
                 //m_chroma.intensity.value = 0;
             }
 
             if (doRalenti)
             {
-                m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
+                if (vignetteState)
+                    m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0.5f, 0.1f);
                 m_color.colorFilter.value = Color.Lerp(m_color.colorFilter.value, new Color(0.3568441f, 0.752427f, 0.764151f, 0), 0.1f);
                 jauge -= Time.unscaledDeltaTime * ralentiFacteur;
                 if (jauge < 0f)
@@ -185,7 +197,8 @@ public class TimeManager : MonoBehaviour
 
             if (!doAcceleration && !doRalenti)
             {
-                StartCoroutine("ReturnVignette");
+                if (vignetteState)
+                    StartCoroutine("ReturnVignette");
                 //m_vignette.intensity.value = Mathf.Lerp(m_vignette.intensity.value, 0, 0.1f);
                 //m_vignette.intensity.value = 0;
             }

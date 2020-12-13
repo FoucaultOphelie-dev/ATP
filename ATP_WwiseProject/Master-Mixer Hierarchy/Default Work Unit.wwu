@@ -9,6 +9,32 @@
 							<ValueList>
 								<Value>-10</Value>
 							</ValueList>
+							<RTPCList>
+								<RTPC Name="" ID="{9EF2BFD5-4FDF-4626-B3CB-FCB5CC0D4B3F}" ShortID="729965190">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="EffectVolume" ID="{78D90D60-F7CA-4649-B00D-557FF6E42D65}" WorkUnitID="{F13E3038-4E82-42D0-884C-BFFC6B49EC99}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{5B0E9AF1-7B38-4269-B58B-3A10D303DEB5}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>
@@ -23,6 +49,32 @@
 							<ValueList>
 								<Value>-30</Value>
 							</ValueList>
+							<RTPCList>
+								<RTPC Name="" ID="{3116ACAE-6886-4806-B511-3FCA1A542A0D}" ShortID="512474508">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="MusiqueVolume" ID="{BAA67883-B8D1-4109-9CEF-0622C63B6357}" WorkUnitID="{F13E3038-4E82-42D0-884C-BFFC6B49EC99}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{E3734F06-FA65-435A-BF02-2149578A7F2A}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>100</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
 						</Property>
 					</PropertyList>
 					<ReferenceList>

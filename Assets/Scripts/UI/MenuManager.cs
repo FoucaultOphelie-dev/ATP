@@ -62,6 +62,17 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI nameValue;
     public MedalsDisplay[] profileMedalObtainedCount = new MedalsDisplay[4];
 
+    [Header("Options")]
+    public Slider musiqueSlider;
+    public Slider effectSlider;
+    public Toggle aberrationToggle;
+    public Toggle bobbingToggle;
+    public Toggle vignetteToggle;
+    public AK.Wwise.RTPC musiqueBusVolume;
+    public AK.Wwise.RTPC effectBusVolume;
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -77,6 +88,52 @@ public class MenuManager : MonoBehaviour
             ProfileManager.Instance().SwitchProfile(guidList[dropdownIndex]);
             UpdateProfile(ProfileManager.Instance().profiles[ProfileManager.Instance().currentGUIDProfile]);
         });
+
+
+        //Options Binding
+        // musique
+        int musiqueVolume = 100;
+        musiqueVolume = PlayerPrefs.GetInt("musique_volume");
+        musiqueSlider.value = musiqueVolume;
+        musiqueBusVolume.SetGlobalValue(musiqueVolume);
+        musiqueSlider.onValueChanged.AddListener((float volume) => {
+            PlayerPrefs.SetInt("musique_volume", (int)volume);
+            musiqueBusVolume.SetGlobalValue(volume);
+        });
+        // effect
+        int effectVolume = 100;
+        effectVolume = PlayerPrefs.GetInt("effect_volume");
+        effectSlider.value = effectVolume;
+        effectBusVolume.SetGlobalValue(effectVolume);
+        effectSlider.onValueChanged.AddListener((float volume) => {
+            PlayerPrefs.SetInt("effect_volume", (int)volume);
+            effectBusVolume.SetGlobalValue(volume);
+        });
+        //aberration
+        bool aberration = true;
+        aberration = PlayerPrefs.GetInt("aberration_chromatique") == 1 ? true : false;
+        aberrationToggle.isOn = aberration;
+        aberrationToggle.onValueChanged.AddListener((bool state) =>
+        {
+            PlayerPrefs.SetInt("aberration_chromatique", state ? 1 : 0);
+        });
+        //Bobbing
+        bool bobbing = true;
+        bobbing = PlayerPrefs.GetInt("bobbing") == 1 ? true : false;
+        bobbingToggle.isOn = bobbing;
+        bobbingToggle.onValueChanged.AddListener((bool state) =>
+        {
+            PlayerPrefs.SetInt("bobbing", state ? 1 : 0);
+        });
+        //vignette
+        bool vignette = true;
+        vignette = PlayerPrefs.GetInt("vignette") == 1 ? true : false;
+        vignetteToggle.isOn = vignette;
+        vignetteToggle.onValueChanged.AddListener((bool state) =>
+        {
+            PlayerPrefs.SetInt("vignette", state ? 1 : 0);
+        });
+
         LoadProfiles();
         LoadParkoursAssets();
     }
@@ -109,7 +166,7 @@ public class MenuManager : MonoBehaviour
         }
         dropdownProfiles.AddOptions(options);
         dropdownProfiles.value = selected;
-        if(dropdownProfiles.value == -1)
+        if(selected == -1)
         {
             if(manager.currentGUIDProfile != "")
             {
@@ -119,6 +176,11 @@ public class MenuManager : MonoBehaviour
             else
             {
                 Debug.Log("First play");
+                musiqueSlider.value = 100;
+                effectSlider.value = 100;
+                aberrationToggle.isOn = true;
+                bobbingToggle.isOn = true;
+                vignetteToggle.isOn = true;
                 profileForm.SetActive(true);
                 return;
             }

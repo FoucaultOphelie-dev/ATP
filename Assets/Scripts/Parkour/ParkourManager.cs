@@ -273,7 +273,8 @@ public class ParkourManager : MonoBehaviour
     {
         isStarted = true;
         playerMovement.CanMove = true;
-        playerMovement.bobbing = true;
+        if(playerMovement.bobbingState)
+            playerMovement.bobbing = true;
         timeManager.powerActivate = true;
     }
 

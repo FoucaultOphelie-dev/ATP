@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.Text;
-
+using System.Linq;
 public struct Profile
 {
     public string guid;
@@ -65,7 +65,10 @@ public class ProfileManager : MonoBehaviour
         currentGUIDProfile = PlayerPrefs.GetString("lastProfile");
         if (!profiles.ContainsKey(currentGUIDProfile))
         {
-            currentGUIDProfile = "";
+            if (profiles.Count > 0)
+                currentGUIDProfile = profiles.Keys.First();
+            else
+                currentGUIDProfile = "";
             Debug.LogWarning("Last profile not found");
         }
         else

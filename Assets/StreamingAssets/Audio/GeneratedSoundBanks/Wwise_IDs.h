@@ -48,6 +48,12 @@ namespace AK
 
     } // namespace STATES
 
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID EFFECTVOLUME = 1087353892U;
+        static const AkUniqueID MUSIQUEVOLUME = 541837092U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;

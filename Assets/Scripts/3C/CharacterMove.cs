@@ -100,6 +100,8 @@ public class CharacterMove : MonoBehaviour
     private Quaternion rotationInitialCam;
 
     public bool bobbing = true;
+    [HideInInspector]
+    public bool bobbingState;
 
     private Vector3 slideInitialPosition;
 
@@ -135,6 +137,8 @@ public class CharacterMove : MonoBehaviour
         initialPlayerWallRunForce = playerWallRunForce;
         gun = weapon.transform.GetComponent<Gun>();
         //CheckForGround();
+        bobbingState = PlayerPrefs.GetInt("bobbing") == 1 ? true : false;
+        bobbing = bobbingState;
         #endregion
     }
 
@@ -409,7 +413,8 @@ public class CharacterMove : MonoBehaviour
     private void OnExitWallRun()
     {
         m_rb.useGravity = true;
-        bobbing = true;
+        if(bobbingState)
+            bobbing = true;
         cam.GetComponent<Animator>().Play("Bobbing");
         GetComponent<CameraMove>().active = true;
         playerWallRunForce = initialPlayerWallRunForce;

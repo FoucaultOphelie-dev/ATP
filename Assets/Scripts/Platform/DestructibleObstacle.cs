@@ -22,10 +22,10 @@ public class DestructibleObstacle : Platform
             ParkourManager.OnCheckpointDone += (int index, float time, float previousTime) =>
             {
                 positionOnLastCheckpoint = transform.position;
-                targetOnLastCheckpoint = currentTarget;
+                pointNumberOnLastCheckpoint = pointNumber;
             };
-            targetOnLastCheckpoint = points[0];
             currentTarget = points[0];
+            pointNumberOnLastCheckpoint = 0;
         }
         else
         {

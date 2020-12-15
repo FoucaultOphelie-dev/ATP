@@ -35,6 +35,10 @@ public class FragilePlatform : MonoBehaviour
         isTouched = true;
         craquementsEvent.Post(gameObject);
     }
+    public void ResetPlatform()
+    {
+        isTouched = false;
+    }
 
     private void OnCollisionExit(Collision collision)
     {

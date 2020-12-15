@@ -2007,6 +2007,7 @@ MonoBehaviour:
   currentCompletionCheckpoint: 0
   alreadyDone: 0
   parkourLenght: 0
+  lenghtByCheckpoint: []
 --- !u!4 &618027385
 Transform:
   m_ObjectHideFlags: 0
@@ -2035,6 +2036,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 451466362214190343, guid: b21efc280a1f68245a72c862a41e8152,
+        type: 3}
+      propertyPath: timeOfWallRun
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 451466362516135256, guid: b21efc280a1f68245a72c862a41e8152,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5810,7 +5816,7 @@ PrefabInstance:
     - target: {fileID: 9101888224190569289, guid: ca48599c670a7fc4b96c6dca00e980f7,
         type: 3}
       propertyPath: index
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca48599c670a7fc4b96c6dca00e980f7, type: 3}

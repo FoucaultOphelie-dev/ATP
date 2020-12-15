@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using System.IO;
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public enum ParkourState
 {
@@ -79,7 +82,7 @@ public class ParkourManager : MonoBehaviour
     public float alreadyDone;
     //private float currentCompletionParkour;
     public float parkourLenght;
-    private List<float> lenghtByCheckpoint;
+    public List<float> lenghtByCheckpoint;
 
     private static ParkourManager instance;
     public static ParkourManager Instance()
@@ -489,6 +492,10 @@ public class ParkourManager : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(checkpoints[lastCheckpoint].transform.position,
                 checkpoints[lastCheckpoint + 1].transform.position);
+
+        Handles.Label((checkpoints[lastCheckpoint].transform.position - checkpoints[lastCheckpoint + 1].transform.position) /2,
+            (currentCompletionCheckpoint / lenghtByCheckpoint[lastCheckpoint] *100).ToString() + "%");
+
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(player.transform.position, 0.5f);
         Gizmos.color = Color.green;

@@ -37,17 +37,21 @@ public class CanvasManager : MonoBehaviour
     public float timeToFullScore;
     private float startTime;
 
-    [Header("Completion Jauge")]
-    public Image backgroundJauge;
-    public Image filledJauge;
-    public Color backgroundColor;
-    public Color filledColor;
 
     [Header("Checkpoints Completed")]
     public RectTransform CheckpointsUIFolder;
     public GameObject checkpointUIPrefab;
     public List<GameObject> checkpointsUI;
     public Color checkpointValidatedColor;
+
+    [Header("Completion Jauge")]
+    public Image backgroundJauge;
+    public Color backgroundColor;
+    public RectTransform completionJaugeFolder;
+    public GameObject completionJaugePrefab;
+    public List<GameObject> checkpointsCompletionUI;
+    public Image currentCompletionJauge;
+    private int lastCheckpoint;
 
     [Header("Character")]
     public AnimationClip[] clips;
@@ -92,7 +96,6 @@ public class CanvasManager : MonoBehaviour
 
         //Setup Gameplay Canvas
         backgroundJauge.color = backgroundColor;
-        filledJauge.color = filledColor;
         List<CheckPoint> checkPoints = ParkourManager.Instance().GetCheckpoints();
         if(checkPoints.Count >= 2)
         {
@@ -103,7 +106,15 @@ public class CanvasManager : MonoBehaviour
                 RectTransform uiTransform = checkpointsUI[checkpointsUI.Count - 1].GetComponent<RectTransform>();
                 uiTransform.anchorMin = new Vector2(step * i, 0);
                 uiTransform.anchorMax = new Vector2(step * i, 1);
+                if (i > 0)
+                {
+                    checkpointsCompletionUI.Add(GameObject.Instantiate(completionJaugePrefab, completionJaugeFolder));
+                    RectTransform completionUITransform = checkpointsCompletionUI[checkpointsCompletionUI.Count - 1].GetComponent<RectTransform>();
+                    completionUITransform.anchorMin = new Vector2(step * (i-1), 0);
+                    completionUITransform.anchorMax = new Vector2(step * i, 1);
+                }
             }
+            currentCompletionJauge = checkpointsCompletionUI[0].GetComponent<Image>();
             ValidCheckpointUI(0, 0, 0);//Validate the start;
             ParkourManager.OnCheckpointDone += ValidCheckpointUI;
             ParkourManager.OnParkourReset += ResetGameplayCanvas;
@@ -188,18 +199,22 @@ public class CanvasManager : MonoBehaviour
 
     private void UpdateGameplayCanvas()
     {
-        filledJauge.fillAmount = (ParkourManager.Instance().alreadyDone + ParkourManager.Instance().maxCompletion) / ParkourManager.Instance().parkourLenght;
+        currentCompletionJauge.fillAmount = ParkourManager.Instance().maxCompletion / ParkourManager.Instance().lenghtByCheckpoint[lastCheckpoint];
     }
 
     private void ResetGameplayCanvas()
     {
-        filledJauge.fillAmount = 0;
         for(int i = 1; i < checkpointsUI.Count; i++) checkpointsUI[i].GetComponent<Image>().color = checkpointUIPrefab.GetComponent<Image>().color;
+        for (int i = 1; i < checkpointsCompletionUI.Count; i++) checkpointsCompletionUI[i].GetComponent<Image>().fillAmount = 0;
     }
 
     private void ValidCheckpointUI(int index, float time, float previousTime)
     {
         checkpointsUI[index].GetComponent<Image>().color = checkpointValidatedColor;
+        currentCompletionJauge.fillAmount = 1;
+        lastCheckpoint = index;
+        if(lastCheckpoint < checkpointsCompletionUI.Count)
+        currentCompletionJauge = checkpointsCompletionUI[lastCheckpoint].GetComponent<Image>();
     }
 
     IEnumerator ScoringRoutine()

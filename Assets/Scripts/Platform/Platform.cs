@@ -4,10 +4,10 @@ public class Platform : MonoBehaviour
 {
     public Vector3[] points;
     protected int pointNumber;
+    protected int pointNumberOnLastCheckpoint;
     protected Vector3 currentTarget;
     protected Vector3 positionOnLastCheckpoint;
     protected Vector3 initialPosition;
-    protected Vector3 targetOnLastCheckpoint;
 
     protected float tolerance;
     public float speed;
@@ -24,10 +24,10 @@ public class Platform : MonoBehaviour
             ParkourManager.OnCheckpointDone += (int index, float time, float previousTime) =>
             {
                 positionOnLastCheckpoint = transform.position;
-                targetOnLastCheckpoint = currentTarget;
+                pointNumberOnLastCheckpoint = pointNumber;
             };
-            targetOnLastCheckpoint = points[0];
             currentTarget = points[0];
+            pointNumberOnLastCheckpoint = 0;
         }
         else
         {
@@ -84,8 +84,9 @@ public class Platform : MonoBehaviour
     {
         if (points.Length > 0)
         {
+            pointNumber = pointNumberOnLastCheckpoint;
             transform.position = positionOnLastCheckpoint;
-            currentTarget = targetOnLastCheckpoint;
+            currentTarget = points[pointNumber];
         }
     }
 
@@ -93,8 +94,9 @@ public class Platform : MonoBehaviour
     {
         if (points.Length > 0)
         {
+            pointNumber = 0;
             transform.position = initialPosition;
-            currentTarget = points[0];
+            currentTarget = points[pointNumber];
         }
     }
 }

@@ -4210,6 +4210,12 @@ MonoBehaviour:
     type: 3}
   checkpointsUI: []
   checkpointValidatedColor: {r: 0, g: 0.6415094, b: 0.6415094, a: 1}
+  completionJaugeFolder: {fileID: 8004365638775965005}
+  completionJaugePrefab: {fileID: 7064461448191236734, guid: 406eee75c749bc148809ab3f916831dc,
+    type: 3}
+  checkpointsCompletionUI: []
+  background: {r: 1, g: 1, b: 1, a: 0.40392157}
+  completion: {r: 0.56078434, g: 0.9843137, b: 1, a: 1}
   clips:
   - {fileID: -203655887218126122, guid: bbe7d442f09455543829d20c0400e243, type: 3}
   - {fileID: -203655887218126122, guid: 6d3d672007b657d4cbec33465cb09131, type: 3}
@@ -5316,6 +5322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: backgroundJauge
       objectReference: {fileID: 0}
+    - target: {fileID: 2689263902332279372, guid: 752ff88fbbb2cb1438233a5d5de9923a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2988467960692121344, guid: 752ff88fbbb2cb1438233a5d5de9923a,
         type: 3}
       propertyPath: m_Name
@@ -5465,9 +5476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5698574696281203797 stripped
+--- !u!224 &8004365638775965005 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2988467960692121351, guid: 752ff88fbbb2cb1438233a5d5de9923a,
+  m_CorrespondingSourceObject: {fileID: 682705027960929823, guid: 752ff88fbbb2cb1438233a5d5de9923a,
     type: 3}
   m_PrefabInstance: {fileID: 7380358245236243282}
   m_PrefabAsset: {fileID: 0}
@@ -5486,6 +5497,12 @@ MonoBehaviour:
 --- !u!224 &3655794834887580938 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6113551491841189464, guid: 752ff88fbbb2cb1438233a5d5de9923a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7380358245236243282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5698574696281203797 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2988467960692121351, guid: 752ff88fbbb2cb1438233a5d5de9923a,
     type: 3}
   m_PrefabInstance: {fileID: 7380358245236243282}
   m_PrefabAsset: {fileID: 0}

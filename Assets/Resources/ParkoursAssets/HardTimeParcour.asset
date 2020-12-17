@@ -20,17 +20,17 @@ MonoBehaviour:
   parkourDifficulty: 0
   aimDifficulty: 0
   timePowerDifficulty: 0
-  startingScore: 3600
+  startingScore: 3000
   reward: 0
   medals:
   - type: 0
     score: 3600
   - type: 1
-    score: 3200
+    score: 3000
   - type: 2
-    score: 2800
+    score: 2500
   - type: 3
-    score: 2600
+    score: 2000
   required: 00000000000000000000000000000000
   spectatingCamAnimClip: {fileID: 7400000, guid: b1d81d42ea2ab5f49b32448ec922f9c3,
     type: 2}

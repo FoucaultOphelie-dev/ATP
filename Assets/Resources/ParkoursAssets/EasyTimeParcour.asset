@@ -20,11 +20,11 @@ MonoBehaviour:
   parkourDifficulty: 1
   aimDifficulty: 1
   timePowerDifficulty: 3
-  startingScore: 3400
+  startingScore: 3000
   reward: 0
   medals:
   - type: 0
-    score: 3800
+    score: 3400
   - type: 1
     score: 3000
   - type: 2

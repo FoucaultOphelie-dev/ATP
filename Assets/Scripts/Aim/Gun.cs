@@ -279,7 +279,10 @@ public class Gun : MonoBehaviour
             {
                 if (trigger.method == ParkourTrigger.TriggerMethod.Hit) trigger.DoTrigger();
             }
-            StartCoroutine(feedbackFadeRoutine);
+            if (feedbackFadeRoutine != null)
+            {
+                StartCoroutine(feedbackFadeRoutine);
+            }
             //switch (hit.transform.name)
             //{
             //    case "InnerCircle":
